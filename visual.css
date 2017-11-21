@@ -1,0 +1,34 @@
+*{
+  /*  border: 1px solid black !important;*/
+}
+.image {
+    margin: auto !important;
+}
+
+.hatnote.navigation-not-searchable {
+    text-align: right !important;
+    font-style: italic; 
+}
+
+div[role="note"] {
+    width: 40% !important;
+    margin-left: 60% !important;
+}
+
+h1#pageTitle,h2 {
+    margin: auto;
+    width: 60%;
+    text-align: center !important;
+    letter-spacing: 0.1em !important;
+    border-bottom: 3px solid #000 !important;
+    margin-bottom: 0.5em !important;
+}
+
+h3 {
+    margin: auto;
+    width: 40%;
+    text-align: center !important;
+    letter-spacing: 0.1em !important;
+    border-bottom: 1px solid #000 !important;
+    margin-bottom: 1em !important;
+}
