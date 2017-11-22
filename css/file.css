@@ -1,0 +1,58 @@
+#headim {
+		width: 85%; height: 10%; 
+		margin-left: 9%; 
+	}
+#logoim {
+		width: 5em; height: 3em; 
+	}
+#container { 
+	width:95%; height: 95%; 
+	margin-left:1%; margin-right:1%; 	
+	}
+#header { 
+	/*border-style: solid; border-color: black;*/ 
+	margin-left:1%; margin-right:1%;
+	/*background-color:#80bfff;*/
+	/*text-align: center; font-size: 4em; font-family: Verdana, serif; font-style: oblique;*/
+	}
+#navigation {  
+	/*border-style: solid; border-color: black;*/
+	margin-left:1%; margin-right:1%;
+	/*background-color:#ccddff;*/
+	text-align: center;
+	}
+#page1 { 
+	margin-left:1%;
+	width:100%;
+	}
+#link { 
+	text-align: center;
+		}
+#list {
+	border-style: solid; border-color: black;
+}
+#bio { 
+/*border-style: solid; border-color: black;*/
+	text-align: left;
+	font-size: 150%; 
+		}
+#photo { 
+/*border-style: solid; border-color: black;*/
+	text-align: center;
+	width: auto;
+	height: auto;
+	}
+
+ /*searchbar*/
+ .search-query {
+    background-color:white;
+    color:black;
+}
+
+.search-input{
+	background-color: rgb(255, 255, 255); 
+	border: 1em solid rgb(44, 23, 163); 
+	box-shadow: none; 
+	color: #fff;
+	position: relative;
+   }
