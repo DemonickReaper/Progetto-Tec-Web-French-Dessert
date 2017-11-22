@@ -1,8 +1,8 @@
   $(document).ready(function(){
-        var keeper;
+		var keeper;
 		pid = new Array(50);
-		$('#search').click(function() {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm"
-        var searchTerm = $('#searchTerm').val();    
+		$('#search').bind('startSearch',function(e) {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm"
+		var searchTerm = $('#searchTerm').val();    
 			$.ajax({
                 url: 'http://en.wikipedia.org/w/api.php',
                 data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',srlimit: '10',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
@@ -10,7 +10,17 @@
                 success: queryResult
             });
         });
-   
+		
+		$('#search').click(function(e){
+			$('#search').trigger('startSearch');
+		});
+
+		$('#searchTerm').keypress(function(e){
+			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			if(key == 13){
+				$('#search').trigger('startSearch');
+			}
+		});
 	
 		function queryResult(apiResult){//carica l'elenco dei risultati sul nostro sito
 			keeper = apiResult;

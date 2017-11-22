@@ -14,7 +14,8 @@ $(document).ready(function (){
 		var str = apiResult.parse['text']['*'];
 		var title = apiResult.parse.title;
 		$('#pageTitle').html(title);
-		$('#testo').html('<p>'+str+'</p>');
+		$('#testo').html('<div class="row"><div id="contentP" class="col-md-8">'+str+'</div><div id="tableP"class="col-md-4"></div></div>');
+		$('#tableP').append($('table[class~="infobox"]')[0]);
 		$('#testo .mw-editsection').remove();
 		$('.mw-editsection').remove();
 		$('#testo a').on('click', function(e) {

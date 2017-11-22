@@ -2,13 +2,11 @@
   /*border: 1px solid black !important;*/ 
 }
 p{
- margin-right:35%;
- margin-left:5%;
+margin: auto;
 }
 .image {
     margin: auto !important;
 }
-
 .hatnote.navigation-not-searchable {
     text-align: right !important;
     font-style: italic; 
@@ -20,12 +18,21 @@ div[role="note"] {
 }
 
 table[class~="infobox"] {
-    /*float: right;*/
-    position: fixed;
-    margin-left: 70%;
-    width: 40%;
+    position: relative !important;
     background-color: rgb(189, 187, 187);
+    border-bottom:2px solid black;
 }
+
+#tableP {
+    height: 88vh !important;
+    width: 100vw !important;
+    overflow-y: auto !important;
+    background-color: rgb(189, 187, 187);
+    position: fixed;
+    right: 2%;
+}
+
+
 /*.mw-parser-output {
     column-count: 2;
     column-fill: initial;
@@ -48,4 +55,8 @@ h3 {
     letter-spacing: 0.1em !important;
     border-bottom: 1px solid #000 !important;
     margin-bottom: 1em !important;
+}
+
+.container {
+    position:relative;
 }
