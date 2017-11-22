@@ -16,6 +16,7 @@ $(document).ready(function (){
 		$('#pageTitle').html(title);
 		$('#testo').html('<p>'+str+'</p>');
 		$('#testo .mw-editsection').remove();
+		$('.mw-editsection').remove();
 		$('#testo a').on('click', function(e) {
 			e.preventDefault();
 			var getTitle = this.title;

@@ -1,5 +1,9 @@
 *{
-  /*  border: 1px solid black !important;*/
+  /*border: 1px solid black !important;*/ 
+}
+p{
+ margin-right:35%;
+ margin-left:5%;
 }
 .image {
     margin: auto !important;
@@ -8,12 +12,25 @@
 .hatnote.navigation-not-searchable {
     text-align: right !important;
     font-style: italic; 
+    padding-bottom: 2%;
 }
 
 div[role="note"] {
-    width: 40% !important;
-    margin-left: 60% !important;
+  
 }
+
+table[class~="infobox"] {
+    /*float: right;*/
+    position: fixed;
+    margin-left: 70%;
+    width: 40%;
+    background-color: rgb(189, 187, 187);
+}
+/*.mw-parser-output {
+    column-count: 2;
+    column-fill: initial;
+}*/
+
 
 h1#pageTitle,h2 {
     margin: auto;
