@@ -1,5 +1,5 @@
 *{
-  /*border: 1px solid black !important;*/ 
+  /*border: 1px solid black !important; */
 }
 p{
 margin: auto;
@@ -17,26 +17,39 @@ div[role="note"] {
   
 }
 
-table[class~="infobox"] {
+table[class~="infobox"] { /*tabella di destra inizio*/
     position: relative !important;
-    background-color: rgb(189, 187, 187);
+    background-color:  rgb(124, 215, 252);
     border-bottom:2px solid black;
 }
-
-#tableP {
-    height: 88vh !important;
-    width: 100vw !important;
-    overflow-y: auto !important;
-    background-color: rgb(189, 187, 187);
-    position: fixed;
-    right: 2%;
+#pin {
+    margin-bottom:2%;
+    margin-top:2%;
+    right: 0;
+    position: relative;
+    z-index: 1;
 }
 
-
-/*.mw-parser-output {
-    column-count: 2;
-    column-fill: initial;
-}*/
+table[class~="infobox"] span,table[class~="infobox"] th,table[class~="infobox"] tr{
+    border-bottom: 2px solid black;
+    right: 0 !important;
+    padding: 1% !important;
+    position: relative !important;
+    width: 120% !important;
+    margin-right: 20%;
+    /*flex-grow: 1;*/
+}
+table[class~="infobox"] tr {
+    text-align: right;
+}
+#tableP {
+    margin-left: 50% !important;
+    height: 100vh;
+    background-color: rgb(124, 215, 252);
+    position: absolute;
+    right: 2% !important;
+  /*  display: flex;*/
+}/*tabella di destra fine*/
 
 
 h1#pageTitle,h2 {
@@ -58,5 +71,5 @@ h3 {
 }
 
 .container {
-    position:relative;
+    position: static;
 }
