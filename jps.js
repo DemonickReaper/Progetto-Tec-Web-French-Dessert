@@ -66,7 +66,6 @@ https://en.wikipedia.org/w/api.php?action=parse&pageid=3334943&prop=text
 
 magnet link esempeio
 
-<sup id=\"cite_ref-micro.magnet.fsu.edu_1-1\
-" class=\"reference\"><a href=\"#cite_note-micro.magnet.fsu.edu-1\">[1]</a></sup>
+<sup id=\"cite_ref-micro.magnet.fsu.edu_1-1\" class=\"reference\"><a href=\"#cite_note-micro.magnet.fsu.edu-1\">[1]</a></sup>
 
 */

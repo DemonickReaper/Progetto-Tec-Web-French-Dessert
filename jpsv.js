@@ -17,14 +17,16 @@ $(document).ready(function (){
 		var str = apiResult.parse['text']['*'];
 		var title = apiResult.parse.title;
 		$('#pageTitle').html(title);
-		$('#testo').html('<div class="row"><div id="contentP" class="col-md-8">'+str+'</div><div id="tableP"class="col-md-4"></div></div>');
+		$('.row').html('<div id ="index" class="col-3"></div><div id="contentP" class="col-7">'+str+'</div><div id="tableP"class="col"></div>');
 		$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 		$('#tableP').append($('table[class~="infobox"]')[0]);
+		$('#index').append($('#toc'));
 		$('#testo .mw-editsection').remove();
 		$('.mw-editsection').remove();
 		//$('ul').addClass('list-group-item list-group-item-action');
 		$('li').addClass('list-group-item list-group-item-action');
 		$('table').addClass('table');
+		$('li ul').fadeOut();
 		$('div.navbox').fadeOut();
 		$('.reflist').fadeOut();
 		$('#testo a').on('click', function(e) {

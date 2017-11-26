@@ -2,7 +2,7 @@
   /*border: 1px solid black !important; */
 }
 p{
-margin: auto;
+/*margin: auto;*/
 }
 .image {
     margin: auto !important;
@@ -13,13 +13,33 @@ margin: auto;
     padding-bottom: 2%;
 }
 
-div[role="note"] {
-  
+.row {
+   /* width: 100% !important;
+    max-width: none !important;*/
 }
 
-table[class~="infobox"] { /*tabella di destra inizio*/
+.container {
+    position: static;
+    /*margin: 0% !important;
+    margin-right: 0% !important;*/
+}
+#contentP {
+    width: initial !important;
+    margin-left: 13% !important;
+    margin-right: 20% !important;
+    position: static !important;
+}
+
+.toc {
+    position: fixed;
+    width: 10%;
+}
+
+
+/*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
+table[class~="infobox"] { 
     position: relative !important;
-    background-color:  rgb(124, 215, 252);
+    background-color:  rgb(199, 239, 255);
     border-bottom:2px solid black;
 }
 #pin {
@@ -37,20 +57,22 @@ table[class~="infobox"] span,table[class~="infobox"] th,table[class~="infobox"] 
     position: relative !important;
     width: 120% !important;
     margin-right: 20%;
-    /*flex-grow: 1;*/
+
 }
 table[class~="infobox"] tr {
     text-align: right;
 }
 #tableP {
-    margin-left: 50% !important;
-    height: 100vh;
-    background-color: rgb(124, 215, 252);
     position: absolute;
     right: 2% !important;
-  /*  display: flex;*/
-}/*tabella di destra fine*/
-
+    width: initial !important;
+     height: 100vh;
+    background-color: rgb(199, 239, 255);
+    
+    
+    width: initial !important;
+}
+/*////////////////////////////////tabella di destra fine/////////////////////////////////////*/
 
 h1#pageTitle,h2 {
     margin: auto;
@@ -70,6 +92,6 @@ h3 {
     margin-bottom: 1em !important;
 }
 
-.container {
+/*.container {
     position: static;
-}
+}*/
