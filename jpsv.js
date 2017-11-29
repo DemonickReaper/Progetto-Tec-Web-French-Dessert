@@ -1,24 +1,57 @@
 $(document).ready(function (){
-
-	var wApi = localStorage.getItem("wApi");
-	var wikiApi = JSON.parse(wApi);
+	
+	var wApi = localStorage.getItem("wApi"); //recupero i dati della query fatti sul altra pagina
+	var wikiApi = JSON.parse(wApi);			// converto i dati recuperati (stringa) in un oggetto json 
 	var pinned = false;
 	var showRef = true;
 	var showEl = true;
 	var i = 0;
-	//$('#prova').empty();
-	console.log(wikiApi['query']);
-	for (var pageId in wikiApi.query.pages){
+	pid = new Array(50);
+	
+	for (var pageId in wikiApi.query.pages){ //stampa la lista dei risultati della ricerca
 		if (wikiApi.query.pages.hasOwnProperty(pageId)) {
 			pid[i] = wikiApi.query.pages[pageId].pageid;
 			i++;
 			$('#tableList').append('<tr class="blockList"><td class="col-xs-4"><h3><a href="visual.html" id="'+
-			wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +'</a></h3></td><td class="col-xs-8"><p>' +
+			wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +
+			'</a></h3></td><td class="col-xs-8"><p>' +
 			wikiApi.query.pages[pageId].extract + '</p></td></tr></div>');
-			console.log(wikiApi.query.pages[pageId].pageid);
 		};
 	};
-	$('#tableList').on('click','.resultList', function(e) {
+
+	$('#search').bind('startSearch',function(e) {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm", aggiunta anche qui per via della navbar sempre presente
+	e.preventDefault();
+	var searchTerm = $('#searchTerm').val();    
+		$.ajax({
+			url: 'http://en.wikipedia.org/w/api.php',
+			type:'GET',
+			async: 'true',
+			data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',srlimit: '10',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
+			dataType: 'jsonp',
+			success: queryResult
+		});
+	});
+	
+	$('#search').click(function(e){ //avvia la ricerca se premuto il tasto con la lente di ingrandimento
+		e.preventDefault();
+		$('#search').trigger('startSearch');
+	});
+
+	$('#searchTerm').keypress(function(e){//avvia la ricerca se premuto il tasto invio della tastiera
+		var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+		if(key == 13){
+			e.preventDefault();
+			$('#search').trigger('startSearch');
+		}
+	});
+
+	function queryResult(apiResult){//passa l'oggetto json ottenuto come stringa, sempre in questa pagina, da decidere se modificare
+		var wikiApi = JSON.stringify(apiResult);
+		localStorage.setItem("wApi",wikiApi);
+		window.location.href = "visual.html";	
+}
+
+	$('#tableList').on('click','.resultList', function(e) {//quando si clicca su un risultato avvia la chiamata per ottenre la pagina
 		e.preventDefault();
 		pageId = this.id;
 		$.ajax({
@@ -50,11 +83,13 @@ $(document).ready(function (){
 				var value = url.substring(0, url.lastIndexOf('/') + 1);
 				window.history.pushState("blog", "Blog", value );
 		  	}
-		});  
-		$('li ul').remove();
-		$('div.navbox').fadeOut();
+		});
+		/////////////da qui partono gli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
+		$('li ul').remove(); //rimuove le sottoliste per problemi di visualizzazione risconstrati
+		$('div.navbox').fadeOut();//nasconde
 		$('.reflist').fadeOut();
-		$('#testo a').on('click', function(e) {
+
+		$('#testo a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
 			var getTitle = this.title;
 			$.ajax({
@@ -65,6 +100,8 @@ $(document).ready(function (){
 				error: function() {alert('errore');}
 			});		
 		});
+
+		// TASTO PIN sulla tabella di destra
 		$('#pin').click(function(e){
 			if (pinned == false) {
 				$('#tableP').css({
@@ -85,7 +122,10 @@ $(document).ready(function (){
 				$('#pin').html('Pin');
 			}
 		})
-		//////////////////////////////////////////////////////////
+		// FINE tasto pin //////////
+
+		// INIZIO tasto show per la sezione references /////////////
+
 		$('#References').html('References\t');
 		$('#References').append('<button id="showRef" type="button" class ="btn btn-primary">Show</button>');
 		$('#showRef').click(function(e){
@@ -100,7 +140,9 @@ $(document).ready(function (){
 				$('#showRef').html('Hide');
 			}
 		});
-		////////////////////////////////////////////////////////////
+		//FINE tasto show per la sezione references////////////
+
+		// INIZIO tasto show per la sezione references /////////////
 		$('#External_links').html('External links\t');
 		$('#External_links').append('<button id="showEl" type="button" class ="btn btn-primary">Show</button>');
 		$('#showEl').click(function(e){
@@ -115,14 +157,8 @@ $(document).ready(function (){
 				$('#showEl').html('Hide');
 			}
 		});
-		/*$('#toc a').click(function(e){
-			e.preventDefault();
-			/*var url = window.location.href;
-			var value = url.substring(0, url.lastIndexOf('/') + 1);
-			window.history.replaceState("blog", "Blog", value );
-			var value = this.href;
-			window.history.replaceState("blog", "Blog", value);
-		});*/
+		//FINE tasto show per la sezione references////////////
 	}
+		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 });
 
