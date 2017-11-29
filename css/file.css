@@ -12,15 +12,10 @@
 	}
 
 #header { 
-	/*border-style: solid; border-color: black;*/ 
 	margin-left:1%; margin-right:1%;
-	/*background-color:#80bfff;*/
-	/*text-align: center; font-size: 4em; font-family: Verdana, serif; font-style: oblique;*/
 	}
 #navigation {  
-	/*border-style: solid; border-color: black;*/
 	margin-left:1%; margin-right:1%;
-	/*background-color:#ccddff;*/
 	text-align: center;
 	font-family: Verdana;
 	}
@@ -104,9 +99,6 @@
 	margin-bottom:10%;
 	margin-left:15%;
 	width:40%;
-}
-}
-#titlebar {
 	text-align:left;
 	font-size: 3em;
 	color:rgb(255, 255, 255);

@@ -8,15 +8,33 @@
 	</HEAD>
 	<BODY>
 		<h1 id="pageTitle"></h1>
+		 <!--Elementi della barra -->
+		 <div class="col-xs-5" id="titlebar">French Dessert</div>
+		 <div class="collapse navbar-collapse navbar-ex1-collapse">
+		  <ul class="nav navbar-nav navbar-right">
+			  <li class="active"><a href="#">Home Page</a></li>
+			 <li><a href="#">Fonti di ricerca </a></li>
+			 <li>
+			  <form class="navbar-form" role="search">
+		  <input class="form-control" placeholder="Search" name="srch-term" id="searchTerm" type="text">
+			<button class="btn btn-default" id="search" type="button"><i class="glyphicon glyphicon-search"></i></button>
+		 </form>
+			 </li>
+		  </ul>
+		 </div>
+		</nav>
+		</div><!--#navigation-->
 		<div class="container-fluid" id="testo">
 			<div class="row">
-				<div id="prova"></div>
+				<div id="prova">
+					<table id="tableList" class="table"></table>
+				</div>
 			</div>
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="jps.js"></script>
 		<script src="jpsv.js"></script>
-		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+		<!--<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>-->
 	</BODY>
 </HTML>

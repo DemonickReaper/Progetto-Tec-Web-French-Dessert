@@ -5,7 +5,9 @@
 		e.preventDefault();
 		var searchTerm = $('#searchTerm').val();    
 			$.ajax({
-                url: 'http://en.wikipedia.org/w/api.php',
+				url: 'http://en.wikipedia.org/w/api.php',
+				type:'GET',
+				async: 'true',
                 data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',srlimit: '10',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
                 dataType: 'jsonp',
                 success: queryResult
@@ -13,12 +15,14 @@
         });
 		
 		$('#search').click(function(e){
+			e.preventDefault();
 			$('#search').trigger('startSearch');
 		});
 
 		$('#searchTerm').keypress(function(e){
 			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
 			if(key == 13){
+				e.preventDefault();
 				$('#search').trigger('startSearch');
 			}
 		});

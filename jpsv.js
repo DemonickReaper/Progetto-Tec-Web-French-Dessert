@@ -12,12 +12,13 @@ $(document).ready(function (){
 		if (wikiApi.query.pages.hasOwnProperty(pageId)) {
 			pid[i] = wikiApi.query.pages[pageId].pageid;
 			i++;
-			$('#prova').append('<div><h3><a href="visual.html" id="'+wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +'</a></h3><p>' +
-			wikiApi.query.pages[pageId].extract + '</p></div>');
+			$('#tableList').append('<tr class="blockList"><td class="col-xs-4"><h3><a href="visual.html" id="'+
+			wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +'</a></h3></td><td class="col-xs-8"><p>' +
+			wikiApi.query.pages[pageId].extract + '</p></td></tr></div>');
 			console.log(wikiApi.query.pages[pageId].pageid);
 		};
 	};
-	$('#prova').on('click','.resultList', function(e) {
+	$('#tableList').on('click','.resultList', function(e) {
 		e.preventDefault();
 		pageId = this.id;
 		$.ajax({
