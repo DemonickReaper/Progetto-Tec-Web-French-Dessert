@@ -1,5 +1,4 @@
   $(document).ready(function(){
-		var keeper;
 		pid = new Array(50);
 		$('#search').bind('startSearch',function(e) {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm"
 		e.preventDefault();
@@ -14,12 +13,12 @@
             });
         });
 		
-		$('#search').click(function(e){
+		$('#search').click(function(e){ //avvia la ricerca se premuto il tasto con la lente di ingrandimento
 			e.preventDefault();
 			$('#search').trigger('startSearch');
 		});
 
-		$('#searchTerm').keypress(function(e){
+		$('#searchTerm').keypress(function(e){//avvia la ricerca se premuto il tasto invio della tastiera
 			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
 			if(key == 13){
 				e.preventDefault();
@@ -27,8 +26,7 @@
 			}
 		});
 	
-		function queryResult(apiResult){//carica l'elenco dei risultati sul nostro sito
-			//keeper = apiResult;
+		function queryResult(apiResult){//carica l'elenco dei risultati sul nostro sito, IGNORARE LE ZONE COMMENTATE SOTTOSTANTI, sono vecchie versioni o righe per dei test
 			var wikiApi = JSON.stringify(apiResult);
 			localStorage.setItem("wApi",wikiApi);
 			//var getId = this.id;
