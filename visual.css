@@ -114,11 +114,11 @@ p{
     width: initial !important;
     /*margin-left: 19% !important;
     margin-right: 32% !important;*/
-    position: static !important;
+    position: static;
 }
 
 #toc {
-    position: fixed;
+    position: relative;
     height: 88vh;
     overflow-y:auto;
     overflow-x: visible;
@@ -129,7 +129,7 @@ li ul {
 
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
 table[class~="infobox"] { 
-    position: relative !important;
+    position: relative;
     background-color:  rgb(199, 239, 255);
     border-bottom:2px solid black;
 }
@@ -145,7 +145,7 @@ table[class~="infobox"] span,table[class~="infobox"] th,table[class~="infobox"] 
     border-bottom: 2px solid black;
     right: 0 !important;
     padding: 1% !important;
-    position: relative !important;
+    position: relative ;
     width: 120% !important;
     margin-right: 20%;
 
@@ -154,7 +154,7 @@ table[class~="infobox"] tr {
     text-align: right;
 }
 #tableP {
-    position: absolute;
+    position: relative;
     right: 2% !important;
     width: initial !important;
     height: 100vh;

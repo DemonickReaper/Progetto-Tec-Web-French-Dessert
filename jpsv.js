@@ -6,12 +6,13 @@ $(document).ready(function (){
 	var showRef = true;
 	var showEl = true;
 	var i = 0;
-	pid = new Array(50);
-	
+	//pid = new Array(50);
+	var ann = new Annotator(document.body);
+
 	for (var pageId in wikiApi.query.pages){ //stampa la lista dei risultati della ricerca
 		if (wikiApi.query.pages.hasOwnProperty(pageId)) {
-			pid[i] = wikiApi.query.pages[pageId].pageid;
-			i++;
+			//pid[i] = wikiApi.query.pages[pageId].pageid;
+			//i++;
 			$('#tableList').append('<tr class="blockList"><td class="col-xs-4"><h3><a href="visual.html" id="'+
 			wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +
 			'</a></h3></td><td class="col-xs-8"><p>' +
@@ -68,7 +69,8 @@ $(document).ready(function (){
 		var str = apiResult.parse['text']['*'];
 		var title = apiResult.parse.title;
 		$('#pageTitle').html(title);
-		$('.row').html('<div id ="index" class="col-xs-3 sidebar-outer"></div><div id="contentP" class="col-xs-5">'+str+'</div><div id="tableP"class="col-xs-4"></div>');
+		$('.row').html('<div id ="index" class="col-xs-3 sidebar-outer"></div><div id="contentP" class="col-xs-5">'+
+		str+'</div><div id="tableP"class="col-xs-4"></div>');
 		$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 		$('#tableP').append($('table[class~="infobox"]')[0]);
 		$('#index').append($('#toc'));
@@ -88,7 +90,11 @@ $(document).ready(function (){
 		$('li ul').remove(); //rimuove le sottoliste per problemi di visualizzazione risconstrati
 		$('div.navbox').fadeOut();//nasconde
 		$('.reflist').fadeOut();
-
+		$('.image').each(function(img) {
+			$(this).parent().append($(this).children()[0]);
+			$(this).remove();
+		});
+		
 		$('#testo a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
 			var getTitle = this.title;
@@ -101,6 +107,7 @@ $(document).ready(function (){
 			});		
 		});
 
+		
 		// TASTO PIN sulla tabella di destra
 		$('#pin').click(function(e){
 			if (pinned == false) {
