@@ -3,7 +3,13 @@ $(document).ready(function (){
 	var pinned = false;
 	var showRef = true;
 	var showEl = true;
+	var findCate = false;
+	var popb = false;
+	var popCheck = 0;
+
 	var i = 0;
+	var j = 0;
+	var backup = new Array();
 	var ann = new Annotator(document.body);
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
 	
@@ -62,7 +68,7 @@ $(document).ready(function (){
 		pageId = this.id;
 		$.ajax({
 						url: 'https://en.wikipedia.org/w/api.php?',
-						data: {action: 'parse', pageid: pageId, prop: 'text', format: 'json'},
+						data: {action: 'parse', pageid: pageId, prop: 'text|categories', format: 'json'},
 						dataType: 'jsonp',
 						success: titleClickedResult,	
 						error: function() {alert('errore');}
@@ -73,7 +79,23 @@ $(document).ready(function (){
 	function titleClickedResult (apiResult) { //carica il contenuto della pagina wikipedia sul nostro sito
 		var str = apiResult.parse['text']['*'];
 		var title = apiResult.parse.title;
+
+
 		$('#pageTitle').html(title);
+		j = 0;
+		findCate = false;
+		for(var cate  in apiResult.parse.categories){
+			cate = apiResult.parse.categories[j]['*'];
+			j++;
+			if (cate =='French_desserts' ||cate == 'French_confectionery') { //se la pagina appartiene al nostro tag
+				$('#pageTitle').append('<div><h2>QUESTA PAGINA è NELLA CATEGORIA DEI DOLCI</h2></div>');
+				findCate = true;
+			}	
+		}
+		if(findCate == false) { //se la pagina non appartiene al nostro tag
+			$('#pageTitle').append('<div><h2>QUESTA PAGINA NONONONONONONO !! è NELLA CATEGORIA DEI DOLCI</h2></div>');
+		}
+
 		$('.row').html('<div id ="index" class="col-xs-3 sidebar-outer"></div><div id="contentP" class="col-xs-5">'+
 		str+'</div><div id="tableP"class="col-xs-4"></div>');
 		$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
@@ -84,7 +106,14 @@ $(document).ready(function (){
 		
 		$('li').addClass('list-group-item list-group-item-action');
 		$('table').addClass('table');
-
+		
+		if(popCheck > 0) { //quando si genere l'evento 'torna alla pagina precedente' carica la pagina precedentemente visionata
+			window.onpopstate = function(event) {
+				popCheck--;
+				titleClickedResult(backup.pop());	
+			 	};	
+		}
+	
 		/////////////da qui partono gli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 		$('li ul').remove(); //rimuove le sottoliste per problemi di visualizzazione risconstrati
 		$('div.navbox').fadeOut();//nasconde
@@ -96,10 +125,14 @@ $(document).ready(function (){
 		
 		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
+	
+			backup.push(apiResult); //aggiunge gli oggetti jsonp delle pagine in un arrey di oggetti
+			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history
+			popCheck ++; //contatore pagine 'lasciate indietro'
 			var getTitle = this.title;
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
-				data: {action: 'parse', page: getTitle, prop: 'text', format: 'json'},
+				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
 				dataType: 'jsonp',
 				success: titleClickedResult,	
 				error: function() {alert('errore');}
