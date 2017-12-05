@@ -1,24 +1,17 @@
 $(document).ready(function (){
-	
-	var wApi = localStorage.getItem("wApi"); //recupero i dati della query fatti sul altra pagina
-	var wikiApi = JSON.parse(wApi);			// converto i dati recuperati (stringa) in un oggetto json 
+			
 	var pinned = false;
 	var showRef = true;
 	var showEl = true;
 	var i = 0;
-	//pid = new Array(50);
 	var ann = new Annotator(document.body);
+	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
+	
+	if(firstTime==true) {
+		firstTime = false;
+		queryResult(undefined);
+	}
 
-	for (var pageId in wikiApi.query.pages){ //stampa la lista dei risultati della ricerca
-		if (wikiApi.query.pages.hasOwnProperty(pageId)) {
-			//pid[i] = wikiApi.query.pages[pageId].pageid;
-			//i++;
-			$('#tableList').append('<tr class="blockList"><td class="col-xs-4"><h3><a href="visual.html" id="'+
-			wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +
-			'</a></h3></td><td class="col-xs-8"><p>' +
-			wikiApi.query.pages[pageId].extract + '</p></td></tr></div>');
-		};
-	};
 
 	$('#search').bind('startSearch',function(e) {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm", aggiunta anche qui per via della navbar sempre presente
 	e.preventDefault();
@@ -47,9 +40,21 @@ $(document).ready(function (){
 	});
 
 	function queryResult(apiResult){//passa l'oggetto json ottenuto come stringa, sempre in questa pagina, da decidere se modificare
-		var wikiApi = JSON.stringify(apiResult);
-		localStorage.setItem("wApi",wikiApi);
-		window.location.href = "visual.html";	
+		if(apiResult!==undefined){
+			var wikiApi = JSON.stringify(apiResult);
+			localStorage.setItem("wApi",wikiApi);
+		}
+		var wApi = localStorage.getItem("wApi");//recupero i dati della query fatti sul altra pagina
+		var wikiApi = JSON.parse(wApi); // converto i dati recuperati (stringa) in un oggetto json 
+
+		for (var pageId in wikiApi.query.pages){ //stampa la lista dei risultati della ricerca
+			if (wikiApi.query.pages.hasOwnProperty(pageId)) {
+				$('#tableList').append('<tr class="blockList"><td class="col-xs-4"><h3><a href="visual.html" id="'+
+				wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +
+				'</a></h3></td><td class="col-xs-8"><p>' +
+				wikiApi.query.pages[pageId].extract + '</p></td></tr></div>');
+			};
+		};	
 }
 
 	$('#tableList').on('click','.resultList', function(e) {//quando si clicca su un risultato avvia la chiamata per ottenre la pagina
@@ -76,16 +81,10 @@ $(document).ready(function (){
 		$('#index').append($('#toc'));
 		$('#testo .mw-editsection').remove();
 		$('.mw-editsection').remove();
-		//$('ul').addClass('list-group-item list-group-item-action');
+		
 		$('li').addClass('list-group-item list-group-item-action');
 		$('table').addClass('table');
-		$('#toc a').click(function(e){//cosi va, non so cosa faccia ma va bene così
-			if ( window.history.replaceState ) {
-				var url = window.location.href;
-				var value = url.substring(0, url.lastIndexOf('/') + 1);
-				window.history.pushState("blog", "Blog", value );
-		  	}
-		});
+
 		/////////////da qui partono gli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 		$('li ul').remove(); //rimuove le sottoliste per problemi di visualizzazione risconstrati
 		$('div.navbox').fadeOut();//nasconde
@@ -95,7 +94,7 @@ $(document).ready(function (){
 			$(this).remove();
 		});
 		
-		$('#testo a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
+		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
 			var getTitle = this.title;
 			$.ajax({

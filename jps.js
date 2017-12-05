@@ -29,8 +29,6 @@
 		function queryResult(apiResult){//carica l'elenco dei risultati sul nostro sito, IGNORARE LE ZONE COMMENTATE SOTTOSTANTI, sono vecchie versioni o righe per dei test
 			var wikiApi = JSON.stringify(apiResult);
 			localStorage.setItem("wApi",wikiApi);
-			//var getId = this.id;
-			//localStorage.setItem("pagId",getId);	
 			window.location.href = "visual.html";
 			/*$('#prova').empty();
 			var i=0;
