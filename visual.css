@@ -1,139 +1,136 @@
-*{
-  /*border: 1px solid black !important; */
-}
+/**{
+  border: 1px solid white !important; 
+}*/
 p{
 /*margin: auto;*/
 
 
 }
 /*///////////////////////////////////////////// NAVBAR INIZIO///////////////////////////////////////////////////// */
-/* DA SISTEMARE NON VA UN CAZZO OCN QUESTO CSS
-#header { 
-	margin-left:1%; margin-right:1%;
-	}
-#navigation {  
-	margin-left:1%; margin-right:1%;
-	text-align: center;
-	font-family: Verdana;
-}
-#titlebar {
-	font-size: 1em;	
-	margin-bottom:10%;
-	margin-left:15%;
-    width:40%;
+#titlebar{
+    font-size: 2.5em;
     text-align:left;
-	font-size: 3em;
-	color:rgb(255, 255, 255);
-	font-family: Lucida;
-	font-style: bold;
+    color: white;
+    font-family: Verdana;
 }
-@media screen and (max-width:420px){
-	#titlebar{
-		font-size:1.8em;
-		margin-bottom:15%;
-	}
+.barBar{
+    padding: 0 !important;
+    background-color: black;
+    border:1px solid black !important;
+}    
+#search{
+    padding-top: 9px;
+    padding-bottom: 9px;
 }
-
-
- .search-query {
+.navbar{
+    margin-bottom: 0;
+}
+#navigation {
+    padding: 0;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.search-query{
     background-color:white;
 	color:black;
-}
+	}
 
-.form-control:focus {
+.form-control:focus{
 	margin-top:1px;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
    box-shadow:none;
    -webkit-box-shadow:none; 
-   font-family: Lucida;
-  
   }
-@media screen and (min-width:769px){
-	#link{
-		overflow-y: scroll;
+
+#log{
+	width:50%;
+	margin-left: 25%;
+	margin-right:25%;
 	}
+@media screen and (min-width:765px){
+    #link{
+        overflow-y: scroll;
+    }
 }
-@media screen and (max-width:768px){
-.navbar-form {
-	display:flex;
-	width: 100%;
-	margin:0 auto;
+@media screen and (max-width:765px){
+    .navbar-form {
+        display:flex;
+        width: 100%;
+       margin:0 auto;
+    }
+    #titlebar {
+        font-size: 1.8em;	
 }
-*/
+@media screen and (max-width:566px){
+    #titlebar{
+        font-size:1.4em;
+        margin-right: 25%;
+        }
+   
+}
+@media screen and (max-width:196px){
+    .navbar-toggle {
+        margin-right: 30%;
+    }
+}
 
 /*///////////////////////////////////////////// NAVBAR FINE///////////////////////////////////////////////////// */
 
 
 /*///////////////////////////////////////////// TABELLA DEI RISULTATI INIZIO///////////////////////////////////////////////////// */
-/*#prova p {
-    margin-left: 3%;
-    margin-right: 30%;
-}*/
 
-/*#tableList,#tableList tr,#tableList td,#tableList h3 {
-    border: 1px solid black !important;
-}*/
 
-.blockList {
+.blockList{
     padding: 3%;
 }
-#tableList h3 {
+#tableList h3{
     border-bottom: none;
-    /*text-align: right;*/
     margin-top: 7%;
     width: 100%;
 }
-/*
-#prova .blockList {
-    margin-bottom: 6%;
-}*/
+
 /*///////////////////////////////////////////// TABELLA DEI RISULTATI FINE///////////////////////////////////////////////////// */
 
 /*///////////////////////////////////////////// PAGINA WIKIPEDIA INIZIO///////////////////////////////////////////////////// */
-.image {
+.image{
     margin: auto !important;
 }
-.hatnote.navigation-not-searchable {
+.hatnote.navigation-not-searchable{
     text-align: right !important;
     font-style: italic; 
     padding-bottom: 2%;
 }
 
-.row {
-   /* width: 100% !important;
-    max-width: none !important;*/
-}
-
-.container {
+.container{
     position: static;
     /*margin: 0% !important;
     margin-right: 0% !important;*/
 }
-#contentP {
+#contentP{
     width: initial !important;
     /*margin-left: 19% !important;
     margin-right: 32% !important;*/
     position: static;
 }
 
-#toc {
+#toc{
     position: relative;
     height: 88vh;
     overflow-y:auto;
     overflow-x: visible;
 }
-li ul {
+li ul{
     overflow: auto;
 }
 
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
-table[class~="infobox"] { 
+table[class~="infobox"]{ 
     position: relative;
     background-color:  rgb(199, 239, 255);
     border-bottom:2px solid black;
 }
-#pin {
+#pin{
     margin-bottom:2%;
     margin-top:2%;
     right: 0;
@@ -150,10 +147,10 @@ table[class~="infobox"] span,table[class~="infobox"] th,table[class~="infobox"] 
     margin-right: 20%;
 
 }
-table[class~="infobox"] tr {
+table[class~="infobox"] tr{
     text-align: right;
 }
-#tableP {
+#tableP{
     position: relative;
     right: 2% !important;
     width: initial !important;
@@ -183,7 +180,7 @@ h3 {
     margin-bottom: 1em !important;
 }
 
-div.toc h2 {
+.mw-parser-output h2 {
     border-bottom: 3px none #000;
 }
 

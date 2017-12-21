@@ -81,7 +81,7 @@ $(document).ready(function (){
 		var title = apiResult.parse.title;
 
 
-		$('#pageTitle').html(title);
+		$('#titleBar').html(title);
 		j = 0;
 		findCate = false;
 		for(var cate  in apiResult.parse.categories){
@@ -93,10 +93,10 @@ $(document).ready(function (){
 			}	
 		}
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
-			$('#pageTitle').append('<div><h2>QUESTA PAGINA NONONONONONONO !! è NELLA CATEGORIA DEI DOLCI</h2></div>');
+			//$('#pageTitle').append('<div><h2>QUESTA PAGINA NONONONONONONO !! è NELLA CATEGORIA DEI DOLCI</h2></div>');
 		}
 
-		$('.row').html('<div id ="index" class="col-xs-3 sidebar-outer"></div><div id="contentP" class="col-xs-5">'+
+		$('#wikiPage').html('<div id ="index" class="col-xs-3 sidebar-outer"></div><div id="contentP" class="col-xs-5">'+
 		str+'</div><div id="tableP"class="col-xs-4"></div>');
 		$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 		$('#tableP').append($('table[class~="infobox"]')[0]);

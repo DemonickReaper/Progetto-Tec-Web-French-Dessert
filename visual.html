@@ -8,29 +8,44 @@
 		<link href="annotator.min.css" rel="stylesheet" type="text/css">
 	</HEAD>
 	<BODY>
-		 <!--Elementi della barra -->
-		 <div class="col-xs-5" id="titlebar">French Dessert</div>
-		 <div class="collapse navbar-collapse navbar-ex1-collapse">
-		  <ul class="nav navbar-nav navbar-right">
-			  <li class="active"><a href="main.html">Home Page</a></li>
-			 <li><a href="#">Fonti di ricerca </a></li>
-			 <li>
-			  <form class="navbar-form" role="search">
-		  <input class="form-control" placeholder="Search" name="srch-term" id="searchTerm" type="text">
-			<button class="btn btn-default" id="search" type="button"><i class="glyphicon glyphicon-search"></i></button>
-		 </form>
-			 </li>
-		  </ul>
-		 </div>
-		</nav>
-		</div><!--#navigation-->
-		<h1 id="pageTitle"></h1>
 		<div class="container-fluid" id="testo">
 			<div class="row">
-				<div id="prova">
+					<div class="col-xs-12" id="header">
+							
+						<img src="" id= "headim" alt="">
+						  </div><!--#header-->
+						  
+						  <div class="col-xs-12" id="navigation">
+							  <nav class="navbar navbar-inverse" role="navigation">
+								<div class="col-xs-5" id="titleBar">French Dessert</div>
+						   <!--Logo e pulsante per barra ridimensionata -->
+						   		<div class="navbar-header">
+							  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+										<span class="sr-only">Espandi barra di navigazione</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+							  		</button>
+								</div>
+				<!--Elementi della barra -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active barBar"><a href="main.html">Home Page</a></li>
+			 		<li class="barBar">
+			  			<form class="navbar-form" role="search">
+		  					<input class="form-control" placeholder="Search" name="srch-term" id="searchTerm" type="text">
+							<button class="btn btn-default" id="search" type="button"><i class="glyphicon glyphicon-search"></i></button>
+		 				</form>
+			 		</li>
+		  		</ul>
+		 		</div>
+						</div>
+			</div>
+			<div class="row">
+				<div id="wikiPage">
 					<table id="tableList" class="table"></table>
 				</div>
-			</div>
+			</div>		
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
