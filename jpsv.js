@@ -95,12 +95,20 @@ $(document).ready(function (){
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
 			//$('#pageTitle').append('<div><h2>QUESTA PAGINA NONONONONONONO !! è NELLA CATEGORIA DEI DOLCI</h2></div>');
 		}
-
-		$('#wikiPage').html('<div id ="index" class="col-xs-3 sidebar-outer"></div><div id="contentP" class="col-xs-5">'+
-		str+'</div><div id="tableP"class="col-xs-4"></div>');
+		
+		if($(str).find('table[class~="infobox"]').length > 0){
+		$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-7">'+
+		str+'</div><div id="tableP"class="col-xs-3"></div>');
 		$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 		$('#tableP').append($('table[class~="infobox"]')[0]);
+		}
+	
+		else {
+			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-10">'+
+			str+'</div>');
+		}
 		$('#index').append($('#toc'));
+		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#titleBar"><span id="arrown" class="glyphicon glyphicon-arrow-up"></span><a></button>');
 		$('#testo .mw-editsection').remove();
 		$('.mw-editsection').remove();
 		
@@ -146,16 +154,18 @@ $(document).ready(function (){
 				$('#tableP').css({
 					'position':'fixed',
 					'overflow-y':'auto',
-					'height': '88vh'
+					'height': '88vh',
+					'margin-left':'75%'
 				});
 				pinned = true;
 				$('#pin').html('UnPin');
 			}
 			else {
 				$('#tableP').css({
-					'position':'absolute',				
+					'position':'static',				
 					'overflow-y':'visible',
-					'height': '100vh'
+					'height': '100vh',
+					'margin-left':'0'
 				});
 				pinned = false;
 				$('#pin').html('Pin');
@@ -198,6 +208,8 @@ $(document).ready(function (){
 		});
 		//FINE tasto show per la sezione references////////////
 	}
+
+
 		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 });
 
