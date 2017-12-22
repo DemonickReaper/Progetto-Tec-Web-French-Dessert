@@ -133,21 +133,21 @@ li ul{
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 #arrown{
-    font-size: 30px;
+    font-size: 25px;
     color: black;
-    margin: auto;
+    /*margin: auto;*/
+    padding-left: 0.08em;
 }
-h2,.fn {
+.fn,h2 {
     margin: auto;
     width: 60%;
     text-align: center !important;
     letter-spacing: 0.1em !important;
-    border-bottom: 3px solid #000;
+    border-bottom: 2px solid #000;
     margin-bottom: 0.5em !important;
-    border-bottom: 3px none #000;
     font-size:24px;
 }
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
@@ -166,7 +166,6 @@ table[class~="infobox"]{
     z-index: 1;
 }
 table[class~="infobox"] span,table[class~="infobox"] th,table[class~="infobox"] tr{
-    border-bottom: 2px solid black;
     right: 0 !important;
     /*background-color: rgb(199, 239, 255);*/
     padding: 1% !important;

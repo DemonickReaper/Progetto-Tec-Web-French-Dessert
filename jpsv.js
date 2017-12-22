@@ -3,8 +3,11 @@ $(document).ready(function (){
 	var pinned = false;
 	var showRef = true;
 	var showEl = true;
+	var showSeal = true;
 	var findCate = false;
 	var popb = false;
+	var indexClick = false;
+	var done = false;
 	var popCheck = 0;
 
 	var i = 0;
@@ -80,20 +83,21 @@ $(document).ready(function (){
 		var str = apiResult.parse['text']['*'];
 		var title = apiResult.parse.title;
 
-
 		$('#titleBar').html(title);
 		j = 0;
 		findCate = false;
 		for(var cate  in apiResult.parse.categories){
 			cate = apiResult.parse.categories[j]['*'];
 			j++;
-			if (cate =='French_desserts' ||cate == 'French_confectionery') { //se la pagina appartiene al nostro tag
-				$('#pageTitle').append('<div><h2>QUESTA PAGINA è NELLA CATEGORIA DEI DOLCI</h2></div>');
+			if (cate =='French_desserts' ||cate == 'French_confectionery'||cate == 'French_pastries') { //se la pagina appartiene al nostro tag
+				$('#titleBar').css({"color":"pink"});
+				$('body').css({"font-family":"georgia"});
 				findCate = true;
 			}	
 		}
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
-			//$('#pageTitle').append('<div><h2>QUESTA PAGINA NONONONONONONO !! è NELLA CATEGORIA DEI DOLCI</h2></div>');
+			$('#titleBar').css({"color":"white"});
+			$('body').css({"font-family":"verdana"});
 		}
 		
 		if($(str).find('table[class~="infobox"]').length > 0){
@@ -108,36 +112,43 @@ $(document).ready(function (){
 			str+'</div>');
 		}
 		$('#index').append($('#toc'));
-		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#titleBar"><span id="arrown" class="glyphicon glyphicon-arrow-up"></span><a></button>');
+		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#titleBar"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
 		$('#testo .mw-editsection').remove();
 		$('.mw-editsection').remove();
-		
+		$('h2').parent('.toctitle').html('<h2>Index</h2>');
 		$('li').addClass('list-group-item list-group-item-action');
 		$('table').addClass('table');
-		
-		if(popCheck > 0) { //quando si genere l'evento 'torna alla pagina precedente' carica la pagina precedentemente visionata
-			window.onpopstate = function(event) {
+		if(popCheck > 0 && indexClick == false) { //quando si genere l'evento 'torna alla pagina precedente' carica la pagina precedentemente visionata
+		//funziona al primo giro perché non puó entrare qui
+		window.onpopstate = function(event) {
 				popCheck--;
 				titleClickedResult(backup.pop());	
 			 	};	
 		}
-	
+		
 		/////////////da qui partono gli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
+		$(document).scrollTop(0);
 		$('li ul').remove(); //rimuove le sottoliste per problemi di visualizzazione risconstrati
-		$('div.navbox').fadeOut();//nasconde
-		$('.reflist').fadeOut();
+		$('div.navbox').fadeOut();//nasconde external link
+		$('.reflist').fadeOut();//nasconde references
+		$('.plainlinks').next('ul').fadeOut();//nasconde see also
+		$('.plainlist').next('ul').fadeOut();//nasconde see also
+		$('#See_also').next('ul').fadeOut();
+		$('.plainlinks').fadeOut();//nasconde see also
+		$('.plainlist').fadeOut();//nasconde see also
 		$('.image').each(function(img) {
 			$(this).parent().append($(this).children()[0]);
 			$(this).remove();
 		});
 		
+
 		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
-	
 			backup.push(apiResult); //aggiunge gli oggetti jsonp delle pagine in un arrey di oggetti
 			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history
 			popCheck ++; //contatore pagine 'lasciate indietro'
 			var getTitle = this.title;
+			indexClick = false;
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
 				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
@@ -207,9 +218,38 @@ $(document).ready(function (){
 			}
 		});
 		//FINE tasto show per la sezione references////////////
+
+		// INIZIO tasto show per la sezione see also /////////////
+
+		$('#See_also').html('See also\t');
+		$('#See_also').append('<button id="showSeal" type="button" class ="btn btn-primary">Show</button>');
+		$('#showSeal').click(function(e){
+			if (showSeal == false) {
+				$('.plainlinks').next('ul').fadeOut();
+				$('.plainlist').next('ul').fadeOut();
+				$('#See_also').next('ul').fadeOut();
+				$('.plainlinks').fadeOut();
+				$('.plainlist').fadeOut();
+				showSeal = true;
+				$('#showSeal').html('Show');
+			}
+			else {
+				$('.plainlinks').next('ul').fadeIn();
+				$('#See_also').next('ul').fadeIn();
+				$('.plainlist').next('ul').fadeIn();
+				$('.plainlinks').fadeIn();
+				$('.plainlist').fadeIn();
+				showSeal = false;
+				$('#showSeal').html('Hide');
+			}
+		});
+		//FINE tasto show per la sezione see also////////////
+
+
+
+
+
 	}
-
-
 		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 });
 
