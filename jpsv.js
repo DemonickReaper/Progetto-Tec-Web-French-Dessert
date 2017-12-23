@@ -7,11 +7,13 @@ $(document).ready(function (){
 	var findCate = false;
 	var popb = false;
 	var indexClick = false;
-	var done = false;
+	var firstLoad = true;
+
 	var popCheck = 0;
 
 	var i = 0;
 	var j = 0;
+	var iii = 0;
 	var backup = new Array();
 	var ann = new Annotator(document.body);
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
@@ -82,6 +84,7 @@ $(document).ready(function (){
 	function titleClickedResult (apiResult) { //carica il contenuto della pagina wikipedia sul nostro sito
 		var str = apiResult.parse['text']['*'];
 		var title = apiResult.parse.title;
+		firstLoad = false;firstLoad = false;
 
 		$('#titleBar').html(title);
 		j = 0;
@@ -118,14 +121,66 @@ $(document).ready(function (){
 		$('h2').parent('.toctitle').html('<h2>Index</h2>');
 		$('li').addClass('list-group-item list-group-item-action');
 		$('table').addClass('table');
-		if(popCheck > 0 && indexClick == false) { //quando si genere l'evento 'torna alla pagina precedente' carica la pagina precedentemente visionata
-		//funziona al primo giro perché non puó entrare qui
-		window.onpopstate = function(event) {
-				popCheck--;
-				titleClickedResult(backup.pop());	
-			 	};	
-		}
 		
+		/*	$(document).on('click','#index a',function(e){
+				e.preventDefault();
+				if(done == false) {
+				indexClick = true;
+				done = true;
+				//$(this).click();
+				window.location.hash = "";
+				window.location.hash = $(this).attr('href');	
+
+				console.log(this);
+				done = false;
+				return false;
+				}
+			});*/
+			
+		/*	$(document).on('click','#index a',function(e){
+				e.preventDefault();
+				console.log(popCheck+' dentro index');
+				//window.location.hash = "";
+				window.location.hash = $(this).attr('href');
+			});
+		
+		
+		$(window).on('popstate',function(e){
+			e.preventDefault();
+			if(popCheck > 0) { 
+				//window.onpopstate = function(event) {
+					//event.preventDefault();	
+					console.log(popCheck+' dentro il pop');
+					popCheck--;
+					titleClickedResult(backup.pop());	
+				}
+			});*/
+
+			if (window.history && window.history.pushState) {
+				
+					$(window).on('popstate', function() {
+						
+					  var hashLocation = location.hash;
+					  var hashSplit = hashLocation.split("#!/");
+					  var hashName = hashSplit[1];
+				
+					  if (hashName !== '') {
+						var hash = window.location.hash;
+						if (hash === '') {
+							if(popCheck > 0) {
+									console.log(popCheck+' dentro il pop');
+									popCheck--;
+									titleClickedResult(backup.pop());	
+								}
+						}
+					  }
+					});
+					console.log('faccio la push');
+				
+					window.history.pushState('forward', null, './#forward');	
+				  }
+				
+			
 		/////////////da qui partono gli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 		$(document).scrollTop(0);
 		$('li ul').remove(); //rimuove le sottoliste per problemi di visualizzazione risconstrati
@@ -145,10 +200,9 @@ $(document).ready(function (){
 		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
 			backup.push(apiResult); //aggiunge gli oggetti jsonp delle pagine in un arrey di oggetti
-			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history
+			//window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history
 			popCheck ++; //contatore pagine 'lasciate indietro'
 			var getTitle = this.title;
-			indexClick = false;
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
 				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
@@ -244,7 +298,6 @@ $(document).ready(function (){
 			}
 		});
 		//FINE tasto show per la sezione see also////////////
-
 
 
 
