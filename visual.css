@@ -79,13 +79,46 @@
 
 
 .blockList{
-    padding: 3%;
+    display: flex;
 }
 #tableList h3 {
     border-bottom: none;
     margin-top: 7%;
     width: 100%;
     text-align: center;
+}
+
+#tableList tr:nth-child(odd){
+    background-color: rgba(230, 142, 250, 0.877);
+}
+
+#tableList tr:nth-child(even){
+    background-color: rgba(250, 142, 192, 0.877); 
+}
+#tableList tr{
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+#tableList tr a{
+    color: rgb(12, 3, 143);
+}
+#tableList tr a:hover{
+    color: rgb(0, 124, 124);
+}
+
+
+#tableList tr td {
+   /* padding-bottom:0.5px;*/
+   
+}
+.titleBlock {
+    width:60%;
+    flex: 1;
+}
+#tableList tr:nth-last-child(1){
+    border-bottom: 2px solid black;
 }
 
 /*///////////////////////////////////////////// TABELLA DEI RISULTATI FINE///////////////////////////////////////////////////// */
