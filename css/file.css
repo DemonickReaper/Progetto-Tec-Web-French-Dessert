@@ -96,14 +96,15 @@
 		}
 		#titlebar {
 			font-size: 1.8em;	
+		}
 	}
 	@media screen and (max-width:566px){
 		#titlebar{
 			font-size:1.4em;
 			margin-right: 25%;
 			}
-	   
-	}
+		}
+	
 	@media screen and (max-width:196px){
 		.navbar-toggle {
 			margin-right: 30%;
@@ -111,22 +112,6 @@
 	}	
  /*searchbar*/
 
-
-#link {
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
-#bio{
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
-#photo{
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
 
 
 /*LOGIN CSS*/
@@ -210,8 +195,7 @@
 	text-transform: uppercase;
 	border-color: #1CB94A;
 	}
-.btn-register:hover,
-.btn-register:focus {
+.btn-register:hover,.btn-register:focus {
 	color: #fff;
 	background-color: #1CA347;
 	border-color: #1CA347;

@@ -89,11 +89,11 @@
 }
 
 #tableList tr:nth-child(odd){
-    background-color: rgba(230, 142, 250, 0.877);
+    background-color: rgba(193, 101, 255, 0.3);
 }
 
 #tableList tr:nth-child(even){
-    background-color: rgba(250, 142, 192, 0.877); 
+    background-color: rgba(222, 57, 140, 0.3); 
 }
 #tableList tr{
     border-top: 2px solid black;
@@ -140,6 +140,8 @@
 }
 #contentP{
     position: static;
+    background-color: rgba(107, 174, 201, 0.4);
+    border: 1px solid black;
 }
 
 #toc{
@@ -214,9 +216,17 @@ table[class~="infobox"] tr{
 #tableP{
     position: static;
     height: 100vh;
-    /*background-color: rgb(199, 239, 255);*/
+    background-color: rgba(120, 184, 104, 0.4);
 }
 /*////////////////////////////////tabella di destra fine/////////////////////////////////////*/
+
+/*////////////////////// indice inizio ////////////////////////*/
+#index{
+    background-color: rgba(120, 184, 104, 0.4);
+}
+
+
+/*////////////////////// indice fine ////////////////////////*/
 
 
 
