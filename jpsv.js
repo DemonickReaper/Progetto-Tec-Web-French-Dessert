@@ -19,8 +19,16 @@ $(document).ready(function (){
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
 	
 	if(firstTime==true) {
+		var wApi = localStorage.getItem("wApi");
+		var wikiApi = JSON.parse(wApi);
 		firstTime = false;
-		queryResult(undefined);
+		console.log(wikiApi.query);
+		if (wikiApi.query !== undefined) {
+			queryResult(wikiApi);
+		}
+		else {
+			titleClickedResult (wikiApi);
+		}
 	}
 
 
@@ -51,12 +59,13 @@ $(document).ready(function (){
 	});
 
 	function queryResult(apiResult){//passa l'oggetto json ottenuto come stringa, sempre in questa pagina, da decidere se modificare
-		if(apiResult!==undefined){
+		/*if(apiResult!==undefined){
 			var wikiApi = JSON.stringify(apiResult);
 			localStorage.setItem("wApi",wikiApi);
 		}
 		var wApi = localStorage.getItem("wApi");//recupero i dati della query fatti sul altra pagina
-		var wikiApi = JSON.parse(wApi); // converto i dati recuperati (stringa) in un oggetto json 
+		var wikiApi = JSON.parse(wApi); // converto i dati recuperati (stringa) in un oggetto json */
+		var wikiApi = apiResult;
 
 		for (var pageId in wikiApi.query.pages){ //stampa la lista dei risultati della ricerca
 			if (wikiApi.query.pages.hasOwnProperty(pageId)) {
@@ -72,18 +81,29 @@ $(document).ready(function (){
 		e.preventDefault();
 		pageId = this.id;
 		$.ajax({
-						url: 'https://en.wikipedia.org/w/api.php?',
-						data: {action: 'parse', pageid: pageId, prop: 'text|categories', format: 'json'},
-						dataType: 'jsonp',
-						success: titleClickedResult,	
-						error: function() {alert('errore');}
+					url: 'https://en.wikipedia.org/w/api.php?',
+					data: {action: 'parse', pageid: pageId, prop: 'text|categories', format: 'json'},
+					dataType: 'jsonp',
+					success: titleClickedResult,	
+					error: function() {alert('errore');}
 				
 		});
 	});	
 
 	function titleClickedResult (apiResult) { //carica il contenuto della pagina wikipedia sul nostro sito
-		var str = apiResult.parse['text']['*'];
-		var title = apiResult.parse.title;
+		/*if(apiResult!==undefined){
+			var wikiApi = JSON.stringify(apiResult);
+			localStorage.setItem("wApi",wikiApi);
+		}
+		var wApi = localStorage.getItem("wApi");//recupero i dati della query fatti sul altra pagina
+		var wikiApi = JSON.parse(wApi); // converto i dati recuperati (stringa) in un oggetto json */
+		
+		/*var str = apiResult.parse['text']['*'];
+		var title = apiResult.parse.title;*/
+		var wikiApi = apiResult;
+		console.log(wikiApi);
+		var str = wikiApi.parse['text']['*'];
+		var title = wikiApi.parse.title;
 
 		$('#titleBar').html(title);
 		j = 0;
