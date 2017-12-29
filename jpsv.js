@@ -59,12 +59,7 @@ $(document).ready(function (){
 	});
 
 	function queryResult(apiResult){//passa l'oggetto json ottenuto come stringa, sempre in questa pagina, da decidere se modificare
-		/*if(apiResult!==undefined){
-			var wikiApi = JSON.stringify(apiResult);
-			localStorage.setItem("wApi",wikiApi);
-		}
-		var wApi = localStorage.getItem("wApi");//recupero i dati della query fatti sul altra pagina
-		var wikiApi = JSON.parse(wApi); // converto i dati recuperati (stringa) in un oggetto json */
+		
 		var wikiApi = apiResult;
 
 		for (var pageId in wikiApi.query.pages){ //stampa la lista dei risultati della ricerca
@@ -91,35 +86,27 @@ $(document).ready(function (){
 	});	
 
 	function titleClickedResult (apiResult) { //carica il contenuto della pagina wikipedia sul nostro sito
-		/*if(apiResult!==undefined){
-			var wikiApi = JSON.stringify(apiResult);
-			localStorage.setItem("wApi",wikiApi);
-		}
-		var wApi = localStorage.getItem("wApi");//recupero i dati della query fatti sul altra pagina
-		var wikiApi = JSON.parse(wApi); // converto i dati recuperati (stringa) in un oggetto json */
-		
-		/*var str = apiResult.parse['text']['*'];
-		var title = apiResult.parse.title;*/
+
 		var wikiApi = apiResult;
 		console.log(wikiApi);
 		var str = wikiApi.parse['text']['*'];
 		var title = wikiApi.parse.title;
 
-		$('#titleBar').html(title);
+		$('#title').html(title);
 		j = 0;
 		findCate = false;
 		for(var cate  in apiResult.parse.categories){
 			cate = apiResult.parse.categories[j]['*'];
 			j++;
 			if (cate =='French_desserts' ||cate == 'French_confectionery'||cate == 'French_pastries') { //se la pagina appartiene al nostro tag
-				$('#titleBar').css({"color":"pink"});
-				$('body').css({"font-family":"georgia"});
+				$('#title').css({"color":"pink"});
+				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});
 				findCate = true;
 			}	
 		}
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
-			$('#titleBar').css({"color":"white"});
-			$('body').css({"font-family":"verdana"});
+			$('#title').css({"color":"black"});
+			$('body').css({"font-family":"Raleway","font-size":"16px"});
 		}
 		
 		if($(str).find('table[class~="infobox"]').length > 0){
