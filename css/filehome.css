@@ -1,6 +1,21 @@
+@font-face {
+	font-family: 'Hanged_Letters';
+	src: url(../fonts/Hanged_Letters.ttf);
+}
 .container-fluid {
 	padding: 0;
 }
+/*/////////////////////////////TITOLO INIZIO////////////////////////////*/
+h1#title{
+	margin-top: 10px;
+	text-align: center;
+    font-weight: bold; 
+	font-family: 'Hanged_Letters', 'sans serif';
+	font-size: 70px;
+	color: rgba(193, 101, 255, 1);
+	text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+}
+/*/////////////////////////////FINE TITOLO//////////////////////////////*/
 #headim {
 		width: 85%; height: 10%; 
 		margin-left: 9%; 

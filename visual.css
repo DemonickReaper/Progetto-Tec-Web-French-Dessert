@@ -1,14 +1,48 @@
 /**{
   border: 1px solid black !important; 
 }*/
+@font-face {
+	font-family: 'Hanged_Letters';
+	src: url(fonts/Hanged_Letters.ttf);
+}
+
+body {
+    background-color: rgb(194, 245, 181);
+}
+td, th{
+    border-top: 1px solid rgb(80, 80, 80) !important;
+}
+li{
+    border: 1px solid rgb(80, 80, 80) !important;
+    background-color: #cddeff !important;
+}
+a {
+    color: rgb(33, 33, 187);
+}
+
+#navbarvis {
+    background-color: rgb(27, 27, 27) !important;
+}
+a[href="main.html"] {
+    background-color: rgb(27, 27, 27) !important;
+ 
+}
+form.navbar-form, .barBar{
+    background-color: rgb(27, 27, 27) !important;
+}
+.navbar-inverse {
+    background-color:rgb(27, 27, 27) !important;
+}
 /*////////////////////////////////////////////// TITOLO PAGINA INIZIO ///////////////////////////////////////////// */
 
 h1#title{
-    text-align: center;
+    margin-top: 10px;
+	text-align: center;
     font-weight: bold; 
-    font-style: italic;
-    font-family: 'Merriweather', serif;
-    font-size: 70px;
+	font-family: 'Hanged_Letters', 'sans serif';
+	font-size: 70px;
+	color: rgba(193, 101, 255, 1);
+	text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 }
 
 
@@ -16,7 +50,7 @@ h1#title{
 
 /*///////////////////////////////////////////// NAVBAR INIZIO///////////////////////////////////////////////////// */
 #titlebar{
-    font-size: 2.5em;
+    font-size: 35px;
     text-align:left;
     color: white;
     font-family: Verdana;
@@ -101,11 +135,11 @@ h1#title{
 }
 
 #tableList tr:nth-child(odd){
-    background-color: rgba(193, 101, 255, 0.3);
+    background-color: rgb(218, 169, 250);
 }
 
 #tableList tr:nth-child(even){
-    background-color: rgba(222, 57, 140, 0.3); 
+    background-color: rgb(172, 223, 243);
 }
 #tableList tr{
     border-top: 2px solid black;
@@ -152,56 +186,18 @@ h1#title{
 }
 #contentP{
     position: static;
-    background-color: rgba(107, 174, 201, 0.4);
-    border: 1px solid black;
+    background-color: rgb(172, 223, 243);
+    border: 3px solid black;
+    margin-left: 2%;
+    margin-right: 3.333%;
 }
 
-#toc{
-    position: static;
-    height: 70%;
-    overflow-y:auto;
-    overflow-x: visible;
-    text-align: left;
-}
-li ul{
-    overflow: auto;
-}
-#toc ul {
-    padding: 0;
-}
-#tocButton{
-    position: fixed;
-    margin-left: 5%;
-    margin-top:0;
-    padding: 1%;
-    background-color:rgba(101, 179, 243, 0.541);
-    width: 60px;
-    height: 60px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-    border: 2px solid black;
-}
-#arrown{
-    font-size: 25px;
-    color: black;
-    /*margin: auto;*/
-    padding-left: 0.08em;
-}
-.fn,h2 {
-    margin: auto;
-    width: 60%;
-    text-align: center !important;
-    letter-spacing: 0.1em !important;
-    border-bottom: 2px solid #000;
-    margin-bottom: 0.5em !important;
-    font-size:24px;
-}
+
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
 table[class~="infobox"]{ 
     position: static;
     /*background-color:  rgb(199, 239, 255);*/
-    border-bottom:2px solid black;
+    
     display: inline;
    
 }
@@ -224,20 +220,76 @@ table[class~="infobox"] span,table[class~="infobox"] th,table[class~="infobox"] 
 
 table[class~="infobox"] tr{
     text-align: right;
+    
 }
 #tableP{
+ 
     position: static;
+    flex-direction: column;
     height: 100vh;
-    background-color: rgba(120, 184, 104, 0.4);
+    background-color: rgb(172, 223, 243);
+    border-bottom:2px solid black;
+    border: 3px solid black !important;
+    overflow: scroll; 
 }
+#tableP tbody{
+
+    background-color: rgb(172, 223, 243);
+   
+       
+}
+
 /*////////////////////////////////tabella di destra fine/////////////////////////////////////*/
 
 /*////////////////////// indice inizio ////////////////////////*/
 #index{
-    background-color: rgba(120, 184, 104, 0.4);
+    background-color: rgb(172, 223, 243);
+    border: 3px solid black;
+    margin-right: 2%;
+    margin-left: 1%;
+    height: 60%;
 }
-
-
+#toc{
+    position: static;
+    height: 100%;
+    overflow-y:auto;
+    overflow-x: visible;
+    text-align: left;
+}
+li ul{
+    overflow: auto;
+}
+#toc ul {
+    padding: 0;
+}
+#tocButton{
+    position: fixed;
+    margin-left: 5%;
+    margin-top:1%;
+    padding: 1%;
+    background-color:rgba(101, 179, 243, 1);
+    width: 60px;
+    height: 60px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    border: 2px solid black;
+}
+#arrown{
+    font-size: 25px;
+    color: black;
+    /*margin: auto;*/
+    padding-left: 0.08em;
+}
+.fn,h2 {
+    margin: auto;
+    width: 60%;
+    text-align: center !important;
+    letter-spacing: 0.1em !important;
+    border-bottom: 2px solid #000;
+    margin-bottom: 0.5em !important;
+    font-size:24px;
+}
 /*////////////////////// indice fine ////////////////////////*/
 
 

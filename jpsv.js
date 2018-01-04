@@ -99,18 +99,18 @@ $(document).ready(function (){
 			cate = apiResult.parse.categories[j]['*'];
 			j++;
 			if (cate =='French_desserts' ||cate == 'French_confectionery'||cate == 'French_pastries') { //se la pagina appartiene al nostro tag
-				$('#title').css({"color":"pink"});
+				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
 				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});
 				findCate = true;
 			}	
 		}
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
-			$('#title').css({"color":"black"});
+			$('#title').css({"color":"black","font-family":"Raleway","text-shadow":"none"});
 			$('body').css({"font-family":"Raleway","font-size":"16px"});
 		}
 		
 		if($(str).find('table[class~="infobox"]').length > 0){
-		$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-7">'+
+		$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-6">'+
 		str+'</div><div id="tableP"class="col-xs-3"></div>');
 		$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 		$('#tableP').append($('table[class~="infobox"]')[0]);
@@ -121,7 +121,7 @@ $(document).ready(function (){
 			str+'</div>');
 		}
 		$('#index').append($('#toc'));
-		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#titleBar"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
+		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#title"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
 		$('#testo .mw-editsection').remove();
 		$('.mw-editsection').remove();
 		$('h2').parent('.toctitle').html('<h2>Index</h2>');
@@ -175,7 +175,7 @@ $(document).ready(function (){
 				$('#tableP').css({
 					'position':'fixed',
 					'overflow-y':'auto',
-					'height': '88vh',
+					'height': '70vh',
 					'margin-left':'75%'
 				});
 				pinned = true;
@@ -185,7 +185,7 @@ $(document).ready(function (){
 				$('#tableP').css({
 					'position':'static',				
 					'overflow-y':'visible',
-					'height': '100vh',
+					'height': '200vh',
 					'margin-left':'0'
 				});
 				pinned = false;
