@@ -27,7 +27,7 @@ a[href="main.html"] {
     background-color: rgb(27, 27, 27) !important;
  
 }
-form.navbar-form, .barBar{
+form.navbar-form,.barBar a,.barBar{
     background-color: rgb(27, 27, 27) !important;
 }
 .navbar-inverse {
@@ -57,7 +57,6 @@ h1#title{
 }
 .barBar{
     padding: 0 !important;
-    background-color: black;
     border:1px solid black !important;
 }    
 #search{
@@ -274,6 +273,7 @@ li ul{
     -webkit-border-radius: 50px;
     border-radius: 50px;
     border: 2px solid black;
+
 }
 #arrown{
     font-size: 25px;
@@ -312,3 +312,11 @@ h3 {
     }
 }
 /*///////////////////////////////////////////// PAGINA WIKIPEDIA FINE///////////////////////////////////////////////////// */
+
+#map { 
+    height: 300px;
+    width: 94%;
+    margin-left: 3%;
+    margin-bottom: 2%;
+    border: 3px solid black;   
+  }

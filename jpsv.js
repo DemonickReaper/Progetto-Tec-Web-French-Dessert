@@ -6,10 +6,12 @@ $(document).ready(function (){
 	var showSeal = true;
 	var findCate = false;
 	var popb = false;
+	var mapCheck = false;
 
-
+	var lat;
+	var lg;
+	
 	var popCheck = 0;
-
 	var i = 0;
 	var j = 0;
 	var iii = 0;
@@ -22,7 +24,6 @@ $(document).ready(function (){
 		var wApi = localStorage.getItem("wApi");
 		var wikiApi = JSON.parse(wApi);
 		firstTime = false;
-		console.log(wikiApi.query);
 		if (wikiApi.query !== undefined) {
 			queryResult(wikiApi);
 		}
@@ -88,9 +89,13 @@ $(document).ready(function (){
 	function titleClickedResult (apiResult) { //carica il contenuto della pagina wikipedia sul nostro sito
 
 		var wikiApi = apiResult;
-		console.log(wikiApi);
 		var str = wikiApi.parse['text']['*'];
 		var title = wikiApi.parse.title;
+		
+
+		
+		$('#maps').parent().show();
+		$('#maps').show();
 
 		$('#title').html(title);
 		j = 0;
@@ -117,11 +122,87 @@ $(document).ready(function (){
 		}
 	
 		else {
-			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-10">'+
+			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-9">'+
 			str+'</div>');
 		}
+
+	
+	
 		$('#index').append($('#toc'));
 		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#title"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
+		
+		if($('.latitude').length){
+			lat = $('.latitude')[0];
+			lg = $('.longitude')[0];
+			lat = $(lat).text();
+			lg = $(lg).text();
+			
+			var parts = lat.split(/[^\d\w]+/);
+			var parts2 = lg.split(/[^\d\w]+/);
+		
+			if (parts[2] == 'N' ||parts[2] == 'S' ){
+			
+				lat = ConvertDMToDD(parts[0], parts[1], parts[2]);
+			}
+			else {
+				if(parts[1] == 'N' ||parts[1] == 'S' ){
+					lat = ConvertDToDD(parts[0], parts[1]);
+				}
+				else{
+					lat = ConvertDMSToDD(parts[0], parts[1], parts[2], parts[3]);
+				}
+			}
+			if (parts2[2] == 'E' ||parts2[2] == 'W' ){
+				lg = ConvertDMToDD(parts2[0], parts2[1], parts2[2]);
+			}
+			else {
+				if(parts2[1] == 'E' ||parts2[1] == 'W' ) {
+					lg = ConvertDToDD(parts2[0], parts2[1]);
+				}
+				else {
+					lg = ConvertDMSToDD(parts2[0], parts2[1], parts2[2], parts2[3]);
+				}	
+			}
+			function ConvertDToDD(degrees, direction) {
+				degrees = parseFloat(degrees);
+				var dd = degrees;
+		
+				if (direction == "S" || direction == "W") {
+					dd = dd * -1;
+				} // Don't do anything for N or E
+				return dd;
+			}
+			function ConvertDMToDD(degrees, minutes, direction) {
+				degrees = parseFloat(degrees);
+				minutes = parseFloat(minutes);
+				var dd = degrees + minutes/60;
+		
+				if (direction == "S" || direction == "W") {
+					dd = dd * -1;
+				} // Don't do anything for N or E
+				return dd;
+			}
+			function ConvertDMSToDD(degrees, minutes, seconds, direction) {
+				degrees = parseFloat(degrees);
+				minutes = parseFloat(minutes);
+				seconds = parseFloat(seconds);
+				var dd = degrees + minutes/60 + seconds/(60*60);
+
+				if (direction == "S" || direction == "W") {
+					dd = dd * -1;
+				} // Don't do anything for N or E
+				return dd;
+			}
+
+		console.log(lat+"  "+lg);
+		lat = parseFloat(lat);
+		lg = parseFloat(lg);	
+		console.log(lat+"  "+lg);
+	}
+	else {
+		$('#maps').parent().hide();
+		$('#maps').hide();
+	}
 		$('#testo .mw-editsection').remove();
 		$('.mw-editsection').remove();
 		$('h2').parent('.toctitle').html('<h2>Index</h2>');
@@ -159,6 +240,7 @@ $(document).ready(function (){
 			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history
 			popCheck ++; //contatore pagine 'lasciate indietro'
 			var getTitle = this.title;
+			$('#mapRow').remove();
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
 				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
@@ -260,5 +342,43 @@ $(document).ready(function (){
 
 	}
 		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
+	$('#maps').click(function(e){
+		e.preventDefault();
+		$('#maps').parent().show();
+		$('#maps').show();
+		if($('.latitude').length){
+		if(mapCheck == false) {
+			mapCheck = true;
+			var k = 0;
+			$('#navbarBar').append('<div class="row" id="mapRow"><div id="map" class="col-xs-12"> </div>')
+			var area;
+			var coordinates = new google.maps.LatLng(lat, lg);
+
+			var markers = [];
+			console.log(title);
+			var locations = [
+				{ lat:  lat, lg: lg, label: $(title).text()}
+			];
+
+			area = $('#map')[0];
+			var plan = new google.maps.Map(area,{
+				zoom: 15,
+				center: coordinates,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+			
+				markers[k] = new google.maps.Marker({
+					position: new google.maps.LatLng(locations[k].lat,locations[k].lg),
+					map: plan,
+					title: locations[k].label
+				});
+	
+		}
+		else {
+			mapCheck = false;
+			$('#mapRow').remove();
+		}
+		}
+	})
 });
 
