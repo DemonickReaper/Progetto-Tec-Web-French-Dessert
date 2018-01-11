@@ -7,6 +7,7 @@ $(document).ready(function (){
 	var findCate = false;
 	var popb = false;
 	var mapCheck = false;
+	var instaCheck = false;
 
 	var lat;
 	var lg;
@@ -19,6 +20,11 @@ $(document).ready(function (){
 	var backup = new Array();
 	var ann = new Annotator(document.body);
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
+
+	jQuery.fn.spectragram.accessData = {
+		accessToken: '6905758419.e029fea.b95cf1b2cf4b4188b5e494fb3ec5a166',
+		clientID: '6905758419'
+	};
 	
 	if(firstTime==true) {
 		var wApi = localStorage.getItem("wApi");
@@ -342,6 +348,8 @@ $(document).ready(function (){
 
 	}
 		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
+
+		///////////////////////////api MAPS inizio //////////////////////////////////////////////////////////////////////////////
 	$('#maps').click(function(e){
 		e.preventDefault();
 		$('#maps').parent().show();
@@ -350,7 +358,7 @@ $(document).ready(function (){
 		if(mapCheck == false) {
 			mapCheck = true;
 			var k = 0;
-			$('#navbarBar').append('<div class="row" id="mapRow"><div id="map" class="col-xs-12"> </div>')
+			$('#navbarBar').append('<div class="row" id="mapRow"><div id="map" class="col-xs-12"> </div>');
 			var area;
 			var coordinates = new google.maps.LatLng(lat, lg);
 
@@ -380,5 +388,41 @@ $(document).ready(function (){
 		}
 		}
 	})
-});
 
+
+///////////////////////////api MAPS fine //////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
+$('#instagram').click(function(e){
+	e.preventDefault();
+	if(instaCheck == false){
+		instaCheck = true;
+
+		$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div>');
+		var searchTag = $(title).text();
+			$('#insta').spectragram('getRecentTagged',{
+				query: searchTag,
+				wrapEachWith: ''
+			});
+
+			//da sistemare la rimozione dei link
+			$(document).ajaxComplete(function( event, xhr, settings ) {
+				console.log('event '+event+'    xhr '+xhr+'      settings '+settings)
+				if(settings.url === "ajax/visual.html"){
+				$('.image').each(function(img) {
+					console.log('faccio qualcosa')
+					$(this).parent().append($(this).children()[0]);
+					$(this).remove();
+
+				});
+				}
+			})
+
+		}
+//	}
+})
+
+}); //fine document ready
+
+
+// https://api.instagram.com/v1/tags/rome/media/recent?access_token=6905758419.e029fea.b95cf1b2cf4b4188b5e494fb3ec5a166
