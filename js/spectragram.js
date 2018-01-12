@@ -153,7 +153,7 @@ if ( typeof Object.create !== "function" ) {
 					imageCaption = ( results.data[i].caption !== null ) ?
 									$( "<span>" ).text( results.data[i].caption.text ).html() :
 									this.messages.defaultImageAltText;
-///s/
+
 
 					$element = $( "<img>", {
 						alt: imageCaption,
@@ -170,12 +170,20 @@ if ( typeof Object.create !== "function" ) {
 						imageGroup.push( $( this.options.wrapEachWith ).append( $element ) );
 					}
 				}
-
+				////////////////////////////////////////////////modifiche alla sezione instagram////////////////////////////////////////
 				this.$elem.append( imageGroup );
+				console.log(imageGroup[1])
+				for(i = 0;i<10;i++){
+				$(imageGroup[i][0]).attr('class','insta col-xs-3')
+				}
+				$('.insta').css({"width":"320","height":"320"})
+
+			//	})
             }
 
 			if ( typeof this.options.complete === "function" ) {
 				this.options.complete.call( this );
+				
 			}
         }
     };

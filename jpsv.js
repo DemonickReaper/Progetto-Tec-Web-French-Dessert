@@ -199,11 +199,8 @@ $(document).ready(function (){
 				} // Don't do anything for N or E
 				return dd;
 			}
-
-		console.log(lat+"  "+lg);
 		lat = parseFloat(lat);
 		lg = parseFloat(lg);	
-		console.log(lat+"  "+lg);
 	}
 	else {
 		$('#maps').parent().hide();
@@ -363,7 +360,6 @@ $(document).ready(function (){
 			var coordinates = new google.maps.LatLng(lat, lg);
 
 			var markers = [];
-			console.log(title);
 			var locations = [
 				{ lat:  lat, lg: lg, label: $(title).text()}
 			];
@@ -399,27 +395,14 @@ $('#instagram').click(function(e){
 		instaCheck = true;
 
 		$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div>');
+		
 		var searchTag = $(title).text();
+		
 			$('#insta').spectragram('getRecentTagged',{
 				query: searchTag,
 				wrapEachWith: ''
-			});
-
-			//da sistemare la rimozione dei link
-			$(document).ajaxComplete(function( event, xhr, settings ) {
-				console.log('event '+event+'    xhr '+xhr+'      settings '+settings)
-				if(settings.url === "ajax/visual.html"){
-				$('.image').each(function(img) {
-					console.log('faccio qualcosa')
-					$(this).parent().append($(this).children()[0]);
-					$(this).remove();
-
-				});
-				}
 			})
-
-		}
-//	}
+	}
 })
 
 }); //fine document ready
