@@ -95,7 +95,9 @@ if ( typeof Object.create !== "function" ) {
 					if ( results.data.length ) {
 						self.display( results );
 					} else {
-						$.error( "Spectragram.js - Error: the tag " + self.options.query + " does not have results." );
+						//$.error( "Spectragram.js - Error: the tag " + self.options.query + " does not have results." );
+						$('#insta').append('<div  class="col-xs-12"><p id="instaEr">No photos has been found :(<p></div>');
+						$('#instaEr').css({"text-align":"center","font-size":"50px","background-color":"white","margin-bottom":"3%"})
 					}
                 } );
         },
@@ -166,26 +168,44 @@ if ( typeof Object.create !== "function" ) {
 
 					if ( isWrapperEmpty ) {
 						imageGroup.push( $element );
+						
 					} else {
 						imageGroup.push( $( this.options.wrapEachWith ).append( $element ) );
+						
 					}
 				}
 				////////////////////////////////////////////////modifiche alla sezione instagram////////////////////////////////////////
-				this.$elem.append( imageGroup );
-				console.log(imageGroup[1])
-				for(i = 0;i<10;i++){
-				$(imageGroup[i][0]).attr('class','insta col-xs-3')
-				}
-				$('.insta').css({"width":"320","height":"320"})
+				
+					this.$elem.append( imageGroup );
+					if($(imageGroup[0]).length > 0){
+						for(i = 0;i<3;i++){		
+							$(imageGroup[i][0]).attr('class','instag col-xs-3');
+							$(imageGroup[i][0]).attr('id','instag'+i);
+							//console.log($(imageGroup[i][0]).attr('alt'));
+							if(/#nude|#boobs|#like4like|#tits|#nudes|#nudity|#sexy|#badgirl|#pussy|#erotic|#ass|#naked|#nofilter|#hot|#gorgeous|#fuck|#horny|#memek|#dick|#butt|#sex|#lesbiansex|#indogirls|#lesbiankiss|#sikişsex|#lesbianvideo|#sanalsevişme|#love/i.test($(imageGroup[i][0]).attr('alt'))){
+								$('#instag'+i).remove();
+							}
+							if($(imageGroup[i+1]).length < 1) {
+								i = 3;	
+							}
+						}
+						
+						$('.instag').css({"width":"320","height":"320","margin-bottom":"2%","border":"2px solid black","background-color":"white","margin-left":"2%","padding-top":"15px","padding-bottom":"50px"})
 
-			//	})
+						
+					}
+					else {
+						$('.instaRow').append('<div id="instaEr">Nothing photo was found</div>');
+					}
+					
+		
             }
 
 			if ( typeof this.options.complete === "function" ) {
 				this.options.complete.call( this );
 				
 			}
-        }
+		}
     };
 
 	jQuery.fn.spectragram = function ( method, options ) {
@@ -211,7 +231,7 @@ if ( typeof Object.create !== "function" ) {
     // Plugin Default Options
     jQuery.fn.spectragram.options = {
 		complete : null,
-		max: 10,
+		max: 3,
 		query: "instagram",
 		size: "medium",
 		wrapEachWith: "<li></li>"

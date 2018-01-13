@@ -244,6 +244,8 @@ $(document).ready(function (){
 			popCheck ++; //contatore pagine 'lasciate indietro'
 			var getTitle = this.title;
 			$('#mapRow').remove();
+			$('#instaRow').remove();
+			instaCheck = false;
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
 				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
@@ -389,19 +391,30 @@ $(document).ready(function (){
 ///////////////////////////api MAPS fine //////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
-$('#instagram').click(function(e){
+$('#instagram,#skip').click(function(e){
 	e.preventDefault();
+	//$('#insta').after('<div class="col-xs-12"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-chevron-right"></span></div>');
+	
+	if($(this).attr('id')=='skip'){
+		instaCheck = false;
+		$('#instaRow').remove();
+	}
 	if(instaCheck == false){
 		instaCheck = true;
 
 		$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div>');
 		
 		var searchTag = $(title).text();
-		
+		searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
+		console.log(searchTag)
 			$('#insta').spectragram('getRecentTagged',{
 				query: searchTag,
 				wrapEachWith: ''
 			})
+	}
+	else {
+		instaCheck = false;
+		$('#instaRow').remove();
 	}
 })
 
