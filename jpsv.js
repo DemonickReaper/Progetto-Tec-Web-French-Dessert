@@ -113,11 +113,13 @@ $(document).ready(function (){
 				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
 				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});
 				findCate = true;
+				$('#home').after('<li class="active barBar" id="cros"><a href="#">Crossref</a></li>');
 			}	
 		}
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
 			$('#title').css({"color":"black","font-family":"Raleway","text-shadow":"none"});
 			$('body').css({"font-family":"Raleway","font-size":"16px"});
+			$('#cros').remove();
 		}
 		
 		if($(str).find('table[class~="infobox"]').length > 0){
@@ -348,7 +350,7 @@ $(document).ready(function (){
 	}
 		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 
-		///////////////////////////api MAPS inizio //////////////////////////////////////////////////////////////////////////////
+		///////////////////////////api Maps inizio //////////////////////////////////////////////////////////////////////////////
 	$('#maps').click(function(e){
 		e.preventDefault();
 		$('#maps').parent().show();
@@ -388,37 +390,102 @@ $(document).ready(function (){
 	})
 
 
-///////////////////////////api MAPS fine //////////////////////////////////////////////////////////////////////////////
+///////////////////////////api Maps fine //////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
-$('#instagram,#skip').click(function(e){
-	e.preventDefault();
-	//$('#insta').after('<div class="col-xs-12"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-chevron-right"></span></div>');
+	$('#instagram,#skip').click(function(e){
+		e.preventDefault();
+		//$('#insta').after('<div class="col-xs-12"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-chevron-right"></span></div>');
 	
-	if($(this).attr('id')=='skip'){
-		instaCheck = false;
-		$('#instaRow').remove();
-	}
-	if(instaCheck == false){
-		instaCheck = true;
+		if($(this).attr('id')=='skip'){
+			instaCheck = false;
+			$('#instaRow').remove();
+		}
+		if(instaCheck == false){
+			instaCheck = true;
 
-		$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div>');
+			$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div></div>');
 		
-		var searchTag = $(title).text();
-		searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
-		console.log(searchTag)
+			var searchTag = $(title).text();
+			searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
+			console.log(searchTag)
 			$('#insta').spectragram('getRecentTagged',{
-				query: searchTag,
-				wrapEachWith: ''
-			})
-	}
-	else {
-		instaCheck = false;
-		$('#instaRow').remove();
-	}
-})
+					query: searchTag,
+					wrapEachWith: ''
+				})
+		}
+		else {
+			instaCheck = false;
+			$('#instaRow').remove();
+		}
+	})
+///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////api Crossref inizio ////////////////////////
+
+	$('#cros').click(function () {
+		var searchTag = $(title).text();
+		searchTag = searchTag.toLowerCase();
+
+		function crossSuccess (apiResult) {
+			var authComplete = false;
+			var j = 0;
+			var authorFn = [];
+			var authorLn = [];
+			authorFn[0] = 'unknown';
+			authorLn[0] = 'unknown';
+			console.log('vivo')
+			for(var i=0;i<20;i++){
+				var doi = apiResult.message.items[i].DOI;
+				var title = apiResult.message.items[i].title[0];
+				while(authComplete == false) {
+					if(typeof apiResult.message.items[i].author !== 'undefined') {
+						if(typeof apiResult.message.items[i].author[j] !== 'undefined'){
+							authorFn[j] = apiResult.message.items[i].author[j].given;
+							authorLn[j] = apiResult.message.items[i].author[j].family;
+							console.log(authorFn[j])
+							console.log(authorLn[j])	
+							j++;
+						}
+						else {
+							authComplete = true;
+						}
+					}  	
+					else {
+						authComplete = true;
+					}	
+				}
+
+				authComplete = false;
+				$('#navbarBar').append('<div class="row" id="crosRow"><div id="crossRef" class="col-xs-12"></div></div>');
+				$('#crossRef').append(
+					'<table><tr><td>Title:</td><td>'+title+'</td></tr><tr><td>Doi:</td><td>'+doi+'</td></tr><tr><td>Authors:</td><td>');
+				while(j > 0) {
+					$('#crossRef').append(authorFn[j-1]+' '+authorLn[j-1]+'<br>');
+					j--;
+				}
+				$('#crossRef').append('</td></tr></table><br>');
+			
+			}
+		}
+		
+		$.ajax({
+			url: 'http://api.crossref.org/works?query='+searchTag+'+french+dessert',
+			data: {select: 'DOI,title,author', sort: 'relevance'},
+			success: crossSuccess,	
+			error: function() {alert('errore');}
+		});
+	
+		
+	})
+
+
+
+
 
 }); //fine document ready
 
 
 // https://api.instagram.com/v1/tags/rome/media/recent?access_token=6905758419.e029fea.b95cf1b2cf4b4188b5e494fb3ec5a166
+
