@@ -22,6 +22,7 @@ EOF;
 
 $ret = $db->query($sql);
 $bool=false;
+$datauser=0;
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
     echo "USERNAME: = ". $row['USERNAME'] . "\n";
     echo "PASSWORD: = ". $row['PASSWORD'] . "\n";
@@ -30,7 +31,7 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
         echo "Login effettuato con successo";
         echo "<br>";
         $datauser=0;
-        $_SESSION['datauser']++;
+        //$_SESSION['datauser']++;
         $data=[$myusername,$mypassword];
         $_SESSION['datauser']=$data;
         $bool=true;

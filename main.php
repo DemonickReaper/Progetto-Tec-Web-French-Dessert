@@ -84,10 +84,6 @@ session_start();
       </dl>
     </div><!--#link-->	
 	  	<div class="col-xs-9" id="bio">
-<?php
-$data = implode(",", $_SESSION['datauser']);
-echo $data;
-?>
       </div>
      <div class="col-xs-9" id="photo">
       <img src="img/pasthome.jpg" id= "photo" alt="imghome"></div><!--#photo-->
