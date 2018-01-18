@@ -1,5 +1,7 @@
 <?php
 session_start();
+$datauser=0;
+$_SESSION['datauser']++;
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +30,19 @@ session_start();
 	</div>#header-->
 	<div class="row">
     <h1 id="title">FRENCH DESSERT</h1>
+  </div>
+  <div class="col-xs-3">
+  <p id="logged">Logged:</p>
+      <?php 
+      if($_SESSION['datauser']!=1)
+      {
+        $data = implode($_SESSION['datauser']);
+        echo $data;
+      }
+      else{
+        echo "Go to Login Page";
+      }
+      ?>  
   </div>
 	<div class="col-xs-12" id="navigation">
 		<nav class="navbar navbar-inverse" role="navigation">
