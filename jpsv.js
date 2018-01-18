@@ -8,6 +8,7 @@ $(document).ready(function (){
 	var popb = false;
 	var mapCheck = false;
 	var instaCheck = false;
+	var crossCheck = false;
 
 	var lat;
 	var lg;
@@ -113,11 +114,13 @@ $(document).ready(function (){
 				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
 				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});
 				findCate = true;
+				$('#home').after('<li class="active barBar" id="cros"><a href="#">Crossref</a></li>');
 			}	
 		}
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
 			$('#title').css({"color":"black","font-family":"Raleway","text-shadow":"none"});
 			$('body').css({"font-family":"Raleway","font-size":"16px"});
+			$('#cros').remove();
 		}
 		
 		if($(str).find('table[class~="infobox"]').length > 0){
@@ -245,6 +248,7 @@ $(document).ready(function (){
 			var getTitle = this.title;
 			$('#mapRow').remove();
 			$('#instaRow').remove();
+			$('#crosRow').remove();
 			instaCheck = false;
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
@@ -348,7 +352,7 @@ $(document).ready(function (){
 	}
 		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 
-		///////////////////////////api MAPS inizio //////////////////////////////////////////////////////////////////////////////
+		///////////////////////////api Maps inizio //////////////////////////////////////////////////////////////////////////////
 	$('#maps').click(function(e){
 		e.preventDefault();
 		$('#maps').parent().show();
@@ -388,37 +392,113 @@ $(document).ready(function (){
 	})
 
 
-///////////////////////////api MAPS fine //////////////////////////////////////////////////////////////////////////////
+///////////////////////////api Maps fine //////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
-$('#instagram,#skip').click(function(e){
-	e.preventDefault();
-	//$('#insta').after('<div class="col-xs-12"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-chevron-right"></span></div>');
+	$('#instagram,#skip').click(function(e){
+		e.preventDefault();
+		//$('#insta').after('<div class="col-xs-12"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-chevron-right"></span></div>');
 	
-	if($(this).attr('id')=='skip'){
-		instaCheck = false;
-		$('#instaRow').remove();
-	}
-	if(instaCheck == false){
-		instaCheck = true;
+		if($(this).attr('id')=='skip'){
+			instaCheck = false;
+			$('#instaRow').remove();
+		}
+		if(instaCheck == false){
+			instaCheck = true;
 
-		$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div>');
+			$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div></div>');
 		
-		var searchTag = $(title).text();
-		searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
-		console.log(searchTag)
+			var searchTag = $(title).text();
+			searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
+			console.log(searchTag)
 			$('#insta').spectragram('getRecentTagged',{
-				query: searchTag,
-				wrapEachWith: ''
-			})
-	}
-	else {
-		instaCheck = false;
-		$('#instaRow').remove();
-	}
-})
+					query: searchTag,
+					wrapEachWith: ''
+				})
+		}
+		else {
+			instaCheck = false;
+			$('#instaRow').remove();
+		}
+	})
+///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////api Crossref inizio ////////////////////////
+
+	$('#cros').click(function () {
+		if(crossCheck == false){
+			crossCheck = true;
+			var searchTag = $(title).text();
+			searchTag = searchTag.toLowerCase();
+
+			function crossSuccess (apiResult) {
+				var authComplete = false;
+				var j = 0;
+				var authorFn = [];
+				var authorLn = [];
+				authorFn[0] = 'unknown';
+				authorLn[0] = 'unknown';
+				for(var i=0;i<10;i++){
+					var doi = apiResult.message.items[i].DOI;
+					var title = apiResult.message.items[i].title[0];
+					while(authComplete == false) {
+						if(typeof apiResult.message.items[i].author !== 'undefined') {
+							if(typeof apiResult.message.items[i].author[j] !== 'undefined'){
+								authorFn[j] = apiResult.message.items[i].author[j].given;
+								authorLn[j] = apiResult.message.items[i].author[j].family;
+								j++;
+							}
+							else {
+								authComplete = true;			
+							}
+						}  	
+						else {
+							authComplete = true;
+						}	
+					}
+					if(j == 0 ) {	
+						authorFn[j] = 'unknown';
+						authorLn[j] = 'unknown';
+						j++;
+					}
+					if (authorFn[j-1] === undefined){
+						authorFn[j-1] = 'unknown';
+						authorLn[j-1] = 'unknown';
+					}
+					authComplete = false;
+					$('#navbarBar').append('<div class="row" id="crosRow"><div id="crossRef" class="col-xs-12"></div></div>');
+					var crossAppend = '<table class="table cross"><tr><td>Title:</td><td>'+title+'</td></tr><tr><td>Doi:</td><td>'+doi+'</td></tr><tr><td>Authors:</td><td>';
+					while(j > 0) {	
+						crossAppend = crossAppend+authorFn[j-1]+'\xa0'+authorLn[j-1]+'\xa0\xa0\xa0';
+						j--;
+					}
+					$('#crossRef').append(crossAppend+'</td></tr></table>');
+					
+					$('.cross').css({"width":"90%","margin-left":"5%","position":"relative","background-color":"rgb(172, 223, 243)","border":"2px solid black","margin-bottom":"10px","font-family":"Roboto Slab"})
+					$('.cross td:nth-child(odd)').css({"width":"7%","font-weight":"bold"})
+				}
+			}	
+			$.ajax({
+				url: 'http://api.crossref.org/works?query='+searchTag+'+french+dessert',
+				data: {select: 'DOI,title,author', sort: 'relevance',rows: '10'},
+				success: crossSuccess,	
+				error: function() {alert('errore');}
+			});
+	
+		}
+		else {
+			$('#crosRow').remove();
+			crossCheck = false;
+		}
+	})
+
+
+
+
 
 }); //fine document ready
 
 
 // https://api.instagram.com/v1/tags/rome/media/recent?access_token=6905758419.e029fea.b95cf1b2cf4b4188b5e494fb3ec5a166
+
