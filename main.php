@@ -95,6 +95,6 @@ session_start();
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="jps.js" async></script> 
+    <script src="js/jps.js" async></script> 
   </body>
 </html>
