@@ -1,7 +1,7 @@
 <?php
 session_start();
 $datauser=0;
-$_SESSION['datauser']++;
+$_SESSION['datauser'];
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +34,12 @@ $_SESSION['datauser']++;
   <div class="col-xs-3">
   <p id="logged">Logged:</p>
       <?php 
-      if($_SESSION['datauser']!=1)
+      if($_SESSION['datauser']==1)
       {
-        $data = implode($_SESSION['datauser']);
-        echo $data;
+        echo "Go to Login Page";
       }
       else{
-        echo "Go to Login Page";
+        echo $_SESSION['datauser'];
       }
       ?>  
   </div>

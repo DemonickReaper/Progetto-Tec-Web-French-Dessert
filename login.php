@@ -32,7 +32,8 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
         echo "<br>";
         //$_SESSION['datauser']++;
         $data=[$myusername];
-        $_SESSION['datauser']=$data;
+        $_SESSION['datauser']=implode($data);
+        echo $_SESSION['datauser'];
         $bool=true;
     }
 }
