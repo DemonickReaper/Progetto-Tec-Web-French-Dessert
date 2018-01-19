@@ -30,10 +30,10 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
     if($myusername==$row['USERNAME']&&$mypassword==$row['PASSWORD']){
         echo "Login effettuato con successo";
         echo "<br>";
-        $datauser=0;
         //$_SESSION['datauser']++;
-        $data=[$myusername,$mypassword];
-        $_SESSION['datauser']=$data;
+        $data=[$myusername];
+        $_SESSION['datauser']=implode($data);
+        echo $_SESSION['datauser'];
         $bool=true;
     }
 }

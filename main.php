@@ -1,5 +1,7 @@
 <?php
 session_start();
+$datauser=0;
+$_SESSION['datauser'];
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +30,18 @@ session_start();
 	</div>#header-->
 	<div class="row">
     <h1 id="title">FRENCH DESSERT</h1>
+  </div>
+  <div class="col-xs-3">
+  <p id="logged">Logged:</p>
+      <?php 
+      if($_SESSION['datauser']==1)
+      {
+        echo "Go to Login Page";
+      }
+      else{
+        echo $_SESSION['datauser'];
+      }
+      ?>  
   </div>
 	<div class="col-xs-12" id="navigation">
 		<nav class="navbar navbar-inverse" role="navigation">
