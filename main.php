@@ -32,7 +32,7 @@ $_SESSION['datauser'];
     <h1 id="title">FRENCH DESSERT</h1>
   </div>
   <div class="col-xs-3">
-  <p id="logged">Logged:</p>
+  <li class="active"><a href="login.html">Login</a></li>
       <?php 
       if($_SESSION['datauser']==1)
       {
@@ -42,6 +42,7 @@ $_SESSION['datauser'];
         echo $_SESSION['datauser'];
       }
       ?>  
+      <li class="active"><a href="logout.php">Logout</a></li>
   </div>
 	<div class="col-xs-12" id="navigation">
 		<nav class="navbar navbar-inverse" role="navigation">

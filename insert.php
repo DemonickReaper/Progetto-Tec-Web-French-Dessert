@@ -33,6 +33,7 @@ EOF;
    }
    $db->close();
    unset($db);
+   header('location: login.html');
 ?>
 
 <!DOCTYPE html>

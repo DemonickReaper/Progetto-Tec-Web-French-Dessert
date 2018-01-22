@@ -35,19 +35,19 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
         $_SESSION['datauser']=implode($data);
         echo $_SESSION['datauser'];
         $bool=true;
+        header('location: main.php');
     }
 }
 if($bool==false){
     echo "Attenzione username o password errati"; 
     //torna alla pagina dando errore di connessione
 }
-
 $db->close();
 ?>
 
 <!DOCTYPE html>
 <html
 <body>
-<a href="main.php">Torna alla Home</a>
+<a href="login.html">Ritenta Login</a>
 </body>
 </html>
