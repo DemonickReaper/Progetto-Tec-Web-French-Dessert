@@ -26,17 +26,18 @@
     <h1 id="title">FRENCH DESSERT</h1>
   </div>
   <div class="col-xs-3">
-  <li class="active"><a href="login.html">Login</a></li>
+  <a href="login.html"><b>Login</b></a><br>
       <?php 
       session_start();
       if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
-        echo "Welcome to the member's area, " . $_SESSION['datauser'] . "!"; 
+        echo "Welcome <b>".$_SESSION['datauser'] ."!</b>"; 
       } 
       else { 
-        echo "Please log in first to see this page."; 
+        echo "Go to Login Page."; 
       }
       ?>  
-      <li class="active"><a href="logout.php">Logout</a></li>
+      <br>
+      <a href="logout.php"><b>Logout</b></a>
   </div>
 	<div class="col-xs-12" id="navigation">
 		<nav class="navbar navbar-inverse" role="navigation">
