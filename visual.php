@@ -1,9 +1,3 @@
-<?php
-session_start();
-$datauser=0;
-$_SESSION['datauser'];
-?>
-
 <HTML>
 	<HEAD>
 		<meta charset="UTF-8">
@@ -25,19 +19,7 @@ $_SESSION['datauser'];
 					<h1 id="title">FRENCH DESSERT</h1>
 				</div>
             </div>
-           <div class="col-xs-3">
-  <p id="logged">Logged:</p>
-      <?php 
-      if($_SESSION['datauser']==1)
-      {
-        echo "Go to Login Page";
-      }
-      else{
-        echo $_SESSION['datauser'];
-      }
-      ?>  
-  </div>
-			<div class="row" id="navbarBar">
+           	<div class="row" id="navbarBar">
 					<div class="col-xs-12" id="header">
 							
 						<img src="" id= "headim" alt="">
