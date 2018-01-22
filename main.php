@@ -1,9 +1,3 @@
-<?php
-session_start();
-$datauser=0;
-$_SESSION['datauser'];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,12 +28,12 @@ $_SESSION['datauser'];
   <div class="col-xs-3">
   <li class="active"><a href="login.html">Login</a></li>
       <?php 
-      if($_SESSION['datauser']==1)
-      {
-        echo "Go to Login Page";
-      }
-      else{
-        echo $_SESSION['datauser'];
+      session_start();
+      if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
+        echo "Welcome to the member's area, " . $_SESSION['datauser'] . "!"; 
+      } 
+      else { 
+        echo "Please log in first to see this page."; 
       }
       ?>  
       <li class="active"><a href="logout.php">Logout</a></li>
