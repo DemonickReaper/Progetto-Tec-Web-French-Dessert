@@ -26,19 +26,18 @@
     <h1 id="title">FRENCH DESSERT</h1>
   </div>
   <div class="col-xs-3">
-  <a href="login.html"><b>Login</b></a><br>
       <?php 
       session_start();
       if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
         echo "Welcome <b>".$_SESSION['datauser'] ."!</b>"; 
+        echo "<br><a href=\"logout.php\"><b>Logout</b></a>";
       } 
       else { 
+        echo "<br><a href=\"login.html\"><b>Login</b><br></a>";
         echo "Go to Login Page."; 
       }
       ?>  
-      <br>
-      <a href="logout.php"><b>Logout</b></a>
-  </div>
+    </div>
 	<div class="col-xs-12" id="navigation">
 		<nav class="navbar navbar-inverse" role="navigation">
      <!--Logo e pulsante per barra ridimensionata -->
