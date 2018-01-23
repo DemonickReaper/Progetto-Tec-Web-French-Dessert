@@ -72,7 +72,7 @@ $(document).ready(function (){
 
 		for (var pageId in wikiApi.query.pages){ //stampa la lista dei risultati della ricerca
 			if (wikiApi.query.pages.hasOwnProperty(pageId)) {
-				$('#tableList').append('<tr class="blockList"><td class="col-xs-4 titleBlock"><h3><a href="visual.html" id="'+
+				$('#tableList').append('<tr class="blockList"><td class="col-xs-4 titleBlock"><h3><a href="visual.php" id="'+
 				wikiApi.query.pages[pageId].pageid+'" class="resultList">'+ wikiApi.query.pages[pageId].title +
 				'</a></h3></td><td class="col-xs-8 textBlock"><p>' +
 				wikiApi.query.pages[pageId].extract + '</p></td></tr></div>');

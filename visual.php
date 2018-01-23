@@ -27,7 +27,6 @@
 						  
 						  <div class="col-xs-12" id="navigation">
 							  <nav class="navbar navbar-inverse" role="navigation">
-								<div class="col-xs-5" id="titleBar">French Dessert</div>
                            <!--Logo e pulsante per barra ridimensionata -->
 
 						   		<div class="navbar-header">
@@ -39,6 +38,20 @@
 							  		</button>
 								</div>
 				<!--Elementi della barra -->
+				<div class="col-xs-3" id="titleBar">French Dessert</div>
+				<div class="col-xs-2" id="lognav">
+  			   <?php 
+      			session_start();
+      			if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
+        			echo "Welcome <b>".$_SESSION['datauser'] ."!</b>"; 
+        			echo " <a href=\"logout.php\"><b>Logout</b></a>";
+      			} 
+      			else { 
+        			echo " <a href=\"login.html\"><b>Login</b><br></a>";
+        			echo "Go to Login Page."; 
+     			 }
+      			?>  
+      			</div>
 				<div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarvis">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active barBar" id="home"><a href="main.php">Home Page</a></li>

@@ -49,7 +49,7 @@
 		function queryResult(apiResult){//carica l'elenco dei risultati sul nostro sito, IGNORARE LE ZONE COMMENTATE SOTTOSTANTI, sono vecchie versioni o righe per dei test
 			var wikiApi = JSON.stringify(apiResult);
 			localStorage.setItem("wApi",wikiApi);
-			window.location.href = "visual.html";
+			window.location.href = "visual.php";
 			/*$('#prova').empty();
 			var i=0;
 			for (var pageId in apiResult.query.pages){

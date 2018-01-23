@@ -26,17 +26,7 @@
     <h1 id="title">FRENCH DESSERT</h1>
   </div>
   <div class="col-xs-3">
-      <?php 
-      session_start();
-      if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
-        echo "Welcome <b>".$_SESSION['datauser'] ."!</b>"; 
-        echo "<br><a href=\"logout.php\"><b>Logout</b></a>";
-      } 
-      else { 
-        echo "<br><a href=\"login.html\"><b>Login</b><br></a>";
-        echo "Go to Login Page."; 
-      }
-      ?>  
+
     </div>
 	<div class="col-xs-12" id="navigation">
 		<nav class="navbar navbar-inverse" role="navigation">
@@ -51,10 +41,23 @@
       </div>
   
      <!--Elementi della barra -->
-     <div class="col-xs-5" id="titlebar">French Dessert</div>
+     <div class="col-xs-3" id="titlebar">French Dessert</div>
+     <div class="col-xs-2" id="lognav">
+     <?php 
+      session_start();
+      if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
+        echo "Welcome <b>".$_SESSION['datauser'] ."!</b>"; 
+        echo " <a href=\"logout.php\"><b>Logout</b></a>";
+      } 
+      else { 
+        echo " <a href=\"login.html\"><b>Login</b><br></a>";
+        echo "Go to Login Page."; 
+      }
+      ?>  
+      </div>
      <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="main.php">Home Page</a></li>
+              <li class="active"><a href="main.php">Home Page</a></li>
           <li><a href="login.html">Login </a></li>
          <li>
           <form class="navbar-form" role="search">
