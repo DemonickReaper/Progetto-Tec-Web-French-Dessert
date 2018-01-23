@@ -42,16 +42,14 @@
   
      <!--Elementi della barra -->
      <div class="col-xs-3" id="titlebar">French Dessert</div>
-     <div class="col-xs-2" id="lognav">
+     <div class="col-xs-3" id="lognav">
      <?php 
       session_start();
       if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
-        echo "Welcome <b>".$_SESSION['datauser'] ."!</b>"; 
-        echo " <a href=\"logout.php\"><b>Logout</b></a>";
+        echo "Welcome <b>".$_SESSION['datauser'] ."!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";
       } 
       else { 
-        echo " <a href=\"login.html\"><b>Login</b><br></a>";
-        echo "Go to Login Page."; 
+        echo "<a href=\"login.html\"><b>Login</b></a>&nbsp"."Go to Login Page"; 
       }
       ?>  
       </div>

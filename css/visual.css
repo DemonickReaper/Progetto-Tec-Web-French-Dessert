@@ -55,7 +55,13 @@ h1#title{
     color: white;
     font-family: Verdana;
 }
-  
+#lognav{
+    margin-top:1%;
+    font-size: 1em;
+    text-align:left;
+    color: white;
+    font-family: Verdana;
+}
 #search{
     padding-top: 9px;
     padding-bottom: 9px;
