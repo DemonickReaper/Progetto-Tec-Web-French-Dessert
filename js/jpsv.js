@@ -9,6 +9,7 @@ $(document).ready(function (){
 	var mapCheck = false;
 	var instaCheck = false;
 	var crossCheck = false;
+	var charCheck = false;
 
 	var lat;
 	var lg;
@@ -130,16 +131,16 @@ $(document).ready(function (){
 			$('#cros').remove();
 		}
 		
-		if($(str).find('table[class~="infobox"]').length > 0){
-		$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-6">'+
-		str+'</div><div id="tableP"class="col-xs-3"></div>');
-		$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
-		$('#tableP').append($('table[class~="infobox"]')[0]);
+		if ($(str).find('table[class~="infobox"]').length > 0) {
+			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-6">' +
+				str + '</div><div id="tableP"class="col-xs-3"></div>');
+			$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
+			$('#tableP').append($('table[class~="infobox"]')[0]);
 		}
-	
+
 		else {
-			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-9">'+
-			str+'</div>');
+			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-9">' +
+				str + '</div>');
 		}
 
 	
@@ -256,7 +257,11 @@ $(document).ready(function (){
 			$('#mapRow').remove();
 			$('#instaRow').remove();
 			$('#crosRow').remove();
+			$('#myChart').remove();
 			instaCheck = false;
+			chartCheck = false;
+			mapCheck = false;
+			crossCheck = false;
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
 				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
@@ -432,7 +437,7 @@ $(document).ready(function (){
 
 ////////////////////////////////////////////////////////////api Crossref inizio ////////////////////////
 
-	$('#cros').click(function () {
+	$('#cros').click(function (e) {
 		e.preventDefault();
 		if(crossCheck == false){
 			crossCheck = true;
@@ -503,47 +508,53 @@ $(document).ready(function (){
 
 
 ////////////////////////////////////////////////////// api chart.js Inizio ///////////////////////////////////////
-	$('#chart').click(function (e){
+	$('#chart').click(function (e) {
 		e.preventDefault();
-		//$('#navbarBar').append('<canvas id="myChart" height="400px" width="400px"></canvas>');
-		//$('#myChart').css({"width":"400px ","height":"40px !important"});
-		var ctx = document.getElementById("myChart").getContext('2d');
-		var myChart = new Chart(ctx, {
-    		type: 'bar',
-    		data: {
-   		 	    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        		datasets: [{
-            		label: '# of Votes',
-            		data: [12, 19, 3, 5, 2, 3],
-            		backgroundColor: [
-                		'rgba(255, 99, 132, 0.2)',
-                		'rgba(54, 162, 235, 0.2)',
-                		'rgba(255, 206, 86, 0.2)',
-                		'rgba(75, 192, 192, 0.2)',
-                		'rgba(153, 102, 255, 0.2)',
-                		'rgba(255, 159, 64, 0.2)'
-            		],
-            		borderColor: [
-               		'rgba(255,99,132,1)',
-                		'rgba(54, 162, 235, 1)',
-                		'rgba(255, 206, 86, 1)',
-                		'rgba(75, 192, 192, 1)',
-                		'rgba(153, 102, 255, 1)',
-                		'rgba(255, 159, 64, 1)'
-            		],
-            		borderWidth: 1
-        		}]
-    		},
-    		options: {
-        		scales: {
-            		yAxes: [{
-                		ticks: {
-                    		beginAtZero:true
-                		}
-            		}]
-        		}
-    		}
-		});
+		if (charCheck == false) {
+			charCheck = true;
+			$('#navbarBar').append('<canvas id="myChart" height="400px" width="400px"></canvas>');
+			var ctx = document.getElementById("myChart").getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+					datasets: [{
+						label: '# of Votes',
+						data: [12, 19, 3, 5, 2, 3],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255,99,132,1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+		}
+		else {
+			charCheck = false;
+			$('#myChart').remove();
+		}
 	})
 
 
