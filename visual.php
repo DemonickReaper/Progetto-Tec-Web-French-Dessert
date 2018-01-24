@@ -76,14 +76,13 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/spectragram.js"></script>
 		<script src="js/jps.js"></script>
-		<script src="js/jpsv.js"></script>
-		<script src="js/ann/annotator.annotateitpermissions.min.js"></script>
+		<script src="js/jpsv.js"></script>		
+		<script src="js/ann/annotator.min.js"></script>
 		<script src="js/ann/annotator.auth.min.js"></script>
 		<script src="js/ann/annotator.document.min.js"></script>
 		<script src="js/ann/annotator.filter.min.js"></script>
 		<script src="js/ann/annotator.kitchensink.min.js"></script>
-		<script src="js/ann/annotator.markdown.min.js"></script>
-		<script src="js/ann/annotator.min.js"></script>
+		<script src="js/ann/annotator.markdown.min.js"></script>	
 		<script src="js/ann/annotator.permissions.min.js"></script>
 		<script src="js/ann/annotator.tags.min.js"></script>
 		<script src="js/ann/annotator.unsupported.min.js"></script>
