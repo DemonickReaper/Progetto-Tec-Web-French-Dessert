@@ -9,9 +9,10 @@
 				url: 'http://en.wikipedia.org/w/api.php',
 				type:'GET',
 				async: 'true',
-                data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',srlimit: '10',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
+                data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',gsrlimit: '20',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
                 dataType: 'jsonp',
-                success: queryResult
+				success: queryResult,
+				error: queryError
             });
 		});
 		
@@ -50,25 +51,12 @@
 			var wikiApi = JSON.stringify(apiResult);
 			localStorage.setItem("wApi",wikiApi);
 			window.location.href = "visual.php";
-			/*$('#prova').empty();
-			var i=0;
-			for (var pageId in apiResult.query.pages){
-				if (apiResult.query.pages.hasOwnProperty(pageId)) {
-					pid[i] = apiResult.query.pages[pageId].pageid;
-					i++;
-					$('#prova').append('<div><h3><a href="visual.html" id="'+apiResult.query.pages[pageId].pageid+'" class="resultList">'+ apiResult.query.pages[pageId].title +'</a></h3><p>' +
-					apiResult.query.pages[pageId].extract + '</p></div>');
-				};
-			};*/
-			
 	}
-	
-	
-
-	/*	$('#prova').on('click','.resultList', function() { //chiamata a wikipedia per ottenere il contenuto della pagina selezionata tramite"pageid"	
-		var getId = this.id;
-		localStorage.setItem("pagId",getId);	
-		});*/
+		function queryError(){
+			var wikiApi = '';
+			localStorage.setItem("wApi",wikiApi);
+			window.location.href = "visual.php";
+		}
 	});	
 
 

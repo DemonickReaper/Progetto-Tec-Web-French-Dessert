@@ -29,14 +29,22 @@ $(document).ready(function (){
 	
 	if(firstTime==true) {
 		var wApi = localStorage.getItem("wApi");
-		var wikiApi = JSON.parse(wApi);
-		firstTime = false;
-		if (wikiApi.query !== undefined) {
-			queryResult(wikiApi);
+		console.log(wApi)
+		if(wApi == '{"batchcomplete":""}') { //verifica che la ricerca delle pagine abbia trovato almeno un risultato
+			$('#tableList').append('<h1 id="queryError">There were no results matching the query :( </h1>')
+			$('#queryError').css({"background-color":"white","padding-left":"15%","font-weight":"bold",})
 		}
 		else {
-			titleClickedResult (wikiApi);
+			var wikiApi = JSON.parse(wApi);
+			firstTime = false;
+			if (wikiApi.query !== undefined) {
+				queryResult(wikiApi);
+			}
+			else {
+				titleClickedResult (wikiApi);
+			}
 		}
+		
 	}
 
 
@@ -47,7 +55,7 @@ $(document).ready(function (){
 			url: 'http://en.wikipedia.org/w/api.php',
 			type:'GET',
 			async: 'true',
-			data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',srlimit: '10',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
+			data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',gsrlimit: '20',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
 			dataType: 'jsonp',
 			success: queryResult
 		});
