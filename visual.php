@@ -67,6 +67,7 @@
 		 		</div>
 						</div>
 			</div>
+			<canvas id="myChart"  height="400" width="400"></canvas>
 			<div class="row"id="wikiPage">
 					<table id="tableList" class="table"></table>
 			</div>		

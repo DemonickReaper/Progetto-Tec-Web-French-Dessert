@@ -29,7 +29,6 @@ $(document).ready(function (){
 	
 	if(firstTime==true) {
 		var wApi = localStorage.getItem("wApi");
-		console.log(wApi)
 		if(wApi == '{"batchcomplete":""}') { //verifica che la ricerca delle pagine abbia trovato almeno un risultato
 			$('#tableList').append('<h1 id="queryError">There were no results matching the query :( </h1>')
 			$('#queryError').css({"background-color":"white","padding-left":"15%","font-weight":"bold",})
@@ -418,7 +417,6 @@ $(document).ready(function (){
 		
 			var searchTag = $(title).text();
 			searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
-			console.log(searchTag)
 			$('#insta').spectragram('getRecentTagged',{
 					query: searchTag,
 					wrapEachWith: ''
@@ -435,6 +433,7 @@ $(document).ready(function (){
 ////////////////////////////////////////////////////////////api Crossref inizio ////////////////////////
 
 	$('#cros').click(function () {
+		e.preventDefault();
 		if(crossCheck == false){
 			crossCheck = true;
 			var searchTag = $(title).text();
@@ -504,7 +503,48 @@ $(document).ready(function (){
 
 
 ////////////////////////////////////////////////////// api chart.js Inizio ///////////////////////////////////////
-
+	$('#chart').click(function (e){
+		e.preventDefault();
+		//$('#navbarBar').append('<canvas id="myChart" height="400px" width="400px"></canvas>');
+		//$('#myChart').css({"width":"400px ","height":"40px !important"});
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var myChart = new Chart(ctx, {
+    		type: 'bar',
+    		data: {
+   		 	    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        		datasets: [{
+            		label: '# of Votes',
+            		data: [12, 19, 3, 5, 2, 3],
+            		backgroundColor: [
+                		'rgba(255, 99, 132, 0.2)',
+                		'rgba(54, 162, 235, 0.2)',
+                		'rgba(255, 206, 86, 0.2)',
+                		'rgba(75, 192, 192, 0.2)',
+                		'rgba(153, 102, 255, 0.2)',
+                		'rgba(255, 159, 64, 0.2)'
+            		],
+            		borderColor: [
+               		'rgba(255,99,132,1)',
+                		'rgba(54, 162, 235, 1)',
+                		'rgba(255, 206, 86, 1)',
+                		'rgba(75, 192, 192, 1)',
+                		'rgba(153, 102, 255, 1)',
+                		'rgba(255, 159, 64, 1)'
+            		],
+            		borderWidth: 1
+        		}]
+    		},
+    		options: {
+        		scales: {
+            		yAxes: [{
+                		ticks: {
+                    		beginAtZero:true
+                		}
+            		}]
+        		}
+    		}
+		});
+	})
 
 
 

@@ -5998,7 +5998,7 @@ module.exports = {
 var defaults = require(25);
 
 defaults._set('global', {
-	responsive: true,
+	responsive: false,
 	responsiveAnimationDuration: 0,
 	maintainAspectRatio: true,
 	events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],
