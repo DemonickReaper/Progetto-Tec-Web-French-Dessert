@@ -12,7 +12,7 @@ body {
 td, th{
     border-top: 1px solid rgb(80, 80, 80) !important;
 }
-li{
+#wikiPage li{
     border: 1px solid rgb(80, 80, 80) !important;
     background-color: #cddeff !important;
 }
@@ -21,17 +21,17 @@ a {
 }
 
 #navbarvis {
-    background-color: rgb(27, 27, 27) !important;
+    background-color: rgb(27, 27, 27) ;
 }
 a[href="main.html"] {
-    background-color: rgb(27, 27, 27) !important;
+    background-color: rgb(27, 27, 27) ;
  
 }
 form.navbar-form,.barBar a,.barBar{
-    background-color: rgb(27, 27, 27) !important;
+    background-color: rgb(27, 27, 27) ;
 }
 .navbar-inverse {
-    background-color:rgb(27, 27, 27) !important;
+    background-color:rgb(27, 27, 27) ;
 }
 /*////////////////////////////////////////////// TITOLO PAGINA INIZIO ///////////////////////////////////////////// */
 
@@ -122,15 +122,20 @@ h1#title{
 
 .barBar{
     padding: 0 !important;
-    border-left:2px solid white !important;
-    /*border-right:2px solid white !important;*/
+    border-left:2px solid white !important;    
 }  
+.barBarLight:hover{
+    background-color: rgb(134, 134, 134);
+}
 
 #instagram {
     border-right:2px solid black !important;
   }
   #instaSkipNavbar{
     border-left:2px solid black !important;
+}
+.list-group-item{
+    border: none;
 }
 
 /*///////////////////////////////////////////// NAVBAR FINE///////////////////////////////////////////////////// */
@@ -169,11 +174,6 @@ h1#title{
     color: rgb(0, 124, 124);
 }
 
-
-#tableList tr td {
-   /* padding-bottom:0.5px;*/
-   
-}
 .titleBlock {
     width:60%;
     flex: 1;

@@ -122,7 +122,7 @@ $(document).ready(function (){
 				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
 				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});
 				findCate = true;
-				$('#home').after('<li class="active barBar" id="cros"><a href="#">Crossref</a></li>');
+				$('#home').after('<li class="active barBar barBarLight" id="cros"><a href="#">Crossref</a></li>');
 			}	
 		}
 		if(findCate == false) { //se la pagina non appartiene al nostro tag
@@ -500,6 +500,10 @@ $(document).ready(function (){
 			crossCheck = false;
 		}
 	})
+//////////////////////////////////////////////////// api crossref FINE ///////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////// api chart.js Inizio ///////////////////////////////////////
 
 
 

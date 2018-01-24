@@ -39,7 +39,7 @@
 								</div>
 				<!--Elementi della barra -->
 				<div class="col-xs-3" id="titleBar">French Dessert</div>
-				<div class="col-xs-3" id="lognav">
+				<div class="col-xs-2" id="lognav">
   			  	<?php 
 			  	session_start();
 			  	if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
@@ -50,14 +50,15 @@
 			 	 }
 			 	 ?>  
       			</div>
-				<div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarvis">
+				<div class="col-xs-7" id="navbarvis">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active barBar" id="home"><a href="main.php">Home Page</a></li>
-					<li class="active barBar"><a href="" id="maps">Maps</a></li>
-					<li class="active barBar"id="instaNavbar"><a href="" id="instagram">Instagram</a></li>
+					<li class="active barBar barBarLight" id="home"><a href="main.php">Home Page</a></li>
+					<li class="active barBar barBarLight"><a href="" id="maps">Maps</a></li>
+					<li class="active barBar barBarLight"id="instaNavbar"><a href="" id="instagram">Instagram</a></li>
 					<li class="active barBar" id="instaSkipNavbar"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-refresh"></span></button></li>
-			 		<li class="barBar">
-			  			<form class="navbar-form" role="search">
+					<li class="active barBar barBarLight" ><a href="" id="chart">Charts</a></li>
+					<li class="active barBar barBarLight" ><a href="" id="Undefined">Undefined</a></li>
+					<li class="active barBar" ><form class="navbar-form" role="search">
 		  					<input class="form-control" placeholder="Search" name="srch-term" id="searchTerm" type="text">
 							<button class="btn btn-default" id="search" type="button"><i class="glyphicon glyphicon-search"></i></button>
 		 				</form>
@@ -66,10 +67,8 @@
 		 		</div>
 						</div>
 			</div>
-			<div class="row">
-				<div id="wikiPage">
+			<div class="row"id="wikiPage">
 					<table id="tableList" class="table"></table>
-				</div>
 			</div>		
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
