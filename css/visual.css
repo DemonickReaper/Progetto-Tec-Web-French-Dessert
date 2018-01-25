@@ -214,6 +214,9 @@ h1#title{
     margin-right: 3.333%;
 }
 
+.wikiT {
+    overflow-x: auto;
+}
 
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
 table[class~="infobox"]{ 

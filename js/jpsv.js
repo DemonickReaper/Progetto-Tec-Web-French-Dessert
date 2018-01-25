@@ -1,24 +1,25 @@
 $(document).ready(function (){
 			
-	var pinned = false;
-	var showRef = true;
-	var showEl = true;
-	var showSeal = true;
-	var findCate = false;
+	var pinned = false; //verifica che il tasto "pin" sia stao premuto o meno
+	var showRef = true; //verifica che il tasto "show/hide" nella sezione References sia stao premuto o meno
+	var showEl = true; //verifica che il tasto "show/hide" nella sezione External links sia stao premuto o meno
+	var showSeal = true; //verifica che il tasto "show/hide" nella sezione See other sia stao premuto o meno
+	var findCate = false; //verifica se la pagina in cui ci si trova fa parte o meno del nostro topic "french dessert"
 	var popb = false;
-	var mapCheck = false;
+	var mapCheck = false;   //verificano se la relativa api é presente in un riquadro visibile della pagina corrente
 	var instaCheck = false;
 	var crossCheck = false;
-	var charCheck = false;
+	var charCheck = false; //
 
-	var lat;
-	var lg;
+	var lat; // latitudine, utilizzata dall'api di google maps
+	var lg; //longitudine, , utilizzata dall'api di google maps
 	
-	var popCheck = 0;
+	var popCheck = 0; //
 	var i = 0;
 	var j = 0;
 	var iii = 0;
 	var popback = 0;
+	var borderCheck = 0; //utilizzata per creare id procedurali
 	var backup = new Array();
 	var ann = new Annotator(document.body);
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
@@ -239,10 +240,18 @@ $(document).ready(function (){
 		$('.reflist').fadeOut();//nasconde references
 		$('.plainlinks').next('ul').fadeOut();//nasconde see also
 		$('.plainlist').next('ul').fadeOut();//nasconde see also
-		$('#See_also').next('ul').fadeOut();
+		$('#See_also').next('ul').fadeOut();//nasconde see also
 		$('.plainlinks').fadeOut();//nasconde see also
 		$('.plainlist').fadeOut();//nasconde see also
-		$('.image').each(function(img) {
+
+		$('.wikitable,#contentP .infobox').each(function(){ //impedisce alle tabelle di fuoriuscire dal paragrafo
+			$(this).before('<div id="wikiT'+borderCheck+'" class="wikiT"></div>');
+			$(this).appendTo('#wikiT'+borderCheck);
+			borderCheck++;
+		})//sono state create 2 funzioni diverse per motivi di coerenza spaziali interni alla pagina
+		
+
+		$('.image').each(function(img) { //elimina tutti i collegamenti ipertestuali delle foto
 			$(this).parent().append($(this).children()[0]);
 			$(this).remove();
 		});
@@ -254,15 +263,15 @@ $(document).ready(function (){
 			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history
 			popCheck ++; //contatore pagine 'lasciate indietro'
 			var getTitle = this.title;
-			$('#mapRow').remove();
-			$('#instaRow').remove();
-			$('#crosRow').remove();
-			$('#myChart').remove();
+			$('#mapRow').remove(); //elimina dalla pagina la finestra di google maps
+			$('#instaRow').remove(); //elimina dalla pagina la finestra di Instagram
+			$('#crosRow').remove(); //elimina dalla pagina la finestra di Crossref
+			$('#myChart').remove(); //elimina dalla pagina la finestra di Chart.js
 			instaCheck = false;
 			chartCheck = false;
 			mapCheck = false;
 			crossCheck = false;
-			$.ajax({
+			$.ajax({ //chiamata ajax alla nuova pagina cliccata
 				url: 'https://en.wikipedia.org/w/api.php?',
 				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
 				dataType: 'jsonp',
