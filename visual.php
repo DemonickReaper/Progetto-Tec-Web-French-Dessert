@@ -86,6 +86,7 @@
 		<script src="js/ann/annotator.permissions.min.js"></script>
 		<script src="js/ann/annotator.tags.min.js"></script>
 		<script src="js/ann/annotator.unsupported.min.js"></script>
+		<script src="js/ann/prova.js"></script>
 		<script src="js/Chart.js"></script>
 	</BODY>
 </HTML>
