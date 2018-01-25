@@ -29,9 +29,9 @@ $(document).ready(function (){
 		clientID: '6905758419'
 	};
 	
-	if(firstTime==true) {
+	if(firstTime===true) {
 		var wApi = localStorage.getItem("wApi");
-		if(wApi == '{"batchcomplete":""}') { //verifica che la ricerca delle pagine abbia trovato almeno un risultato
+		if(wApi === '{"batchcomplete":""}') { //verifica che la ricerca delle pagine abbia trovato almeno un risultato
 			$('#tableList').append('<h1 id="queryError">There were no results matching the query :( </h1>')
 			$('#queryError').css({"background-color":"white","padding-left":"15%","font-weight":"bold",})
 		}
@@ -69,7 +69,7 @@ $(document).ready(function (){
 
 	$('#searchTerm').keypress(function(e){//avvia la ricerca se premuto il tasto invio della tastiera
 		var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
-		if(key == 13){
+		if(key === 13){
 			e.preventDefault();
 			$('#search').trigger('startSearch');
 		}
@@ -119,14 +119,14 @@ $(document).ready(function (){
 		for(var cate  in apiResult.parse.categories){
 			cate = apiResult.parse.categories[j]['*'];
 			j++;
-			if (cate =='French_desserts' ||cate == 'French_confectionery'||cate == 'French_pastries') { //se la pagina appartiene al nostro tag
+			if (cate ==='French_desserts' ||cate === 'French_confectionery'||cate === 'French_pastries') { //se la pagina appartiene al nostro tag
 				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
 				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});
 				findCate = true;
 				$('#home').after('<li class="active barBar barBarLight" id="cros"><a href="#">Crossref</a></li>');
 			}	
 		}
-		if(findCate == false) { //se la pagina non appartiene al nostro tag
+		if(findCate === false) { //se la pagina non appartiene al nostro tag
 			$('#title').css({"color":"black","font-family":"Raleway","text-shadow":"none"});
 			$('body').css({"font-family":"Raleway","font-size":"16px"});
 			$('#cros').remove();
@@ -158,23 +158,23 @@ $(document).ready(function (){
 			var parts = lat.split(/[^\d\w]+/);
 			var parts2 = lg.split(/[^\d\w]+/);
 		
-			if (parts[2] == 'N' ||parts[2] == 'S' ){
+			if (parts[2] === 'N' ||parts[2] === 'S' ){
 			
 				lat = ConvertDMToDD(parts[0], parts[1], parts[2]);
 			}
 			else {
-				if(parts[1] == 'N' ||parts[1] == 'S' ){
+				if(parts[1] === 'N' ||parts[1] === 'S' ){
 					lat = ConvertDToDD(parts[0], parts[1]);
 				}
 				else{
 					lat = ConvertDMSToDD(parts[0], parts[1], parts[2], parts[3]);
 				}
 			}
-			if (parts2[2] == 'E' ||parts2[2] == 'W' ){
+			if (parts2[2] === 'E' ||parts2[2] === 'W' ){
 				lg = ConvertDMToDD(parts2[0], parts2[1], parts2[2]);
 			}
 			else {
-				if(parts2[1] == 'E' ||parts2[1] == 'W' ) {
+				if(parts2[1] === 'E' ||parts2[1] === 'W' ) {
 					lg = ConvertDToDD(parts2[0], parts2[1]);
 				}
 				else {
@@ -185,7 +185,7 @@ $(document).ready(function (){
 				degrees = parseFloat(degrees);
 				var dd = degrees;
 		
-				if (direction == "S" || direction == "W") {
+				if (direction === "S" || direction === "W") {
 					dd = dd * -1;
 				} // Don't do anything for N or E
 				return dd;
@@ -195,7 +195,7 @@ $(document).ready(function (){
 				minutes = parseFloat(minutes);
 				var dd = degrees + minutes/60;
 		
-				if (direction == "S" || direction == "W") {
+				if (direction === "S" || direction === "W") {
 					dd = dd * -1;
 				} // Don't do anything for N or E
 				return dd;
@@ -206,7 +206,7 @@ $(document).ready(function (){
 				seconds = parseFloat(seconds);
 				var dd = degrees + minutes/60 + seconds/(60*60);
 
-				if (direction == "S" || direction == "W") {
+				if (direction === "S" || direction === "W") {
 					dd = dd * -1;
 				} // Don't do anything for N or E
 				return dd;
@@ -244,7 +244,7 @@ $(document).ready(function (){
 		$('.plainlinks').fadeOut();//nasconde see also
 		$('.plainlist').fadeOut();//nasconde see also
 
-		$('.wikitable,#contentP .infobox').each(function(){ //impedisce alle tabelle di fuoriuscire dal paragrafo
+		$('.wikitable,#contentP .infobox,#contentP .navbox').each(function(){ //impedisce alle tabelle di fuoriuscire dal paragrafo
 			$(this).before('<div id="wikiT'+borderCheck+'" class="wikiT"></div>');
 			$(this).appendTo('#wikiT'+borderCheck);
 			borderCheck++;
@@ -256,6 +256,9 @@ $(document).ready(function (){
 			$(this).remove();
 		});
 		
+		if (!($('.toccolours').length)) {//verifica la presenza della tabella "storia della popolazione" nella pagina attuale
+			$('#chartButton').remove();
+			}
 
 		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
@@ -283,7 +286,7 @@ $(document).ready(function (){
 		
 		// TASTO PIN sulla tabella di destra
 		$('#pin').click(function(e){
-			if (pinned == false) {
+			if (pinned === false) {
 				$('#tableP').css({
 					'position':'fixed',
 					'overflow-y':'auto',
@@ -311,7 +314,7 @@ $(document).ready(function (){
 		$('#References').html('References\t');
 		$('#References').append('<button id="showRef" type="button" class ="btn btn-primary">Show</button>');
 		$('#showRef').click(function(e){
-			if (showRef == false) {
+			if (showRef === false) {
 				$('.reflist').fadeOut();
 				showRef = true;
 				$('#showRef').html('Show');
@@ -328,7 +331,7 @@ $(document).ready(function (){
 		$('#External_links').html('External links\t');
 		$('#External_links').append('<button id="showEl" type="button" class ="btn btn-primary">Show</button>');
 		$('#showEl').click(function(e){
-			if (showEl == false) {
+			if (showEl === false) {
 				$('div.navbox').fadeOut();
 				showEl = true;
 				$('#showEl').html('Show');
@@ -346,7 +349,7 @@ $(document).ready(function (){
 		$('#See_also').html('See also\t');
 		$('#See_also').append('<button id="showSeal" type="button" class ="btn btn-primary">Show</button>');
 		$('#showSeal').click(function(e){
-			if (showSeal == false) {
+			if (showSeal === false) {
 				$('.plainlinks').next('ul').fadeOut();
 				$('.plainlist').next('ul').fadeOut();
 				$('#See_also').next('ul').fadeOut();
@@ -379,7 +382,7 @@ $(document).ready(function (){
 		$('#maps').parent().show();
 		$('#maps').show();
 		if($('.latitude').length){
-		if(mapCheck == false) {
+		if(mapCheck === false) {
 			mapCheck = true;
 			var k = 0;
 			$('#navbarBar').append('<div class="row" id="mapRow"><div id="map" class="col-xs-12"> </div>');
@@ -412,19 +415,17 @@ $(document).ready(function (){
 		}
 	})
 
-
 ///////////////////////////api Maps fine //////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
 	$('#instagram,#skip').click(function(e){
 		e.preventDefault();
-		//$('#insta').after('<div class="col-xs-12"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-chevron-right"></span></div>');
 	
-		if($(this).attr('id')=='skip'){
+		if($(this).attr('id')==='skip'){
 			instaCheck = false;
 			$('#instaRow').remove();
 		}
-		if(instaCheck == false){
+		if(instaCheck === false){
 			instaCheck = true;
 
 			$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div></div>');
@@ -448,7 +449,7 @@ $(document).ready(function (){
 
 	$('#cros').click(function (e) {
 		e.preventDefault();
-		if(crossCheck == false){
+		if(crossCheck === false){
 			crossCheck = true;
 			var searchTag = $(title).text();
 			searchTag = searchTag.toLowerCase();
@@ -478,7 +479,7 @@ $(document).ready(function (){
 							authComplete = true;
 						}	
 					}
-					if(j == 0 ) {	
+					if(j === 0 ) {	
 						authorFn[j] = 'unknown';
 						authorLn[j] = 'unknown';
 						j++;
@@ -521,22 +522,63 @@ $(document).ready(function (){
 		e.preventDefault();
 		if (charCheck == false) {
 			charCheck = true;
-			$('#navbarBar').append('<canvas id="myChart" height="400px" width="400px"></canvas>');
+			$('#navbarBar').append('<div id="chartContainer" class="col-xs-11"><canvas id="myChart" height="400px" width="1900"></canvas></div>');
+			$('#chartContainer').css({ "margin-bottom": "2%" });
+			$('#myChart').css({ "margin-bottom": "0.5%" });
 			var ctx = document.getElementById("myChart").getContext('2d');
+			var population = [];
+			var labelsA = [];
+			var i = 0;
+			var isLabel = true; //smista le etichette dai valori della popolazione
+			$('.toccolours th,.toccolours td').each(function () { //cattura tutte le informazioni dalle tabelle sulla popolazione e le smista in 2 variabili
+				var a = this;
+				a = $(a).text().replace(/,/g, '');
+				if (isFinite(String(a)) && a !== '') {
+					console.log(a);
+					if (isLabel === true) {
+						if (a < 2019) {
+							isLabel = false;
+							labelsA[i] = a;
+							i++;
+						}
+					}
+					else {
+						isLabel = true;
+						population[i - 1] = a;
+					}
+				}
+			})
 			var myChart = new Chart(ctx, {
 				type: 'bar',
 				data: {
-					labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+					labels: labelsA,
 					datasets: [{
-						label: '# of Votes',
-						data: [12, 19, 3, 5, 2, 3],
+						label: 'Historical population',
+						data: population,
 						backgroundColor: [
 							'rgba(255, 99, 132, 0.2)',
 							'rgba(54, 162, 235, 0.2)',
 							'rgba(255, 206, 86, 0.2)',
 							'rgba(75, 192, 192, 0.2)',
 							'rgba(153, 102, 255, 0.2)',
-							'rgba(255, 159, 64, 0.2)'
+							'rgba(220, 20, 60, 0.2)',
+							'rgba(255, 182, 193, 0.2)',
+							'rgba(218, 112, 214, 0.2)',
+							'rgba(255, 0, 255, 0.2)',
+							'rgba(128, 0, 128, 0.2)',
+							'rgba(75, 0, 130, 0.2)',
+							'rgba(125, 38, 205, 0.2)',
+							'rgba(72, 61, 139, 0.2)',
+							'rgba(132, 112, 55, 0.2)',
+							'rgba(0, 0, 255, 0.2)',
+							'rgba(135, 206, 255, 0.2)',
+							'rgba(0, 199, 140, 0.2)',
+							'rgba(0, 201, 87, 0.2)',
+							'rgba(0, 255, 0, 0.2)',
+							'rgba(238, 238, 0, 0.2)',
+							'rgba(255, 165, 0, 0.2)',
+							'rgba(139, 90, 0, 0.2)',
+							'rgba(238, 207, 161, 0.2)'
 						],
 						borderColor: [
 							'rgba(255,99,132,1)',
@@ -544,16 +586,52 @@ $(document).ready(function (){
 							'rgba(255, 206, 86, 1)',
 							'rgba(75, 192, 192, 1)',
 							'rgba(153, 102, 255, 1)',
-							'rgba(255, 159, 64, 1)'
+							'rgba(220, 20, 60, 1)',
+							'rgba(255, 182, 193, 1)',
+							'rgba(218, 112, 214, 1)',
+							'rgba(255, 0, 255, 1)',
+							'rgba(128, 0, 128, 1)',
+							'rgba(75, 0, 130, 1)',
+							'rgba(125, 38, 205, 1)',
+							'rgba(72, 61, 139, 1)',
+							'rgba(132, 112, 55, 1)',
+							'rgba(0, 0, 255, 1)',
+							'rgba(135, 206, 255, 1)',
+							'rgba(0, 199, 140, 1)',
+							'rgba(0, 201, 87, 1)',
+							'rgba(0, 255, 0, 1)',
+							'rgba(238, 238, 0, 1)',
+							'rgba(255, 165, 0, 1)',
+							'rgba(139, 90, 0, 1)',
+							'rgba(238, 207, 161, 1)'
 						],
 						borderWidth: 1
 					}]
 				},
 				options: {
+					tooltips: {
+						callbacks: { //aggiunge le virgole ogni 3 cifre decimali ai tooltip
+							label: function (tooltipItem, data) {
+								return Number(tooltipItem.yLabel).toFixed(0).replace(/./g, function (c, i, a) {
+									return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
+								});
+							}
+						}
+					},
 					scales: {
-						yAxes: [{
+						xAxes: [{
+							ticks: {}
+						}],
+						yAxes: [{ //aggiunge le virgole ogni 3 cifre decimali al asse y
 							ticks: {
-								beginAtZero: true
+								beginAtZero: true,
+								stepSize: 500000,
+								userCallback: function (value, index, values) {
+									value = value.toString();
+									value = value.split(/(?=(?:...)*$)/);
+									value = value.join('.');
+									return value;
+								}
 							}
 						}]
 					}
@@ -562,7 +640,7 @@ $(document).ready(function (){
 		}
 		else {
 			charCheck = false;
-			$('#myChart').remove();
+			$('#chartContainer').remove();
 		}
 	})
 

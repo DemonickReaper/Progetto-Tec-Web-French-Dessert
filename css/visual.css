@@ -215,7 +215,14 @@ h1#title{
 }
 
 .wikiT {
-    overflow-x: auto;
+    overflow: auto;
+}
+
+#chartContainer{
+    overflow: auto;
+    border: 2px solid black;
+    margin-left: 5%;
+    background-color: white;
 }
 
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
