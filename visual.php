@@ -86,7 +86,70 @@
 		<script src="js/ann/annotator.permissions.min.js"></script>
 		<script src="js/ann/annotator.tags.min.js"></script>
 		<script src="js/ann/annotator.unsupported.min.js"></script>
-		<script src="js/ann/prova.js"></script>
 		<script src="js/Chart.js"></script>
+
+		<script src="./ann/jquery.js"></script>
+		<script src="./ann/coffeescript.js"></script>
+		<script type="text/coffeescript">
+
+window.onerror = (msg, file, line) ->
+
+  alert(msg + ' ' + file + ' ' + line)
+
+
+
+jQuery.ajaxSetup async: false
+
+
+
+modules = jQuery.trim """
+
+offline offline/store
+
+"""
+
+modules = modules.split(/\s+/)
+
+
+
+run = (file, source) ->
+
+  filename = file.replace /coffee$/, "js"
+
+  compiled = "#{CoffeeScript.compile(source)}\n//@ sourceURL=#{filename}"
+
+  eval(compiled)
+
+
+
+sources = ("./src/#{script}.coffee" for script in modules)
+
+requests = jQuery.map sources, (script) ->
+
+  jQuery.get script, jQuery.proxy(run, this, script)
+
+
+
+jQuery.when.apply(jQuery, requests).done ->
+
+  content = jQuery("#content").annotator()
+
+  content.annotator 'addPlugin', 'Offline',
+
+	online:  -> jQuery("#status").text("Online")
+
+	offline: -> jQuery("#status").text("Offline")
+
+
+
+  window.annotator = content.data('annotator')
+
+
+
+jQuery("#clear-storage").click ->
+
+  window.annotator.plugins.Offline.store.clear() if window.annotator
+
+</script>
 	</BODY>
 </HTML>
