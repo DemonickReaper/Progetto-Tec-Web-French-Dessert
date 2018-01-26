@@ -380,11 +380,28 @@ $(document).ready(function (){
 		});
 		//FINE tasto show per la sezione see also////////////
 
+		$(function () {
+			var annotation = $('#contentP').annotator();
+
+			annotation.annotator('addPlugin', 'Store', {
+				prefix: '/annotation',
+				loadFromSearch: {
+					page: title
+				},
+				annotationData: {
+					page: title
+				},
+				urls: {
+					create: '/store',
+					update: '/update/:id',
+					destroy: '/delete/:id',
+					search: '/search'
+				}
+			});
+		})
 
 
-
-	}
-		/////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
+	} /////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 
 		///////////////////////////api Maps inizio //////////////////////////////////////////////////////////////////////////////
 	$('#maps').click(function(e){
@@ -635,7 +652,6 @@ $(document).ready(function (){
 						yAxes: [{ //aggiunge le virgole ogni 3 cifre decimali al asse y
 							ticks: {
 								beginAtZero: true,
-								stepSize: 500000,
 								userCallback: function (value, index, values) {
 									value = value.toString();
 									value = value.split(/(?=(?:...)*$)/);
@@ -669,6 +685,8 @@ $(document).ready(function (){
 		$('#navbarBar').append(weatherString1);
 
 	}
+
+
 
 }); //fine document ready
 

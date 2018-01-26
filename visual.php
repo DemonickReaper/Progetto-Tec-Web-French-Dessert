@@ -78,76 +78,35 @@
 		<script src="js/jps.js"></script>
 		<script src="js/jpsv.js"></script>		
 		<script src="js/ann/annotator.min.js"></script>
-		<script src="js/ann/annotator.auth.min.js"></script>
-		<script src="js/ann/annotator.document.min.js"></script>
-		<script src="js/ann/annotator.filter.min.js"></script>
-		<script src="js/ann/annotator.kitchensink.min.js"></script>
-		<script src="js/ann/annotator.markdown.min.js"></script>	
-		<script src="js/ann/annotator.permissions.min.js"></script>
-		<script src="js/ann/annotator.tags.min.js"></script>
-		<script src="js/ann/annotator.unsupported.min.js"></script>
 		<script src="js/Chart.js"></script>
-		<script src="js/ann/coffeescript.js"></script>
 		<script src="js/ann/store.js"></script>
-		<script type="text/coffeescript">
-window.onerror = (msg, file, line) ->
+		
+		<?php
+		function search(Request $request)
+		{
+			$annotations = Annotation::where('page_id', $request->get('page'))->get();
+		
+			return response()->json(['total' => count($annotations), 'rows' => $annotations]);
+		}
+		?>
 
-  alert(msg + ' ' + file + ' ' + line)
-
-
-
-jQuery.ajaxSetup async: false
-
-
-
-modules = jQuery.trim """
-
-offline offline/store
-
-"""
-
-modules = modules.split(/\s+/)
-
-
-
-run = (file, source) ->
-
-  filename = file.replace /coffee$/, "js"
-
-  compiled = "#{CoffeeScript.compile(source)}\n//@ sourceURL=#{filename}"
-
-  eval(compiled)
-
-
-
-sources = ("./src/#{script}.coffee" for script in modules)
-
-requests = jQuery.map sources, (script) ->
-
-  jQuery.get script, jQuery.proxy(run, this, script)
-
-
-
-jQuery.when.apply(jQuery, requests).done ->
-
-  content = jQuery("#content").annotator()
-
-  content.annotator 'addPlugin', 'Offline',
-
-	online:  -> jQuery("#status").text("Online")
-
-	offline: -> jQuery("#status").text("Offline")
-
-
-
-  window.annotator = content.data('annotator')
-
-
-
-jQuery("#clear-storage").click ->
-
-  window.annotator.plugins.Offline.store.clear() if window.annotator
-
-</script>
+		<?php
+		function store(Request $request)
+		{
+			$data = json_decode($request->getContent(), true);
+			$annotation = [
+				'ranges' => $data['ranges'],
+				'quote'  => $data['quote'],
+				'text'   => $data['text'],
+				'page_id'   => $request->get('page')
+			];
+		
+			if($id = Annotation::create($annotation)) {
+				return response()->json(['status' => 'success', 'id' => $id]);
+			} else {
+				return response()->json(['status' => 'error']);
+			}
+		}
+		?>
 	</BODY>
 </HTML>
