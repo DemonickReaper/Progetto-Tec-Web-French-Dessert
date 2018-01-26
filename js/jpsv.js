@@ -213,6 +213,16 @@ $(document).ready(function (){
 			}
 		lat = parseFloat(lat);
 		lg = parseFloat(lg);	
+
+		///////////////////////////////////////////// inizio api meteo /////////////////////////////////////
+		var weatherKey = '31dc4d7ad84588c4';
+
+		$.ajax({
+			url: 'http://api.wunderground.com/api/'+weatherKey+'/forecast/geolookup/conditions/q/'+lat+','+lg+'.json',
+			success: weatherSuccess,
+			error: function() {alert('Impossible to load Weather information');}
+		});
+		console.log(lat+' '+lg)
 	}
 	else {
 		$('#maps').parent().hide();
@@ -643,9 +653,22 @@ $(document).ready(function (){
 			$('#chartContainer').remove();
 		}
 	})
+	////////////// fine api chart.js ////////////////////////////////////////
 
+	////////////////////// inizio api Weather underground
+	
+	function weatherSuccess (apiResult) {
+		var days = apiResult.forecast.simpleforecast.forecastday;
 
+		var weatherString1 = '<div class="row"><div id="weatherInfo"><table><tr><th>'+days[0].date.weekday+'</th><th>'+days[1].date.weekday+'</th><th>'+days[2].date.weekday+'</th></tr>';
+		weatherString1 = weatherString1+'<tr><td>'+days[0].conditions+'<img src="'+days[0].icon_url+'"></td><td>'+days[1].conditions+'<img src="'+days[1].icon_url+'"></td><td>'+days[2].conditions+'<img src="'+days[2].icon_url+'"></td></tr>';
+		weatherString1 = weatherString1+'<tr><td>Max: '+days[0].high.celsius+'*</td></tr></table';
+		
+		
+		//</tr></table></div></div>
+		$('#navbarBar').append(weatherString1);
 
+	}
 
 }); //fine document ready
 
