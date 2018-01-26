@@ -216,13 +216,14 @@ $(document).ready(function (){
 
 		///////////////////////////////////////////// inizio api meteo /////////////////////////////////////
 		var weatherKey = '31dc4d7ad84588c4';
-
+			/*
 		$.ajax({
 			url: 'http://api.wunderground.com/api/'+weatherKey+'/forecast/geolookup/conditions/q/'+lat+','+lg+'.json',
 			success: weatherSuccess,
 			error: function() {alert('Impossible to load Weather information');}
 		});
 		console.log(lat+' '+lg)
+		*/ //blocaa il meteo
 	}
 	else {
 		$('#maps').parent().hide();
