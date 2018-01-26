@@ -225,6 +225,27 @@ h1#title{
     background-color: white;
 }
 
+#weatherInfo {
+    overflow-x: auto;
+    margin-left: 2%;
+}
+#weatherTable{
+    background-color: rgb(172, 223, 243);
+    border: 3px solid black;
+}
+
+#weatherTable th,#weatherTable td {
+    border: 1px solid black;
+    padding-left:5%;
+    padding-right:10%;
+    padding-top:3%;
+    padding-bottom:3%;
+    text-align:left;
+}
+#doubleBox{
+    padding: 0 !important;
+    
+}
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
 table[class~="infobox"]{ 
     position: static;
@@ -278,8 +299,9 @@ table[class~="infobox"] tr{
     background-color: rgb(172, 223, 243);
     border: 3px solid black;
     margin-right: 2%;
-    margin-left: 1%;
+    margin-left: 2%;
     height: 60%;
+
 }
 #toc{
     position: static;

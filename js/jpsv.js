@@ -21,7 +21,7 @@ $(document).ready(function (){
 	var popback = 0;
 	var borderCheck = 0; //utilizzata per creare id procedurali
 	var backup = new Array();
-	var ann = new Annotator(document.body);
+	var app = new Annotator(document.body);
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
 
 	jQuery.fn.spectragram.accessData = {
@@ -133,14 +133,14 @@ $(document).ready(function (){
 		}
 		
 		if ($(str).find('table[class~="infobox"]').length > 0) {
-			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-6">' +
+			$('#wikiPage').html('<div id="doubleBox"class="col-xs-2 sidebar-outer"><div id ="index" ></div></div><div id="contentP" class="col-xs-6">' +
 				str + '</div><div id="tableP"class="col-xs-3"></div>');
 			$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 			$('#tableP').append($('table[class~="infobox"]')[0]);
 		}
 
 		else {
-			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-9">' +
+			$('#wikiPage').html('<div id="doubleBox" class="col-xs-2 sidebar-outer"><div id ="index" class="col-xs-2 sidebar-outer"></div></div><div id="contentP" class="col-xs-9">' +
 				str + '</div>');
 		}
 
@@ -217,12 +217,12 @@ $(document).ready(function (){
 		///////////////////////////////////////////// inizio api meteo /////////////////////////////////////
 		var weatherKey = '31dc4d7ad84588c4';
 
-		/*$.ajax({
+		$.ajax({
 			url: 'http://api.wunderground.com/api/'+weatherKey+'/forecast/geolookup/conditions/q/'+lat+','+lg+'.json',
 			success: weatherSuccess,
 			error: function() {alert('Impossible to load Weather information');}
 		});
-		console.log(lat+' '+lg)*/
+		console.log(lat+' '+lg)
 	}
 	else {
 		$('#maps').parent().hide();
@@ -381,16 +381,16 @@ $(document).ready(function (){
 		//FINE tasto show per la sezione see also////////////
 
 		$(function () {
-			var annotation = $('#contentP').annotator();
+			//var annotation = $('#contentP').annotator();
 
-			annotation.annotator('addPlugin', 'Store', {
-				prefix: '/annotation',
-				loadFromSearch: {
+			app.include(annotator.store.min.js, {
+				prefix: 'http://localhost/Progetto-qualcosa-che-si-mangia/js/ann',
+				/*loadFromSearch: {
 					page: title
 				},
 				annotationData: {
 					page: title
-				},
+				},*/
 				urls: {
 					create: '/store',
 					update: '/update/:id',
@@ -399,7 +399,7 @@ $(document).ready(function (){
 				}
 			});
 		})
-
+		app.start();
 
 	} /////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 
@@ -676,14 +676,16 @@ $(document).ready(function (){
 	function weatherSuccess (apiResult) {
 		var days = apiResult.forecast.simpleforecast.forecastday;
 
-		var weatherString1 = '<div class="row"><div id="weatherInfo"><table><tr><th>'+days[0].date.weekday+'</th><th>'+days[1].date.weekday+'</th><th>'+days[2].date.weekday+'</th></tr>';
-		weatherString1 = weatherString1+'<tr><td>'+days[0].conditions+'<img src="'+days[0].icon_url+'"></td><td>'+days[1].conditions+'<img src="'+days[1].icon_url+'"></td><td>'+days[2].conditions+'<img src="'+days[2].icon_url+'"></td></tr>';
-		weatherString1 = weatherString1+'<tr><td>Max: '+days[0].high.celsius+'* Min: '+days[0].low.celsius+'</td></tr></table';
-		
-		
-		//</tr></table></div></div>
-		$('#navbarBar').append(weatherString1);
+		var weatherString1 = '<div id="weatherInfo"><table id="weatherTable"><tr><th colspan="3">Weather forecast</th></tr><tr><th>'+days[0].date.weekday+'</th><th>'+days[1].date.weekday+'</th><th>'+days[2].date.weekday+'</th></tr>';
+		weatherString1 = weatherString1+'<tr><td>'+days[0].conditions+'<br><img src="'+days[0].icon_url+'"></td><td>'+days[1].conditions+'<br><img src="'+days[1].icon_url+'"></td><td>'+days[2].conditions+'<br><img src="'+days[2].icon_url+'"></td></tr>';
+		weatherString1 = weatherString1+'<tr><td>Max:'+days[0].high.celsius+'* <br>Min:'+days[0].low.celsius+'*</td><td>Max:'+days[1].high.celsius+'* <br>Min:'+days[1].low.celsius+'*</td><td>Max:'+days[2].high.celsius+'* <br>Min:'+days[2].low.celsius+'*</td></tr></table></div></div>';
+		$('#doubleBox').prepend(weatherString1);
 
+		$('#index').css({"margin-top":"22%"});
+		/*$('#weatherInfo').css({"overflow-x":"auto","margin-left":"1%"});
+		$('#weatherTable').css({"background-color":"rgb(172, 223, 243)","border":"3px solid black"});
+		$('#weatherTable th,#weatherTable td').css({"border":"1px solid black","padding-left":"5%","padding-right":"7%","padding-top":"3%","padding-bottom":"3%"});
+		$('navbarBar').append('<div></div>');*/
 	}
 
 
