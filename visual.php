@@ -88,6 +88,7 @@
 		<script src="js/ann/annotator.unsupported.min.js"></script>
 		<script src="js/Chart.js"></script>
 		<script src="js/ann/coffeescript.js"></script>
+		<script src="js/ann/store.js"></script>
 		<script type="text/coffeescript">
 window.onerror = (msg, file, line) ->
 
