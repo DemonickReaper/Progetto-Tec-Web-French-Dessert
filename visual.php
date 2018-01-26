@@ -87,11 +87,9 @@
 		<script src="js/ann/annotator.tags.min.js"></script>
 		<script src="js/ann/annotator.unsupported.min.js"></script>
 		<script src="js/Chart.js"></script>
-
-		<script src="./ann/jquery.js"></script>
-		<script src="./ann/coffeescript.js"></script>
+		<script src="js/ann/jquery.js"></script>
+		<script src="js/ann/coffeescript.js"></script>
 		<script type="text/coffeescript">
-
 window.onerror = (msg, file, line) ->
 
   alert(msg + ' ' + file + ' ' + line)
