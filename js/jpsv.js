@@ -14,7 +14,7 @@ $(document).ready(function (){
 	var lat; // latitudine, utilizzata dall'api di google maps
 	var lg; //longitudine, , utilizzata dall'api di google maps
 	
-	var popCheck = 0; //
+	var popCheck = 0; //contatori
 	var i = 0;
 	var j = 0;
 	var iii = 0;
@@ -24,7 +24,7 @@ $(document).ready(function (){
 	var app = new Annotator(document.body);
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
 
-	jQuery.fn.spectragram.accessData = {
+	jQuery.fn.spectragram.accessData = { //token di accesso per instagram
 		accessToken: '6905758419.e029fea.b95cf1b2cf4b4188b5e494fb3ec5a166',
 		clientID: '6905758419'
 	};
@@ -32,16 +32,16 @@ $(document).ready(function (){
 	if(firstTime===true) {
 		var wApi = localStorage.getItem("wApi");
 		if(wApi === '{"batchcomplete":""}') { //verifica che la ricerca delle pagine abbia trovato almeno un risultato
-			$('#tableList').append('<h1 id="queryError">There were no results matching the query :( </h1>')
+			$('#tableList').append('<h1 id="queryError">There were no results matching the query :( </h1>') 
 			$('#queryError').css({"background-color":"white","padding-left":"15%","font-weight":"bold",})
 		}
 		else {
 			var wikiApi = JSON.parse(wApi);
 			firstTime = false;
-			if (wikiApi.query !== undefined) {
+			if (wikiApi.query !== undefined) {//verifica se si tratta di una ricerca di pagine 
 				queryResult(wikiApi);
 			}
-			else {
+			else {                           //o se si tratta della pagina da caricare
 				titleClickedResult (wikiApi);
 			}
 		}
@@ -107,39 +107,38 @@ $(document).ready(function (){
 		var wikiApi = apiResult;
 		var str = wikiApi.parse['text']['*'];
 		var title = wikiApi.parse.title;
-		
-
-		
+			
 		$('#maps').parent().show();
 		$('#maps').show();
 
 		$('#title').html(title);
 		j = 0;
 		findCate = false;
-		for(var cate  in apiResult.parse.categories){
+
+		for(var cate  in apiResult.parse.categories){ //controlla tutte le categorie con cui é indicizzata la pagina wikipedia
 			cate = apiResult.parse.categories[j]['*'];
 			j++;
-			if (cate ==='French_desserts' ||cate === 'French_confectionery'||cate === 'French_pastries') { //se la pagina appartiene al nostro tag
-				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
-				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});
+			if (cate ==='French_desserts' ||cate === 'French_confectionery'||cate === 'French_pastries') { //se la pagina appartiene al nostro topic
 				findCate = true;
+				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
+				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});	
 				$('#home').after('<li class="active barBar barBarLight" id="cros"><a href="#">Crossref</a></li>');
 			}	
 		}
-		if(findCate === false) { //se la pagina non appartiene al nostro tag
+		if(findCate === false) { //se la pagina non appartiene al nostro topic
 			$('#title').css({"color":"black","font-family":"Raleway","text-shadow":"none"});
 			$('body').css({"font-family":"Raleway","font-size":"16px"});
 			$('#cros').remove();
 		}
 		
-		if ($(str).find('table[class~="infobox"]').length > 0) {
+		if ($(str).find('table[class~="infobox"]').length > 0) { //controlla che nella pagina wikipedia caricata ci sia la sezione infobox prima di stamparla
 			$('#wikiPage').html('<div id="doubleBox"class="col-xs-2 sidebar-outer"><div id ="index" ></div></div><div id="contentP" class="col-xs-6">' +
 				str + '</div><div id="tableP"class="col-xs-3"></div>');
 			$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 			$('#tableP').append($('table[class~="infobox"]')[0]);
 		}
 
-		else {
+		else { //nel caso in  cui non ci sia la sezione infobox la pagina viene stampata in maniera differente
 			$('#wikiPage').html('<div id="doubleBox" class="col-xs-2 sidebar-outer"><div id ="index" class="col-xs-2 sidebar-outer"></div></div><div id="contentP" class="col-xs-9">' +
 				str + '</div>');
 		}
@@ -149,7 +148,7 @@ $(document).ready(function (){
 		$('#index').append($('#toc'));
 		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#title"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
 		
-		if($('.latitude').length){
+		if($('.latitude').length){ //converte i valori di latitudine e longitudine nella pagina wikipedia caricata in valori formattati per le api di google maps
 			lat = $('.latitude')[0];
 			lg = $('.longitude')[0];
 			lat = $(lat).text();
@@ -187,7 +186,7 @@ $(document).ready(function (){
 		
 				if (direction === "S" || direction === "W") {
 					dd = dd * -1;
-				} // Don't do anything for N or E
+				} // non fa niente per N o E
 				return dd;
 			}
 			function ConvertDMToDD(degrees, minutes, direction) {
@@ -197,7 +196,7 @@ $(document).ready(function (){
 		
 				if (direction === "S" || direction === "W") {
 					dd = dd * -1;
-				} // Don't do anything for N or E
+				} // non fa niente per N o E
 				return dd;
 			}
 			function ConvertDMSToDD(degrees, minutes, seconds, direction) {
@@ -224,6 +223,7 @@ $(document).ready(function (){
 		});
 		console.log(lat+' '+lg)
 		*/ //blocaa il meteo
+		///////////////////////////////////////////// fine api meteo /////////////////////////////////////
 	}
 	else {
 		$('#maps').parent().hide();

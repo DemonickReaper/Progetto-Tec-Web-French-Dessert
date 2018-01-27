@@ -57,7 +57,6 @@
 					<li class="active barBar barBarLight"id="instaNavbar"><a href="" id="instagram">Instagram</a></li>
 					<li class="active barBar" id="instaSkipNavbar"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-refresh" id="skip2"></span></button></li>
 					<li class="active barBar barBarLight"  id="chartButton"><a href="" id="chart">Charts</a></li>
-					<li class="active barBar barBarLight" ><a href="" id="Undefined">Undefined</a></li>
 					<li class="active barBar" ><form class="navbar-form" role="search">
 		  					<input class="form-control" placeholder="Search" name="srch-term" id="searchTerm" type="text">
 							<button class="btn btn-default" id="search" type="button"><i class="glyphicon glyphicon-search"></i></button>
