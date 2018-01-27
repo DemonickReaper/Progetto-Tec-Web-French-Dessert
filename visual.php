@@ -76,36 +76,7 @@
 		<script type="text/javascript" src="js/spectragram.js"></script>
 		<script src="js/jps.js"></script>
 		<script src="js/jpsv.js"></script>		
-		<script src="js/ann/annotator.min.js"></script>
+		<script src="js/annotator-full.min.js"></script>
 		<script src="js/Chart.js"></script>
-		<script src="js/ann/store.js"></script>
-		
-		<?php
-		function search(Request $request)
-		{
-			$annotations = Annotation::where('page_id', $request->get('page'))->get();
-		
-			return response()->json(['total' => count($annotations), 'rows' => $annotations]);
-		}
-		?>
-
-		<?php
-		function store(Request $request)
-		{
-			$data = json_decode($request->getContent(), true);
-			$annotation = [
-				'ranges' => $data['ranges'],
-				'quote'  => $data['quote'],
-				'text'   => $data['text'],
-				'page_id'   => $request->get('page')
-			];
-		
-			if($id = Annotation::create($annotation)) {
-				return response()->json(['status' => 'success', 'id' => $id]);
-			} else {
-				return response()->json(['status' => 'error']);
-			}
-		}
-		?>
 	</BODY>
 </HTML>

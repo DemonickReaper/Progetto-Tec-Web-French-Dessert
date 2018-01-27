@@ -18,7 +18,6 @@
 		
 		$('.linkList').bind('startLoad',function(e) {//chiamata a wikipedia per ottenere la pagina del elemento cliccato
 			e.preventDefault();
-			console.log(pageId);
 			$.ajax({
 				url: 'https://en.wikipedia.org/w/api.php?',
 				data: {action: 'parse', pageid: pageId, prop: 'text|categories', format: 'json'},

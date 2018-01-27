@@ -21,7 +21,7 @@ $(document).ready(function (){
 	var popback = 0;
 	var borderCheck = 0; //utilizzata per creare id procedurali
 	var backup = new Array();
-	var app = new Annotator(document.body);
+	//var app = new Annotator(document.body);
 	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
 
 	jQuery.fn.spectragram.accessData = { //token di accesso per instagram
@@ -107,6 +107,7 @@ $(document).ready(function (){
 		var wikiApi = apiResult;
 		var str = wikiApi.parse['text']['*'];
 		var title = wikiApi.parse.title;
+		var pageId = wikiApi.parse.pageid;
 			
 		$('#maps').parent().show();
 		$('#maps').show();
@@ -221,7 +222,6 @@ $(document).ready(function (){
 			success: weatherSuccess,
 			error: function() {alert('Impossible to load Weather information');}
 		});
-		console.log(lat+' '+lg)
 		*/ //blocaa il meteo
 		///////////////////////////////////////////// fine api meteo /////////////////////////////////////
 	}
@@ -270,6 +270,41 @@ $(document).ready(function (){
 		if (!($('.toccolours').length)) {//verifica la presenza della tabella "storia della popolazione" nella pagina attuale
 			$('#chartButton').remove();
 			}
+
+		//target.annotator({ readOnly: !user })
+		jQuery(function ($) {
+			$('#contentP').annotator()
+			.annotator('setupPlugins', {}, {
+				Store: {
+					annotationData: {
+						uri: pageId,
+						//rev_id: revid
+					},
+					loadFromSearch: {
+						uri: pageId
+					},
+					prefix: 'js/api',
+					urls: {
+						search: '/annotations'
+					}
+				},
+				/*Permissions: {
+					user: user,
+					userId(user) {
+						return user ? user.id : user
+					},
+					userString(user) {
+						return user ? user.name : user
+					},
+					showEditPermissionsCheckbox: false
+				},*/
+				Tags: false,
+				Filter: false,
+				Unsupported: false,
+				Auth: false,
+				AnnotateItPermissions: false
+			})
+		});
 
 		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
@@ -381,26 +416,7 @@ $(document).ready(function (){
 		});
 		//FINE tasto show per la sezione see also////////////
 
-		$(function () {
-			//var annotation = $('#contentP').annotator();
-
-			app.include(annotator.store.min.js, {
-				prefix: 'http://localhost/Progetto-qualcosa-che-si-mangia/js/ann',
-				/*loadFromSearch: {
-					page: title
-				},
-				annotationData: {
-					page: title
-				},*/
-				urls: {
-					create: '/store',
-					update: '/update/:id',
-					destroy: '/delete/:id',
-					search: '/search'
-				}
-			});
-		})
-		app.start();
+		
 
 	} /////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 
@@ -562,7 +578,6 @@ $(document).ready(function (){
 				var a = this;
 				a = $(a).text().replace(/,/g, '');
 				if (isFinite(String(a)) && a !== '') {
-					console.log(a);
 					if (isLabel === true) {
 						if (a < 2019) {
 							isLabel = false;

@@ -1,7 +1,10 @@
 <?php
-$app->get('/', 'Controller@index');
-$app->get('/annotation/search', 'ApiController@search');
-$app->post('/annotation/store', 'ApiController@store');
-$app->put('/annotation/update/{id}', 'ApiController@update');
-$app->delete('/annotation/delete/{id}', 'ApiController@delete');
+
+/* @see https://github.com/okfn/annotator/wiki/Authentication */
+
+define('CONSUMER_KEY', '');
+define('CONSUMER_SECRET', '');
+define('CONSUMER_TTL', 86400);
+define('USER_ID', 'example');
+
 ?>
