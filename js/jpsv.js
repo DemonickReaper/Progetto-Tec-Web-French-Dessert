@@ -283,7 +283,7 @@ $(document).ready(function (){
 					loadFromSearch: {
 						uri: pageId
 					},
-					prefix: 'js/api',
+					prefix: 'server',
 					urls: {
 						search: '/annotations'
 					}
@@ -308,7 +308,7 @@ $(document).ready(function (){
 
 		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
-			backup.push(apiResult); //aggiunge gli oggetti jsonp delle pagine in un arrey di oggetti
+			backup.push(apiResult); //aggiunge gli oggetti jsonp delle pagine in un array di oggetti
 			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history
 			popCheck ++; //contatore pagine 'lasciate indietro'
 			var getTitle = this.title;
