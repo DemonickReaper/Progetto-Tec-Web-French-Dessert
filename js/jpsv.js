@@ -108,7 +108,7 @@ $(document).ready(function (){
 		var str = wikiApi.parse['text']['*'];
 		var title = wikiApi.parse.title;
 		var pageId = wikiApi.parse.pageid;
-		var user = $('#hdnSession').data('value');
+		var user = $('#hdnSession').data("[0]");
 		console.log(user);
 			
 		$('#maps').parent().show();

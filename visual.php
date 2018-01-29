@@ -43,9 +43,9 @@
   			  	<?php 
 			  	session_start();
 			  	if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
-					echo "Welcome <b>".$_SESSION['datauser'] ."!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";?>
-					<input type="hidden" id="hdnSession" data-value="@Request.RequestContext.HttpContext.Session["datauser"]" />
-					<?php
+					echo "Welcome <b>".$_SESSION['datauser'] ."!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";
+					echo '<div id="hdnSession" type="hidden">'.$_SESSION['datauser'] ."</div>";
+				
 			  	} 
 			  	else { 
 					echo "<a href=\"login.html\"><b>Login</b></a>&nbsp"."Go to Login Page"; 
