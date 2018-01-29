@@ -108,6 +108,8 @@ $(document).ready(function (){
 		var str = wikiApi.parse['text']['*'];
 		var title = wikiApi.parse.title;
 		var pageId = wikiApi.parse.pageid;
+		var user = $('#hdnSession').data('value');
+		console.log(user);
 			
 		$('#maps').parent().show();
 		$('#maps').show();
@@ -288,7 +290,7 @@ $(document).ready(function (){
 						search: '/annotations'
 					}
 				},
-				/*Permissions: {
+				Permissions: {
 					user: user,
 					userId(user) {
 						return user ? user.id : user
@@ -297,7 +299,7 @@ $(document).ready(function (){
 						return user ? user.name : user
 					},
 					showEditPermissionsCheckbox: false
-				},*/
+				},
 				Tags: false,
 				Filter: false,
 				Unsupported: false,
