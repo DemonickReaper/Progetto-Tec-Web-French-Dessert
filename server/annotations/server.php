@@ -1,5 +1,11 @@
 <?php 
-class controller
+
+namespace App\Http\Controllers;
+
+use App\User;
+use App\Http\Controllers\Controller;
+
+class UserController extends Controller
 {
     public function __construct()
     {
@@ -35,5 +41,35 @@ class controller
             'user_id'     => auth()->id()
         ])->load('user');
     }
+    public function update(Annotation $annotation)
+    {
+        if (! $annotation->isOfUser(auth()->user())) {
+            throw new AuthorizationException();
+        }
+
+        $this->validator(request(['ranges', 'quote', 'text', 'page_id', 'rev_id', 'permissions']));
+
+        $data = array_merge(
+            request(['ranges', 'quote', 'text', 'page_id', 'rev_id']),
+            ['permissions' => $this->setPermissions(request('permissions'))]
+        );
+
+        if ($annotation->update($data)) {
+            return $annotation;
+        }
+
+        return response()->json(['status' => 'error']);
+    }
+
+    public function delete(Annotation $annotation)
+    {
+        if ($annotation->delete()) {
+            return response()->json(['status' => 'success']);
+        }
+
+        return response()->json(['status' => 'error']);
+    }
+
+
 }
 ?> 

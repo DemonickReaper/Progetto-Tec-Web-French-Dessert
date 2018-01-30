@@ -43,8 +43,8 @@
   			  	<?php 
 			  	session_start();
 			  	if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
-					echo "Welcome <b>".$_SESSION['datauser'] ."!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";
-					echo '<div id="hdnSession" type="hidden">'.$_SESSION['datauser'] ."</div>";
+					echo 'Welcome <b><span id="user">'.$_SESSION['datauser'] ."</span>!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";
+					
 				
 			  	} 
 			  	else { 
