@@ -3,7 +3,7 @@
    {
       function __construct()
       {
-         $this->open('log.db');
+         $this->open('server/progetto.db');
       }
    }
    $db = new MyDB();
@@ -20,12 +20,12 @@
     $username=$_REQUEST['username']; 
     $password=$_REQUEST['password']; 
    
-   $sql =<<<EOF
+   $sql1 =<<<EOF
       INSERT INTO LOGIN (USERNAME,PASSWORD)
       VALUES ('$username', '$password'); 
 EOF;
 
-   $ret = $db->exec($sql);
+   $ret = $db->exec($sql1);
    if(!$ret){
     echo $db->lastErrorMsg();
    } else {

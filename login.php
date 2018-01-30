@@ -4,7 +4,7 @@
    {
       function __construct()
       {
-         $this->open('log.db');
+         $this->open('server/progetto.db');
       }
    }
    $db = new MyDB();
@@ -16,11 +16,11 @@
    }
 $myusername=$_REQUEST['username']; 
 $mypassword=$_REQUEST['password'];
-   $sql =<<<EOF
+   $sql1 =<<<EOF
       SELECT * from LOGIN;
 EOF;
 
-$ret = $db->query($sql);
+$ret = $db->query($sql1);
 $bool=false;
 $datauser=0;
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
