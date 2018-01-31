@@ -1,7 +1,8 @@
 <?php
-$ curl http://example.com/api/
-{
-  "name": "Annotator Store API",
-  "version": "2.0.0"
-}
+
+$object->name ="Annotator Store API";
+$object->version ="1.2.0";
+$jsonObject = json_encode($object);
+echo $jsonObject;
+
 ?>

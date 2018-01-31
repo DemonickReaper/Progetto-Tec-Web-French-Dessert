@@ -287,6 +287,9 @@ $(document).ready(function (){
 					},
 					prefix: 'server',
 					urls: {
+						create: '/annotations',
+						update: '/annotations/:id',
+						destroy: '/annotations/:id',
 						search: '/annotations'
 					}
 				},
