@@ -280,17 +280,16 @@ $(document).ready(function (){
 				Store: {
 					annotationData: {
 						uri: pageId,
-						//rev_id: revid
 					},
 					loadFromSearch: {
 						uri: pageId
 					},
 					prefix: 'server',
 					urls: {
-						create: '/annotations',
+						create: '/annotations/create.php',
 						update: '/annotations/:id',
 						destroy: '/annotations/:id',
-						search: '/annotations'
+						search: '/annotations/index.php'
 					}
 				},
 				Permissions: {
@@ -311,7 +310,7 @@ $(document).ready(function (){
 			})
 		});
 
-		$('#contentP a,#tableP a').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
+		$('#contentP a,#tableP a').not('#save,#cancel').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
 			backup.push(apiResult); //aggiunge gli oggetti jsonp delle pagine in un array di oggetti
 			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history

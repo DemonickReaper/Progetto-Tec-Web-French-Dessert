@@ -23,6 +23,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   if (!$ret) {
     echo $db->lastErrorMsg();
   } else {
+    var_dump($ret);
     $jsonObject = json_encode($ret);
     echo  $jsonObject;
   }

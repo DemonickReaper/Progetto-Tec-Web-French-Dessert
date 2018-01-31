@@ -15,24 +15,25 @@ if (!$db) {
 
 $sql1 = <<<EOF
     CREATE TABLE LOGIN(
-        USERNAME           VARCHAR(50)    NOT NULL UNIQUE,
-        PASSWORD            PASSWORD     NOT NULL,
-        PRIMARY KEY (USERNAME));
+        username           VARCHAR(50)    NOT NULL UNIQUE,
+        password            PASSWORD     NOT NULL,
+        PRIMARY KEY (username));
 EOF;
 
 $sql2 = <<<EOF
 CREATE TABLE ANNOTATIONS(
-    PAGEID  VARCHAR(50)     NOT NULL,
-    START   VARCHAR(50)     NOT NULL,
-    END     VARCHAR(50)     NOT NULL,
-    STARTOFFSET INT         NOT NULL,
-    ENDOFFSET INT           NOT NULL,
-    MESSAGE    TEXT    NOT NULL UNIQUE,
-    USER    VARCHAR(50),
-    PRIMARY KEY (PAGEID),
-    FOREIGN KEY (USER) REFERENCES LOGIN(USERNAME)
-    ON DELETE RESTRICT
-    ON UPDATE NO ACTION);
+    id      INT       NOT NULL,
+    pageid  VARCHAR(50)     NOT NULL,
+    startt   VARCHAR(50)     NOT NULL,
+    endt     VARCHAR(50)     NOT NULL,
+    startoffset INT         NOT NULL,
+    endoffset INT           NOT NULL,
+    textmessage    TEXT    NOT NULL UNIQUE,
+    user    VARCHAR(50),
+    PRIMARY KEY (id),
+    FOREIGN KEY (user) REFERENCES LOGIN(username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 EOF;
 
 $ret1 = $db->exec($sql1);
