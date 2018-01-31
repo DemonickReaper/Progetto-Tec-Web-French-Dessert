@@ -1,5 +1,7 @@
 <?php 
 session_start();
+var_dump($_GET["uri"]);
+
 if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $username = $_SESSION['datauser'];
   class MyDB extends SQLite3
@@ -16,7 +18,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     echo "Opened database successfully\n";
   }
 
-  $sql = "SELECT * FROM ANNOTATIONS WHERE USER = " . $username . ";";
+  $sql = "SELECT * FROM ANNOTATIONS WHERE user = " . $username . "AND pageid =". $pageid .";";
 
   $ret = $db->exec($sql);
 

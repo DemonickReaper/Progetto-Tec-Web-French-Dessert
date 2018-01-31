@@ -24,10 +24,10 @@ $ret = $db->query($sql1);
 $bool=false;
 $datauser=0;
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-    echo "USERNAME: = ". $row['USERNAME'] . "\n";
-    echo "PASSWORD: = ". $row['PASSWORD'] . "\n";
+    echo "USERNAME: = ". $row['username'] . "\n";
+    echo "PASSWORD: = ". $row['password'] . "\n";
     echo "<br>";
-    if($myusername==$row['USERNAME']&&$mypassword==$row['PASSWORD']){
+    if($myusername==$row['username']&&$mypassword==$row['password']){
         echo "Login effettuato con successo";
         echo "<br>";
         //$_SESSION['datauser']++;
