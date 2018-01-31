@@ -21,7 +21,7 @@
     $password=$_REQUEST['password']; 
    
    $sql1 =<<<EOF
-      INSERT INTO LOGIN (USERNAME,PASSWORD)
+      INSERT INTO LOGIN (username,password)
       VALUES ('$username', '$password'); 
 EOF;
 
