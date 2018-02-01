@@ -288,7 +288,7 @@ $(document).ready(function (){
 					urls: {
 						create: '/annotations/create.php',
 						update: '/annotations/:id',
-						destroy: '/annotations/:id',
+						destroy: '/annotations/delete.php?id=:id',
 						search: '/annotations/index.php'
 					}
 				},
