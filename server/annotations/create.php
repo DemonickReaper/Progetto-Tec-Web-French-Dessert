@@ -1,8 +1,14 @@
 <?php
 
-$object = $_POST;
-$rows = json_decode($object);
+$object = file_get_contents('php://input');
+
+
+//$object = $_POST['data'];
+//$object = '{"permissions":{"read":[],"update":[],"delete":[],"admin":[]},"user":"fff","ranges":[{"start":"/div[1]/p[1]/small[1]","startOffset":1,"end":"/div[1]/p[1]","endOffset":99}],"quote":"rench pronunciation: ​[makaʁɔ̃]) is a sweet meringue-based","text":"sadfsadf","uri":2005216}';
+$rows = json_decode($object,true);
+
 session_start();
+
 
 if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $username = $_SESSION['datauser'];
@@ -25,8 +31,9 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $end = $rows['ranges'][0]['end'];
     $endOffset = $rows['ranges'][0]['endOffset'];
     $text = $rows['text'];
-    $user = $user['user'];
+    $user = $rows['user'];
     $sql = "INSERT INTO ANNOTATIONS (pageid,start,end,startOffset,endOffset,text,user) VALUES (".$pageid.",'".$start."','".$end."',".$startOffset.",".$endOffset.",'".$text."','".$user."');";
+    echo $sql;
     $db->query($sql);
 
     $sql = "SELECT MAX(id) FROM ANNOTATIONS";
