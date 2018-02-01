@@ -43,7 +43,9 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
       $rows['rows'][$i]['id'] = $row['id'];
       $rows['rows'][$i]['user'] = $row['user'];    
       $rows['rows'][$i]['ranges'] =  $ranges;
+      $rows['rows'][$i]['uri'] = $row['uri'];
       $i++;
+      
     } 
     $jsonObject = json_encode($rows);
     header('Content-Type: application/json');
