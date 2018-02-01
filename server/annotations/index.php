@@ -34,19 +34,21 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $ranges = array();
     $total = $total->fetchArray(SQLITE3_ASSOC);
     $rows['total'] = $total['COUNT(*)'];
-    $i = 1;
+    $i = 0;
+    
     while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
-      $ranges['start'] = $row['start'];
-      $ranges['end'] = $row['end'];
-      $ranges['startOffset'] = $row['startOffset'];
-      $ranges['endOffset'] = $row['endOffset'];
-      $rows['rows']['text'] = $row['text'];
-      $rows['rows']['id'] = $row['id'];
-      $rows['rows']['user'] = $row['user'];    
-      $rows['rows']['ranges'] =  $ranges;
-      $rows['rows']['uri'] = $row['pageid'];
+      
+      $ranges[0]['start'] = $row['start'];
+      $ranges[0]['end'] = $row['end'];
+      $ranges[0]['startOffset'] = $row['startOffset'];
+      $ranges[0]['endOffset'] = $row['endOffset'];
+      $rows['rows'][$i]['text'] = $row['text'];
+      $rows['rows'][$i]['id'] = $row['id'];
+      $rows['rows'][$i]['user'] = $row['user'];   
+      $rows['rows'][$i]['ranges'] =  $ranges;
+      $rows['rows'][$i]['uri'] = $row['pageid'];
       $i++;
-
+                                                                           
     } 
     $jsonObject = json_encode($rows);
     header('Content-Type: application/json');
