@@ -25,6 +25,10 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     } else {
       //echo "Opened database successfully\n";
     }
+    $read = $rows['permissions']['read'];
+    $update = $rows['permissions']['update'];
+    $delete = $rows['permissions']['delete'];
+    $admin = $rows['permissions']['admin'];
     $pageid = $rows['uri'];
     $start = $rows['ranges'][0]['start'];
     $startOffset = $rows['ranges'][0]['startOffset'];
@@ -32,7 +36,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $endOffset = $rows['ranges'][0]['endOffset'];
     $text = $rows['text'];
     $user = $rows['user'];
-    $sql = "INSERT INTO ANNOTATIONS (pageid,start,end,startOffset,endOffset,text,user) VALUES (".$pageid.",'".$start."','".$end."',".$startOffset.",".$endOffset.",'".$text."','".$user."');";
+    $sql = "INSERT INTO ANNOTATIONS (pageid,start,end,startOffset,endOffset,text,user,read,update,delete,admin) VALUES (".$pageid.",'".$start."','".$end."',".$startOffset.",".$endOffset.",'".$text."','".$user."','".$read."','".$update."','".$delete."','".$admin."');";
     echo $sql;
     $db->query($sql);
 

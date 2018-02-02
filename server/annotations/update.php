@@ -32,8 +32,12 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $endOffset = $rows['ranges'][0]['endOffset'];
     $text = $rows['text'];
     $user = $rows['user'];
+    $read = $rows['permissions']['read'];
+    $read = $rows['permissions']['update'];
+    $read = $rows['permissions']['delete'];
+    $read = $rows['permissions']['admin'];
     $sql = "UPDATE ANNOTATIONS 
-    SET pageid=".$pageid.",start='".$start."',end='".$end."',startOffset=".$startOffset.",endOffset=".$endOffset.",text='".$text."',user='".$user."'
+    SET pageid=".$pageid.",start='".$start."',end='".$end."',startOffset=".$startOffset.",endOffset=".$endOffset.",text='".$text."',user='".$user."',read='".$read."',update='".$update."',delete='".$delete."',admin='".$admin."'
     WHERE id = " . $id . ";";
     echo $sql;
     $db->query($sql);

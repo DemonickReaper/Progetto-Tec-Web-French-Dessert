@@ -47,8 +47,11 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
       $rows['rows'][$i]['user'] = $row['user'];   
       $rows['rows'][$i]['ranges'] =  $ranges;
       $rows['rows'][$i]['uri'] = $row['pageid'];
-      $i++;
-                                                                           
+      $rows['rows'][$i]['permissions']['read'] = $row['read'];
+      $rows['rows'][$i]['permissions']['update'] = $row['update'];
+      $rows['rows'][$i]['permissions']['delete'] = $row['delete'];
+      $rows['rows'][$i]['permissions']['admin'] = $row['admin'];
+      $i++;                                                                      
     } 
     $jsonObject = json_encode($rows);
     header('Content-Type: application/json');

@@ -29,6 +29,10 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $rows['id'] = $row['id'];
   $rows['text'] = $row['text'];
   $rows['uri'] = $row['pageid'];
+  $rows['permissions']['read'] = $row['read'];
+  $rows['permissions']['update'] = $row['update'];
+  $rows['permissions']['delete'] = $row['delete'];
+  $rows['permissions']['admin'] = $row['admin'];
   $ranges[$i]['start'] = $row['start'];
   $ranges[$i]['end'] = $row['end'];
   $ranges[$i]['startOffset'] = $row['startOffset'];

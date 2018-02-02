@@ -10,6 +10,7 @@ $(document).ready(function (){
 	var instaCheck = false;
 	var crossCheck = false;
 	var charCheck = false; //
+	var read = '';
 
 	var lat; // latitudine, utilizzata dall'api di google maps
 	var lg; //longitudine, , utilizzata dall'api di google maps
@@ -271,8 +272,17 @@ $(document).ready(function (){
 		
 		if (!($('.toccolours').length)) {//verifica la presenza della tabella "storia della popolazione" nella pagina attuale
 			$('#chartButton').remove();
-			}
+		}
 
+		/*$('#annotator-field-1').click(function () {
+			if ($('input#annotator-field-1').is(':checked')) {
+				read = '';
+			}
+			else {
+				read = user;
+			}
+		});*/
+		
 		//target.annotator({ readOnly: !user })
 		jQuery(function ($) {
 			$('#contentP').annotator()
@@ -294,6 +304,12 @@ $(document).ready(function (){
 				},
 				Permissions: {
 					user: user,
+					permissions: {
+						'read': [],
+						'update': [user],
+						'delete': [user],
+						'admin': [user],
+					},
 					userId(user) {
 						return user ? user.id : user
 					},
