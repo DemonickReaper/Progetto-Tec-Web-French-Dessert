@@ -27,14 +27,14 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $i = 0;
 
   $rows['id'] = $row['id'];
-  $rows['text'] = $row['text'];
+  $rows['text'] = $row['textt'];
   $rows['uri'] = $row['pageid'];
-  $rows['permissions']['read'] = $row['read'];
-  $rows['permissions']['update'] = $row['update'];
-  $rows['permissions']['delete'] = $row['delete'];
-  $rows['permissions']['admin'] = $row['admin'];
-  $ranges[$i]['start'] = $row['start'];
-  $ranges[$i]['end'] = $row['end'];
+  $rows['permissions']['read'] = $row['readd'];
+  $rows['permissions']['update'] = $row['updatee'];
+  $rows['permissions']['delete'] = $row['deletee'];
+  $rows['permissions']['admin'] = $row['adminn'];
+  $ranges[$i]['start'] = $row['startt'];
+  $ranges[$i]['end'] = $row['endd'];
   $ranges[$i]['startOffset'] = $row['startOffset'];
   $ranges[$i]['endOffset'] = $row['endOffset'];
   $rows['ranges'] = $ranges;

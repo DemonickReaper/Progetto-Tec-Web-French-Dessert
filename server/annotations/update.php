@@ -33,11 +33,15 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $text = $rows['text'];
     $user = $rows['user'];
     $read = $rows['permissions']['read'];
-    $read = $rows['permissions']['update'];
-    $read = $rows['permissions']['delete'];
-    $read = $rows['permissions']['admin'];
+    $update = $rows['permissions']['update'];
+    $delete = $rows['permissions']['delete'];
+    $admin = $rows['permissions']['admin'];
+    $read = implode(',',$read);
+    $update = implode(',',$update);
+    $delete = implode(',',$delete);
+    $admin = implode(',',$admin);
     $sql = "UPDATE ANNOTATIONS 
-    SET pageid=".$pageid.",start='".$start."',end='".$end."',startOffset=".$startOffset.",endOffset=".$endOffset.",text='".$text."',user='".$user."',read='".$read."',update='".$update."',delete='".$delete."',admin='".$admin."'
+    SET pageid=".$pageid.",startt='".$start."',endd='".$end."',startOffset=".$startOffset.",endOffset=".$endOffset.",textt='".$text."',user='".$user."',readd='".$read."',updatee='".$update."',deletee='".$delete."',adminn='".$admin."'
     WHERE id = " . $id . ";";
     echo $sql;
     $db->query($sql);

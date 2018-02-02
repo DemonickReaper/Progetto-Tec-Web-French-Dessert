@@ -38,19 +38,19 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     
     while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
       
-      $ranges[0]['start'] = $row['start'];
-      $ranges[0]['end'] = $row['end'];
+      $ranges[0]['start'] = $row['startt'];
+      $ranges[0]['end'] = $row['endd'];
       $ranges[0]['startOffset'] = $row['startOffset'];
       $ranges[0]['endOffset'] = $row['endOffset'];
-      $rows['rows'][$i]['text'] = $row['text'];
+      $rows['rows'][$i]['text'] = $row['textt'];
       $rows['rows'][$i]['id'] = $row['id'];
       $rows['rows'][$i]['user'] = $row['user'];   
       $rows['rows'][$i]['ranges'] =  $ranges;
       $rows['rows'][$i]['uri'] = $row['pageid'];
-      $rows['rows'][$i]['permissions']['read'] = $row['read'];
-      $rows['rows'][$i]['permissions']['update'] = $row['update'];
-      $rows['rows'][$i]['permissions']['delete'] = $row['delete'];
-      $rows['rows'][$i]['permissions']['admin'] = $row['admin'];
+      $rows['rows'][$i]['permissions']['read'] = $row['readd'];
+      $rows['rows'][$i]['permissions']['update'] = $row['updatee'];
+      $rows['rows'][$i]['permissions']['delete'] = $row['deletee'];
+      $rows['rows'][$i]['permissions']['admin'] = $row['adminn'];
       $i++;                                                                      
     } 
     $jsonObject = json_encode($rows);
