@@ -37,6 +37,9 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $delete = $rows['permissions']['delete'];
     $admin = $rows['permissions']['admin'];
     $read = implode(',',$read);
+    if($read === ''){
+      $read = 'NULL';
+    }
     $update = implode(',',$update);
     $delete = implode(',',$delete);
     $admin = implode(',',$admin);

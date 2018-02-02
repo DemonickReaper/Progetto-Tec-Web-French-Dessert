@@ -305,17 +305,17 @@ $(document).ready(function (){
 				Permissions: {
 					user: user,
 					permissions: {
-						'read': [],
+						'read': [user],
 						'update': [user],
 						'delete': [user],
 						'admin': [user],
 					},
-					userId(user) {
+					/*userId(user) {
 						return user ? user.id : user
 					},
 					userString(user) {
 						return user ? user.name : user
-					},
+					},*/
 					showEditPermissionsCheckbox: false
 				},
 				Tags: false,
@@ -325,6 +325,7 @@ $(document).ready(function (){
 				AnnotateItPermissions: false
 			})
 		});
+
 
 		$('#contentP a,#tableP a').not('#save,#cancel').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();

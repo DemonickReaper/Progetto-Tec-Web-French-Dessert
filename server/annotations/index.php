@@ -17,11 +17,11 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     //echo "Opened database successfully\n";
   }
 
-  $sql1 = "SELECT * FROM ANNOTATIONS WHERE user = '" . $username . "' AND pageid ='" . $pageid . "';";
+  $sql1 = "SELECT * FROM ANNOTATIONS WHERE user = '". $username ."' OR readd = 'NULL' AND pageid ='" . $pageid . "';";
 
   $res = $db->query($sql1);
 
-  $sql2 = "SELECT COUNT(*) FROM ANNOTATIONS WHERE user = '" . $username . "' AND pageid ='" . $pageid . "';";
+  $sql2 = "SELECT COUNT(*) FROM ANNOTATIONS WHERE user = '" . $username . "' OR readd = 'NULL' AND pageid ='" . $pageid . "';";
 
   $total = $db->query($sql2);
 
@@ -47,10 +47,18 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
       $rows['rows'][$i]['user'] = $row['user'];   
       $rows['rows'][$i]['ranges'] =  $ranges;
       $rows['rows'][$i]['uri'] = $row['pageid'];
-      $rows['rows'][$i]['permissions']['read'] = $row['readd'];
-      $rows['rows'][$i]['permissions']['update'] = $row['updatee'];
-      $rows['rows'][$i]['permissions']['delete'] = $row['deletee'];
-      $rows['rows'][$i]['permissions']['admin'] = $row['adminn'];
+      $read = $row['readd'];
+      $read = explode(',', $read);
+      $update = $row['updatee'];
+      $update = explode(',', $update);
+      $delete = $row['deletee'];
+      $delete = explode(',', $delete);
+      $admin = $row['adminn'];
+      $admin = explode(',', $admin);
+      $rows['rows'][$i]['permissions']['read'] = $read;
+      $rows['rows'][$i]['permissions']['update'] = $update;
+      $rows['rows'][$i]['permissions']['delete'] = $delete;
+      $rows['rows'][$i]['permissions']['admin'] = $admin;
       $i++;                                                                      
     } 
     $jsonObject = json_encode($rows);

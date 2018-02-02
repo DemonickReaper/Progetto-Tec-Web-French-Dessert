@@ -43,7 +43,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $endOffset = $rows['ranges'][0]['endOffset'];
     $text = $rows['text'];
     $user = $rows['user'];
-    $sql = "INSERT INTO ANNOTATIONS (pageid,startt,endd,startOffset,endOffset,textt,user,readd,updatee,deletee,adminn) VALUES (".$pageid.",'".$start."','".$end."',".$startOffset.",".$endOffset.",'".$text."','".$user."',".$read.",'".$update."','".$delete."','".$admin."');";
+    $sql = "INSERT INTO ANNOTATIONS (pageid,startt,endd,startOffset,endOffset,textt,user,readd,updatee,deletee,adminn) VALUES (".$pageid.",'".$start."','".$end."',".$startOffset.",".$endOffset.",'".$text."','".$user."','".$read."','".$update."','".$delete."','".$admin."');";
     echo $sql;
     $db->query($sql);
 
