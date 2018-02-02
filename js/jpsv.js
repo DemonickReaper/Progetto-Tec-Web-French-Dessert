@@ -287,7 +287,7 @@ $(document).ready(function (){
 					prefix: 'server',
 					urls: {
 						create: '/annotations/create.php',
-						update: '/annotations/:id',
+						update: '/annotations/update.php?id=:id',
 						destroy: '/annotations/delete.php?id=:id',
 						search: '/annotations/index.php'
 					}
