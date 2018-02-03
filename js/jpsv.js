@@ -485,7 +485,7 @@ $(document).ready(function (){
 		if(instaCheck === false){
 			instaCheck = true;
 
-			$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-12"> </div></div>');
+			$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-11"> </div></div>');
 		
 			var searchTag = $(title).text();
 			searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
@@ -499,7 +499,7 @@ $(document).ready(function (){
 			$('#instaRow').remove();
 		}
 	})
-///////////////////////////api Instagram inizio //////////////////////////////////////////////////////////////////////////////
+///////////////////////////api Instagram fine //////////////////////////////////////////////////////////////////////////////
 
 
 ////////////////////////////////////////////////////////////api Crossref inizio ////////////////////////
