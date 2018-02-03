@@ -547,7 +547,7 @@ $(document).ready(function (){
 					}
 					authComplete = false;
 					$('#navbarBar').append('<div class="row" id="crosRow"><div id="crossRef" class="col-xs-12"></div></div>');
-					var crossAppend = '<table class="table cross"><tr><td>Title:</td><td>'+title+'</td></tr><tr><td>Doi:</td><td>'+doi+'</td></tr><tr><td>Authors:</td><td>';
+					var crossAppend = '<table class="table cross"><tr><td>Title:</td><td>'+title+'</td></tr><tr><td>Link:</td><td><a href="https://doi.org/'+doi+'">'+doi+'</a></td></tr><tr><td>Authors:</td><td>';
 					while(j > 0) {	
 						crossAppend = crossAppend+authorFn[j-1]+'\xa0'+authorLn[j-1]+'\xa0\xa0\xa0';
 						j--;
