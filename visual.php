@@ -44,9 +44,7 @@
   			  	<?php 
 			  	session_start();
 			  	if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
-					echo 'Welcome <b><span id="user">'.$_SESSION['datauser'] ."</span>!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";
-					
-				
+					echo 'Welcome <b><span id="user">'.$_SESSION['datauser'] ."</span>!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";	
 			  	} 
 			  	else { 
 					echo "<a href=\"login.html\"><b>Login</b></a>&nbsp"."Go to Login Page"; 
@@ -69,8 +67,8 @@
 		 		</div>
 						</div>
 			</div>
-			
-			<div class="row"id="wikiPage">
+			<div class="row"><div id="weatherString" class="col-xs-12"></div></div>
+			<div class="row" id="wikiPage">
 					<table id="tableList" class="table"></table>
 			</div>		
 		</div>

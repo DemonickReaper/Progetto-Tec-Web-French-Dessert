@@ -219,13 +219,13 @@ $(document).ready(function (){
 
 		///////////////////////////////////////////// inizio api meteo /////////////////////////////////////
 		var weatherKey = '31dc4d7ad84588c4';
-			/*
-		$.ajax({
+			
+		/*$.ajax({
 			url: 'http://api.wunderground.com/api/'+weatherKey+'/forecast/geolookup/conditions/q/'+lat+','+lg+'.json',
 			success: weatherSuccess,
 			error: function() {alert('Impossible to load Weather information');}
-		});
-		*/ //blocaa il meteo
+		});*/
+		 //blocca il meteo
 		///////////////////////////////////////////// fine api meteo /////////////////////////////////////
 	}
 	else {
@@ -274,14 +274,6 @@ $(document).ready(function (){
 			$('#chartButton').remove();
 		}
 
-		/*$('#annotator-field-1').click(function () {
-			if ($('input#annotator-field-1').is(':checked')) {
-				read = '';
-			}
-			else {
-				read = user;
-			}
-		});*/
 		
 		//target.annotator({ readOnly: !user })
 		jQuery(function ($) {
@@ -713,12 +705,12 @@ $(document).ready(function (){
 	function weatherSuccess (apiResult) {
 		var days = apiResult.forecast.simpleforecast.forecastday;
 
-		var weatherString1 = '<div id="weatherInfo"><table id="weatherTable"><tr><th colspan="3">Weather forecast</th></tr><tr><th>'+days[0].date.weekday+'</th><th>'+days[1].date.weekday+'</th><th>'+days[2].date.weekday+'</th></tr>';
-		weatherString1 = weatherString1+'<tr><td>'+days[0].conditions+'<br><img src="'+days[0].icon_url+'"></td><td>'+days[1].conditions+'<br><img src="'+days[1].icon_url+'"></td><td>'+days[2].conditions+'<br><img src="'+days[2].icon_url+'"></td></tr>';
-		weatherString1 = weatherString1+'<tr><td>Max:'+days[0].high.celsius+'* <br>Min:'+days[0].low.celsius+'*</td><td>Max:'+days[1].high.celsius+'* <br>Min:'+days[1].low.celsius+'*</td><td>Max:'+days[2].high.celsius+'* <br>Min:'+days[2].low.celsius+'*</td></tr></table></div></div>';
-		$('#doubleBox').prepend(weatherString1);
+		var weatherString1 = '<div id="weatherInfo" class="col-xs-12"><table id="weatherTable" class="col-xs-9"><tr><th colspan="6">Weather forecast</th></tr><tr><th colspan="2" class="col-xs-3">'+days[0].date.weekday+'</th><th colspan="2" class="col-xs-3">'+days[1].date.weekday+'</th><th colspan="2" class="col-xs-3">'+days[2].date.weekday+'</th></tr>';
+		weatherString1 = weatherString1+'<tr><td class="col-xs-1.5">'+days[0].conditions+'</td><td class="col-xs-1.5"><img src="'+days[0].icon_url+'"></td><td class="col-xs-1.5">'+days[1].conditions+'</td><td class="col-xs-1.5"><img src="'+days[1].icon_url+'"></td><td class="col-xs-1.5">'+days[2].conditions+'</td><td class="col-xs-1.5"><img src="'+days[2].icon_url+'"></td></tr>';
+		weatherString1 = weatherString1+'<tr><td colspan="2" class="col-xs-3">Max:'+days[0].high.celsius+'* <br>Min:'+days[0].low.celsius+'*</td><td colspan="2" class="col-xs-3" id="med">Max:'+days[1].high.celsius+'* <br>Min:'+days[1].low.celsius+'*</td><td colspan="2" class="col-xs-3">Max:'+days[2].high.celsius+'* <br>Min:'+days[2].low.celsius+'*</td></tr></table></div></div>';
+		$('#weatherString').append(weatherString1);
 
-		$('#index').css({"margin-top":"22%"});
+		//$('#index').css({"margin-top":"22%"});
 		/*$('#weatherInfo').css({"overflow-x":"auto","margin-left":"1%"});
 		$('#weatherTable').css({"background-color":"rgb(172, 223, 243)","border":"3px solid black"});
 		$('#weatherTable th,#weatherTable td').css({"border":"1px solid black","padding-left":"5%","padding-right":"7%","padding-top":"3%","padding-bottom":"3%"});

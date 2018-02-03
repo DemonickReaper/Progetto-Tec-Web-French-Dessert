@@ -232,20 +232,24 @@ h1#title{
 #weatherTable{
     background-color: rgb(172, 223, 243);
     border: 3px solid black;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    margin-top: 2%;
 }
 
 #weatherTable th,#weatherTable td {
     border: 1px solid black;
-    padding-left:5%;
-    padding-right:10%;
-    padding-top:3%;
-    padding-bottom:3%;
-    text-align:left;
+    text-align: center;
+    border-right: 2px solid black;
 }
-#doubleBox{
-    padding: 0 !important;
-    
+#weatherTable td:nth-child(odd){
+    border-right: none;
+
 }
+#weatherTable td#med{
+    border-left: 2px solid black; 
+}
+
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
 table[class~="infobox"]{ 
     position: static;

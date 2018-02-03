@@ -177,18 +177,22 @@ if ( typeof Object.create !== "function" ) {
 				////////////////////////////////////////////////modifiche alla sezione instagram////////////////////////////////////////
 				
 					this.$elem.append( imageGroup );
+					var j = 0;
 					if($(imageGroup[0]).length > 0){
-						for(i = 0;i<3;i++){		
-							$(imageGroup[i][0]).attr('class','instag col-xs-3');
-							$(imageGroup[i][0]).attr('id','instag'+i);
+						for(i = 0;i<4;i++){		
+							$(imageGroup[j][0]).attr('class','instag col-xs-3');
+							$(imageGroup[j][0]).attr('id','instag'+i);
 							//console.log($(imageGroup[i][0]).attr('alt'));
 							if(/#nude|#boobs|#like4like|#tits|#nudes|#nudity|#sexy|#badgirl|#pussy|#erotic|#ass|#naked|#nofilter|#hot|#gorgeous|#fuck|#horny|#memek|#dick|#butt|#sex|#lesbiansex|#indogirls|#lesbiankiss|#sikişsex|#lesbianvideo|#sanalsevişme|#love/i.test($(imageGroup[i][0]).attr('alt'))){
 								$('#instag'+i).remove();
+								i--;
 							}
-							if($(imageGroup[i+1]).length < 1) {
-								i = 3;	
-							}
+							/*if($(imageGroup[i+1]).length < 1) {
+								i = 4;	
+							}*/
+							j++;
 						}
+						$('#insta img').not('#instag0,#instag1,#instag2,#instag3').remove()
 						
 						$('.instag').css({"width":"320","height":"320","margin-bottom":"2%","border":"2px solid black","background-color":"white","margin-left":"2%","padding-top":"15px","padding-bottom":"50px"})
 
@@ -231,7 +235,7 @@ if ( typeof Object.create !== "function" ) {
     // Plugin Default Options
     jQuery.fn.spectragram.options = {
 		complete : null,
-		max: 3,
+		max: 10,
 		query: "instagram",
 		size: "medium",
 		wrapEachWith: "<li></li>"
