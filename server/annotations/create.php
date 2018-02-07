@@ -3,9 +3,9 @@
 $object = file_get_contents('php://input');
 $rows = json_decode($object,true);
 
+session_start();
 
 if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
-  session_start();
   $username = $_SESSION['datauser'];
 
   class MyDB extends SQLite3

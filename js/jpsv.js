@@ -129,22 +129,33 @@ $(document).ready(function (){
 				$('#home').after('<li class="active barBar barBarLight" id="cros"><a href="#">Crossref</a></li>');
 			}	
 		}
+
 		if(findCate === false) { //se la pagina non appartiene al nostro topic
 			$('#title').css({"color":"black","font-family":"Raleway","text-shadow":"none"});
 			$('body').css({"font-family":"Raleway","font-size":"16px"});
 			$('#cros').remove();
 		}
 		
-		if ($(str).find('table[class~="infobox"]').length > 0) { //controlla che nella pagina wikipedia caricata ci sia la sezione infobox prima di stamparla
-			$('#wikiPage').html('<div id="doubleBox"class="col-xs-2 sidebar-outer"><div id ="index" ></div></div><div id="contentP" class="col-xs-6">' +
+		if ($(str).find('table[class~="infobox"]').length > 0 && $(str).find('#toc').length > 0) { //controlla che nella pagina wikipedia caricata ci sia la sezione infobox prima di stamparla
+			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-6">' +
 				str + '</div><div id="tableP"class="col-xs-3"></div>');
 			$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 			$('#tableP').append($('table[class~="infobox"]')[0]);
 		}
 
 		else { //nel caso in  cui non ci sia la sezione infobox la pagina viene stampata in maniera differente
-			$('#wikiPage').html('<div id="doubleBox" class="col-xs-2 sidebar-outer"><div id ="index" class="col-xs-2 sidebar-outer"></div></div><div id="contentP" class="col-xs-9">' +
-				str + '</div>');
+			if ($(str).find('#toc').length > 0) {
+				$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-9">' +	str + '</div>');
+			} else {
+				if ($(str).find('table[class~="infobox"]').length > 0) {
+					$('#wikiPage').html('<div id="contentP" class="col-xs-8">'+ str +'</div><div id="tableP"class="col-xs-3"></div>');
+					$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
+					$('#tableP').append($('table[class~="infobox"]')[0]);
+				}
+				else {
+					$('#wikiPage').html('<div id="contentP" class="col-xs-11">'+ str + '</div>');
+				}
+			}
 		}
 
 	

@@ -1,7 +1,7 @@
 <?php 
-
+session_start();
 if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
-  session_start(); 
+ 
   $username = $_SESSION['datauser'];
 }
 else {
