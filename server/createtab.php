@@ -22,14 +22,18 @@ EOF;
 
 $sql2 = <<<EOF
 CREATE TABLE ANNOTATIONS(
-    id      INT       NOT NULL,
+    id      INT       NOT NULL AUTOINCREMENT,
     pageid  VARCHAR(50)     NOT NULL,
     startt   VARCHAR(50)     NOT NULL,
-    endt     VARCHAR(50)     NOT NULL,
+    endd     VARCHAR(50)     NOT NULL,
     startoffset INT         NOT NULL,
     endoffset INT           NOT NULL,
-    textmessage    TEXT    NOT NULL UNIQUE,
+    textt    TEXT    NOT NULL UNIQUE,
     user    VARCHAR(50),
+    readd VARCHAR(30),
+    updatee VARCHAR(30),
+    deletee VARCHAR(30),
+    adminn VARCHAR(30), 
     PRIMARY KEY (id),
     FOREIGN KEY (user) REFERENCES LOGIN(username)
     ON DELETE CASCADE

@@ -290,6 +290,8 @@ $(document).ready(function (){
 			$('#chartButton').remove();
 		}
 
+		$('.reference').remove();
+
 		
 		//target.annotator({ readOnly: !user })
 		jQuery(function ($) {

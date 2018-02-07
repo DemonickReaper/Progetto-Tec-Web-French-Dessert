@@ -53,7 +53,7 @@
       			</div>
 				<div class="col-xs-7" id="navbarvis">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active barBar barBarLight" id="home"><a href="main.php">Home Page</a></li>
+					<li class="active barBar barBarLight" id="home"><a href="index.php">Home Page</a></li>
 					<li class="active barBar barBarLight"><a href="" id="maps">Maps</a></li>
 					<li class="active barBar barBarLight"id="instaNavbar"><a href="" id="instagram">Instagram</a></li>
 					<li class="active barBar" id="instaSkipNavbar"><button type="button" class="btn btn-outline-primary" id="skip"><span class="glyphicon glyphicon-refresh" id="skip2"></span></button></li>

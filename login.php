@@ -35,7 +35,7 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
         $_SESSION['datauser']=implode($data);
         //echo $_SESSION['datauser'];
         $bool=true;
-        header('location: main.php');
+        header('location: index.php');
     }
 }
 if($bool==false){
