@@ -110,7 +110,7 @@ $(document).ready(function (){
 		var title = wikiApi.parse.title;
 		var pageId = wikiApi.parse.pageid;
 		var user = $('#user').text();
-		console.log(user);
+		console.log(pageId);
 			
 		$('#maps').parent().show();
 		$('#maps').show();
@@ -268,6 +268,11 @@ $(document).ready(function (){
 		$('#See_also').next('ul').fadeOut();//nasconde see also
 		$('.plainlinks').fadeOut();//nasconde see also
 		$('.plainlist').fadeOut();//nasconde see also
+		
+		$('a[class="extiw"]').each(function(index){ //rimuove i collegamenti a wiktionary
+			$(this).parent().append($(this).text());
+			$(this).remove();
+		})
 
 		$('.wikitable,#contentP .infobox,#contentP .navbox').each(function(){ //impedisce alle tabelle di fuoriuscire dal paragrafo
 			$(this).before('<div id="wikiT'+borderCheck+'" class="wikiT"></div>');
@@ -330,7 +335,7 @@ $(document).ready(function (){
 		});
 
 
-		$('#contentP a,#tableP a').not('#save,#cancel').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
+		$('#contentP a,#tableP a').not('.annotator-save,.annotator-cancel').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
 			backup.push(apiResult); //aggiunge gli oggetti jsonp delle pagine in un array di oggetti
 			window.history.pushState('forward', null, './#Next'); //aggiunge indirizzi fittizzi di pagine alla history

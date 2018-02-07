@@ -24,11 +24,11 @@ else {
     //echo "Opened database successfully\n";
   }
 
-  $sql1 = "SELECT * FROM ANNOTATIONS WHERE user = '" . $username . "' OR readd = 'NULL' AND pageid ='" . $pageid . "';";
+  $sql1 = "SELECT * FROM ANNOTATIONS WHERE (user = '" . $username . "' OR readd = 'NULL') AND pageid ='" . $pageid . "';";
 
   $res = $db->query($sql1);
 
-  $sql2 = "SELECT COUNT(*) FROM ANNOTATIONS WHERE user = '" . $username . "' OR readd = 'NULL' AND pageid ='" . $pageid . "';";
+  $sql2 = "SELECT COUNT(*) FROM ANNOTATIONS WHERE (user = '" . $username . "' OR readd = 'NULL') AND pageid ='" . $pageid . "';";
 
   $total = $db->query($sql2);
 
