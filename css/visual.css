@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: rgb(194, 245, 181);
+    background-color: rgb(194, 183, 255);
 }
 td, th{
     border-top: 1px solid rgb(80, 80, 80) !important;
@@ -20,19 +20,15 @@ a {
     color: rgb(33, 33, 187);
 }
 
-#navbarvis {
-    background-color: rgb(27, 27, 27) ;
-}
-a[href="main.html"] {
-    background-color: rgb(27, 27, 27) ;
- 
-}
-form.navbar-form,.barBar a,.barBar{
-    background-color: rgb(27, 27, 27) ;
+#navbarvis,a[href="index.php"],form.navbar-form,.barBar a,.barBar,.navbar-inverse {
+    background-color:#428bca;
+    color: black !important;
+    font-weight: bold;
 }
 .navbar-inverse {
-    background-color:rgb(27, 27, 27) ;
+    border:2px solid #254e72 !important;
 }
+
 /*////////////////////////////////////////////// TITOLO PAGINA INIZIO ///////////////////////////////////////////// */
 
 h1#title{
@@ -52,15 +48,15 @@ h1#title{
 #titlebar{
     font-size: 35px;
     text-align:left;
-    color: white;
-    font-family: Verdana;
+    color: black;
+    font-family: Raleway;
 }
 #lognav{
-    margin-top:1%;
+    margin-top:1.25%;
     font-size: 1em;
     text-align:left;
-    color: white;
-    font-family: Verdana;
+    color: black;
+    font-family: Raleway;
 }
 #search{
     padding-top: 9px;
@@ -122,16 +118,14 @@ h1#title{
 
 .barBar{
     padding: 0 !important;
-    border-left:2px solid white !important;    
+    border-left:2px solid #254e72 !important;
+    font-family: Raleway !important;
 }  
 .barBarLight:hover{
-    background-color: rgb(134, 134, 134);
+    background-color: rgb(172, 223, 243);
 }
-#instagram {
-    border-right:2px solid black !important;
-  }
   #instaSkipNavbar{
-    border-left:2px solid black !important;
+    border-left:none !important;
 }
 .list-group-item{
     border: none;
@@ -139,10 +133,15 @@ h1#title{
 #skip {
     background-color: white;
     font-size:15px;
+    margin-right: 5px;
 }
 #skip:hover{
-    background-color: rgb(134, 134, 134);
+    background-color: rgb(172, 223, 243);
 }
+#linklog:hover{
+	color: rgb(155, 197, 131) !important;
+}
+
 
 /*///////////////////////////////////////////// NAVBAR FINE///////////////////////////////////////////////////// */
 
@@ -252,10 +251,7 @@ h1#title{
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
 table[class~="infobox"]{ 
     position: static;
-    /*background-color:  rgb(199, 239, 255);*/
-    
     display: inline;
-   
 }
 #pin{
     margin-bottom:2%;
@@ -266,12 +262,8 @@ table[class~="infobox"]{
 }
 table[class~="infobox"] span,table[class~="infobox"] th,table[class~="infobox"] tr{
     right: 0 !important;
-    /*background-color: rgb(199, 239, 255);*/
     padding: 1% !important;
     position: relative ;
-    /*width: 120% !important;*/
-    /*margin-right: 20%;*/
-
 }
 
 table[class~="infobox"] tr{
@@ -289,10 +281,8 @@ table[class~="infobox"] tr{
     overflow: scroll; 
 }
 #tableP tbody{
-
     background-color: rgb(172, 223, 243);
-   
-       
+     
 }
 
 /*////////////////////////////////tabella di destra fine/////////////////////////////////////*/

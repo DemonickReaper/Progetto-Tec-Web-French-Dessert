@@ -125,14 +125,14 @@ $(document).ready(function (){
 			if (cate ==='French_desserts' ||cate === 'French_confectionery'||cate === 'French_pastries') { //se la pagina appartiene al nostro topic
 				findCate = true;
 				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
-				$('body').css({"font-family":"Roboto Slab","font-size":"16px"});	
+				$('#wikiPage').css({"font-family":"Roboto Slab","font-size":"16px"});	
 				$('#home').after('<li class="active barBar barBarLight" id="cros"><a href="#">Crossref</a></li>');
 			}	
 		}
 
 		if(findCate === false) { //se la pagina non appartiene al nostro topic
 			$('#title').css({"color":"black","font-family":"Raleway","text-shadow":"none"});
-			$('body').css({"font-family":"Raleway","font-size":"16px"});
+			$('#wikiPage').css({"font-family":"Raleway","font-size":"16px"});
 			$('#cros').remove();
 		}
 		

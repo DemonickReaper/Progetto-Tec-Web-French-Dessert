@@ -47,7 +47,7 @@
 					echo 'Welcome <b><span id="user">'.$_SESSION['datauser'] ."</span>!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";	
 			  	} 
 			  	else { 
-					echo "<a href=\"login.html\"><b>Login</b></a>&nbsp"."Go to Login Page"; 
+					echo '<a href=\"login.html\" id="linklog">Login</a>&nbsp'.'Go to Login Page'; 
 			 	 }
 			 	 ?>  
       			</div>
@@ -60,7 +60,7 @@
 					<li class="active barBar barBarLight"  id="chartButton"><a href="" id="chart">Charts</a></li>
 					<li class="active barBar" ><form class="navbar-form" role="search">
 		  					<input class="form-control" placeholder="Search" name="srch-term" id="searchTerm" type="text">
-							<button class="btn btn-default" id="search" type="button"><i class="glyphicon glyphicon-search"></i></button>
+							<button class="btn btn-default barBarLight" id="search" type="button"><i class="glyphicon glyphicon-search"></i></button>
 		 				</form>
 			 		</li>
 		  		</ul>

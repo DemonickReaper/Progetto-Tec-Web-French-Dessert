@@ -5,6 +5,9 @@
 .container-fluid {
 	padding: 0;
 }
+body {
+	background-color: rgb(194, 183, 255);
+}
 /*/////////////////////////////TITOLO INIZIO////////////////////////////*/
 h1#title{
 	margin-top: 10px;
@@ -12,14 +15,11 @@ h1#title{
     font-weight: bold; 
 	font-family: 'Hanged_Letters', 'sans serif';
 	font-size: 70px;
-	color: rgba(193, 101, 255, 1);
+	color: rgb(159, 125, 204);
 	text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 }
 /*/////////////////////////////FINE TITOLO//////////////////////////////*/
-#logged {
-	font-family: Verdana;
-	font-style: bold;
-	}
+
 #headim {
 		width: 85%; height: 10%; 
 		margin-left: 9%; 
@@ -38,12 +38,12 @@ h1#title{
 	margin-left:1%;
 	width:100%;
 	height:50%;
-	font-family: Verdana;
+	font-family: Raleway;
 	}
 #link { 
 	text-align: center;
 	height: 55em;
-	font-family: Verdana;
+	font-family: Raleway;
 	margin-top: 3%;
 		}
 #imglist {
@@ -52,6 +52,8 @@ h1#title{
 	margin-bottom:1em;
 	max-width: 100%;
 	height: auto;
+	margin-right: 1em;
+	border: 2px solid #254e72 !important;
 	}
 #photo { 
 	text-align: center;
@@ -61,20 +63,15 @@ h1#title{
 	#titlebar{
 		font-size: 2.5em;
 		text-align:left;
-		color: white;
-		font-family: Verdana;
+		color: black;
+		font-family: Raleway;
 	}
 	#lognav{
-		margin-top:1%;
 		font-size: 1em;
 		text-align:left;
-		color: white;
-		font-family: Verdana;
-	}
-	.barBar{
-		padding: 0 !important;
-		background-color: black;
-		border:1px solid black !important;
+		color: black;
+		font-family: Raleway;
+		margin-top: 1.25%;
 	}    
 	#search{
 		padding-top: 6px;
@@ -82,6 +79,12 @@ h1#title{
 	}
 	.navbar{
 		margin-bottom: 0;
+	}
+	.navbar-inverse{
+		border:2px solid #254e72;
+		background-color:#428bca;
+		font-weight: bold;
+		color:black;
 	}
 	#navigation {
 		padding: 0;
@@ -92,6 +95,7 @@ h1#title{
 	.search-query{
 		background-color:white;
 		color:black;
+		border-left: 2px solid #254e72;
 		}
 	
 	.form-control:focus{
@@ -130,3 +134,28 @@ h1#title{
 		}
 	}	
  /*searchbar*/
+
+ .barBar{
+    padding: 0 !important;
+	border-left:2px solid #254e72  !important; 
+	font-family: Raleway;  
+}  
+.barBar a{
+	color: black !important;
+}
+.barBarLight:hover{
+	background-color: rgb(172, 223, 243) !important;
+}
+
+.list-group-item{
+    border: none;
+}
+#logbar{
+	border-right:2px solid #254e72 !important; 
+}
+#linklog{
+	color: rgb(33, 33, 187) !important;
+}
+#linklog:hover{
+	color: rgb(155, 197, 131) !important;
+}
