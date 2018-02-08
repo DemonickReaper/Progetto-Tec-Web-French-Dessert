@@ -159,3 +159,8 @@ h1#title{
 #linklog:hover{
 	color: rgb(155, 197, 131) !important;
 }
+  
+img:hover { 
+	-webkit-filter: brightness(130%);
+    filter: brightness(130%);
+  }
