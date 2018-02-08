@@ -193,7 +193,7 @@ if ( typeof Object.create !== "function" ) {
 							j++;
 						}
 						
-						$('.instag').css({"width":"320","height":"320","margin-bottom":"2%","border":"2px solid black","background-color":"white","margin-left":"2%","padding-top":"15px","padding-bottom":"50px"})
+						$('.instag').css({"width":"320","height":"320","margin-bottom":"2%","border":"2px solid #254e72","background-color":"white","margin-left":"2%","padding-top":"15px","padding-bottom":"50px"})
 						$('#insta').css({"margin-left":"10%"});
 						
 					}

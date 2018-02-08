@@ -10,6 +10,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC1RFmDhFHNrAoxNwGny88dnZtvhywPqE0"> </script>
 	</HEAD>

@@ -16,6 +16,7 @@ $(document).ready(function (){
 	var lg; //longitudine, , utilizzata dall'api di google maps
 	
 	var popCheck = 0; //contatori
+	var lastScrollTop = 0;
 	var i = 0;
 	var j = 0;
 	var iii = 0;
@@ -88,6 +89,7 @@ $(document).ready(function (){
 				wikiApi.query.pages[pageId].extract + '</p></td></tr></div>');
 			};
 		};	
+		$('#maps,#instagram,#skip2,#chart,#skip').fadeOut();
 }
 
 	$('#tableList').on('click','.resultList', function(e) {//quando si clicca su un risultato avvia la chiamata per ottenre la pagina
@@ -110,8 +112,8 @@ $(document).ready(function (){
 		var title = wikiApi.parse.title;
 		var pageId = wikiApi.parse.pageid;
 		var user = $('#user').text();
-		console.log(pageId);
-			
+
+		$('#maps,#instagram,#skip2,#chart,#skip').fadeIn();	
 		$('#maps').parent().show();
 		$('#maps').show();
 
@@ -161,7 +163,7 @@ $(document).ready(function (){
 	
 	
 		$('#index').append($('#toc'));
-		$('#index').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#title"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
+		
 		
 		if($('.latitude').length){ //converte i valori di latitudine e longitudine nella pagina wikipedia caricata in valori formattati per le api di google maps
 			lat = $('.latitude')[0];
@@ -268,6 +270,7 @@ $(document).ready(function (){
 		$('#See_also').next('ul').fadeOut();//nasconde see also
 		$('.plainlinks').fadeOut();//nasconde see also
 		$('.plainlist').fadeOut();//nasconde see also
+		$('img').css({"border":"2px solid #254e72"});
 		
 		$('a[class="extiw"]').each(function(index){ //rimuove i collegamenti a wiktionary
 			$(this).parent().append($(this).text());
@@ -292,6 +295,18 @@ $(document).ready(function (){
 
 		$('.reference').remove();
 
+		$(window).scroll(function(event){
+			var st = $(this).scrollTop();
+			if (st > lastScrollTop){
+				// downscroll code
+				$('#tocButton').remove();
+			} else {
+			   // upscroll code
+			   $('#titleBar').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#title"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
+
+			}
+			lastScrollTop = st;
+		 });
 		
 		//target.annotator({ readOnly: !user })
 		jQuery(function ($) {
@@ -572,7 +587,7 @@ $(document).ready(function (){
 					}
 					$('#crossRef').append(crossAppend+'</td></tr></table>');
 					
-					$('.cross').css({"width":"90%","margin-left":"5%","position":"relative","background-color":"rgb(172, 223, 243)","border":"2px solid black","margin-bottom":"10px","font-family":"Roboto Slab"})
+					$('.cross').css({"width":"90%","margin-left":"5%","position":"relative","background-color":"rgb(172, 223, 243)","border":"2px solid #254e72","margin-bottom":"10px","font-family":"Roboto Slab"})
 					$('.cross td:nth-child(odd)').css({"width":"7%","font-weight":"bold"})
 				}
 			}	
