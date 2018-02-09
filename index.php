@@ -39,15 +39,24 @@
     if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
       echo "Welcome <b>" . $_SESSION['datauser'] . "!</b>&nbsp" . "<a href=\"logout.php\" id=\"linklog\"><b>Logout</b></a>";
     } else {
-      echo "<a href=\"loginp.php\" id=\"linklog\">Login</a>&nbsp" . "Go to Login Page";
+      echo "Go to&nbsp"."<a href=\"loginp.php\" id=\"linklog\">Login Page</a>&nbsp";
     }
     ?>  
       </div>
      <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right" id="navBar1">
-      <li class="barBarLight barBar" id="logbar"><a href="loginp.php">Login </a></li>
-              <li class="barBarLight barBar"><a href="index.php">Home Page</a></li>
-          
+    <?php
+     if (isset($_SESSION['error'])){
+      if($_SESSION['error']==2) {
+        ?>
+        <li class="barBarLight barBar" id="logbar"><a href="logout.php">Logout </a></li><?php
+      }
+    }
+      else
+      {
+      ?><li class="barBarLight barBar" id="logbar"><a href="loginp.php">Login </a></li><?php
+      }?>
+        <li class="barBarLight barBar"><a href="index.php">Home Page</a></li>
          <li>
           <form class="navbar-form" role="search">
       <input class="form-control" placeholder="Search" name="srch-term" id="searchTerm" type="text">
