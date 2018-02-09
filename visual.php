@@ -46,13 +46,13 @@
 							if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
 								echo 'Welcome <b><span id="user">' . $_SESSION['datauser'] . "</span>!</b>&nbsp" . "<a href=\"logout.php\"><b>Logout</b></a>";
 							} else {
-								echo '<a href="login.html" id="linklog">Login</a>&nbsp' . 'Go to Login Page';
+								echo '<a href="loginp.php" id="linklog">Login</a>&nbsp' . 'Go to Login Page';
 							}
 							?>  
       			</div>
 				<div class="collapse navbar-collapse navbar-ex2-collapse" id="navbarvis">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active barBar barBarLight" id="logbar"><a href="login.html">Login </a></li>	
+					<li class="active barBar barBarLight" id="logbar"><a href="loginp.php">Login </a></li>	
 					<li class="active barBar barBarLight" id="home"><a href="index.php">Home Page</a></li>
 					<li class="active barBar barBarLight"><a href="" id="maps">Maps</a></li>
 					<li class="active barBar barBarLight"id="instaNavbar"><a href="" id="instagram">Instagram</a></li>

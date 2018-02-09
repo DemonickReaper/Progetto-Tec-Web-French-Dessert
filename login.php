@@ -1,5 +1,6 @@
 <?php
    session_start(); //apro la sessione
+
    class MyDB extends SQLite3
    {
       function __construct()
@@ -24,30 +25,17 @@ $ret = $db->query($sql1);
 $bool=false;
 $datauser=0;
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-    //echo "username: = ". $row['username'] . "\n";
-    //echo "password: = ". $row['password'] . "\n";
-    //echo "<br>";
     if($myusername==$row['username']&&$mypassword==$row['password']){
-        //echo "Login effettuato con successo";
-        //echo "<br>";
-        //$_SESSION['datauser']++;
         $data=[$myusername];
         $_SESSION['datauser']=implode($data);
-        //echo $_SESSION['datauser'];
+        $_SESSION['error']=2;
         $bool=true;
         header('location: index.php');
     }
 }
 if($bool==false){
-    echo "Attenzione username o password errati"; 
-    //torna alla pagina dando errore di connessione
+  $_SESSION['error']=1;
+  header('location: loginp.php');
 }
 $db->close();
 ?>
-
-<!DOCTYPE html>
-<html
-<body>
-<a href="login.html">Ritenta Login</a>
-</body>
-</html>
