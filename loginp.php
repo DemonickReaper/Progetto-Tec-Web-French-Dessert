@@ -13,6 +13,11 @@
  {
   $message = "Already logged, logout and try again";
   echo "<script type='text/javascript'>alert('$message');</script>";
+ ?>
+ <script type="text/javascript">
+  window.setTimeout("history.back()", 0);
+  </script> 
+ <?php
  }
 }
  if (isset($_SESSION['error'])){
