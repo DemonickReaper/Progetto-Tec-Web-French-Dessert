@@ -37,7 +37,7 @@ h1#title{
     font-weight: bold; 
 	font-family: 'Hanged_Letters', 'sans serif';
 	font-size: 70px;
-	color: rgba(193, 101, 255, 1);
+	color: rgb(159, 125, 204);
 	text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 }
 

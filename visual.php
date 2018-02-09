@@ -52,7 +52,16 @@
       			</div>
 				<div class="collapse navbar-collapse navbar-ex2-collapse" id="navbarvis">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active barBar barBarLight" id="logbar"><a href="loginp.php">Login </a></li>	
+				<?php
+     				if (isset($_SESSION['error'])){
+     				 if($_SESSION['error']==2) {
+       				 ?>
+       	 			<li class="barBarLight barBar" id="logbar"><a href="logout.php">Logout </a></li><?php
+      			}
+   			 }
+      		else{
+     		 ?><li class="barBarLight barBar" id="logbar"><a href="loginp.php">Login </a></li><?php
+      		}?>	
 					<li class="active barBar barBarLight" id="home"><a href="index.php">Home Page</a></li>
 					<li class="active barBar barBarLight"><a href="" id="maps">Maps</a></li>
 					<li class="active barBar barBarLight"id="instaNavbar"><a href="" id="instagram">Instagram</a></li>

@@ -44,7 +44,7 @@
     ?>  
       </div>
      <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav navbar-right" id="navBar1">
+      <ul class="nav navbar-nav navbar-right" id="navBarlog">
     <?php
      if (isset($_SESSION['error'])){
       if($_SESSION['error']==2) {
@@ -52,8 +52,7 @@
         <li class="barBarLight barBar" id="logbar"><a href="logout.php">Logout </a></li><?php
       }
     }
-      else
-      {
+      else {
       ?><li class="barBarLight barBar" id="logbar"><a href="loginp.php">Login </a></li><?php
       }?>
         <li class="barBarLight barBar"><a href="index.php">Home Page</a></li>
@@ -68,6 +67,15 @@
     </nav>
   </div><!--#navigation-->
 
+  <div class="col-xs-10" id="bio"> <!-- bio -->
+  <p id="titbio">French Dessert That Take You There</p>
+  <p id="bodbio">Feel like your sitting a French cafe with these <t id="keyword">traditional French dessert!</t> 
+  From macarons to gateaux, you'll be saying 'oui-oui' to these creamy, buttery and flaky sweets.</p>
+  
+  <p id="bodbio">  This is a list of desserts from the <t id="keyword">French cuisine</t>. 
+  In France, a chef that prepares desserts and pastries is called a <t id="keyword">pâtissier</t>,
+  who is part of a kitchen hierarchy termed brigade de cuisine (kitchen staff).</p>
+  </div>
 	<div class="row" id="page1">
 		<div class="col-xs-12" id="link">
       <dl>
