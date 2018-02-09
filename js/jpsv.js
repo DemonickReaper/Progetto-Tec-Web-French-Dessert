@@ -580,15 +580,15 @@ $(document).ready(function (){
 					}
 					authComplete = false;
 					$('#navbarBar').append('<div class="row" id="crosRow"><div id="crossRef" class="col-xs-12"></div></div>');
-					var crossAppend = '<table class="table cross"><tr><td>Title:</td><td>'+title+'</td></tr><tr><td>Link:</td><td><a href="https://doi.org/'+doi+'">'+doi+'</a></td></tr><tr><td>Authors:</td><td>';
+					var crossAppend = '<div class="crc"><table class="table cross"><tr><td>Title:</td><td>'+title+'</td></tr><tr><td>Link:</td><td><a href="https://doi.org/'+doi+'">'+doi+'</a></td></tr><tr><td>Authors:</td><td>';
 					while(j > 0) {	
 						crossAppend = crossAppend+authorFn[j-1]+'\xa0'+authorLn[j-1]+'\xa0\xa0\xa0';
 						j--;
 					}
-					$('#crossRef').append(crossAppend+'</td></tr></table>');
+					$('#crossRef').append(crossAppend+'</td></tr></table></div>');
 					
-					$('.cross').css({"width":"90%","margin-left":"5%","position":"relative","background-color":"rgb(172, 223, 243)","border":"2px solid #254e72","margin-bottom":"10px","font-family":"Roboto Slab"})
-					$('.cross td:nth-child(odd)').css({"width":"7%","font-weight":"bold"})
+					$('.crc').css({"width":"90%","margin-left":"5%","position":"relative","background-color":"rgb(172, 223, 243)","border":"2px solid #254e72","margin-bottom":"10px","font-family":"Roboto Slab"})
+					$('.crc td:nth-child(odd)').css({"width":"7%","font-weight":"bold"})
 				}
 			}	
 			$.ajax({

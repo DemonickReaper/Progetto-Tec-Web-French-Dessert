@@ -133,11 +133,16 @@ h1#title{
 		#logbar {
 			border-left: none !important;
 		}
+		button.navbar-toggle {
+			background-color:#428bca !important;
+		}
+		button.navbar-toggle:hover {
+			background-color: rgb(172, 223, 243) !important;
+		}
 	}
 	@media screen and (max-width:566px){
 		#titlebar{
-			font-size:1.4em;
-			margin-right: 25%;
+			display:none;
 			}
 		#lognav{
 			display:none;

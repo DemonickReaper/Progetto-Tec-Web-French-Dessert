@@ -24,7 +24,6 @@
            	<div class="row" id="navbarBar">
 					<div class="col-xs-12" id="header">
 							
-						<img src="" id= "headim" alt="">
 						  </div><!--#header-->
 						  
 						  <div class="col-xs-12" id="navigation">

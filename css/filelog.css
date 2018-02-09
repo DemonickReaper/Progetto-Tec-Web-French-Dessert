@@ -134,13 +134,18 @@ h1#title{
 			margin-top:5%;
 			width: 100% !important;
 		}
-	
+		button.navbar-toggle {
+			background-color:#428bca !important;
+		}
+		button.navbar-toggle:hover {
+			background-color: rgb(172, 223, 243) !important;
+		}
+
 
 	}
 	@media screen and (max-width:566px){
 		#titlebar{
-			font-size:1.4em;
-			margin-right: 25%;
+			display:none;
 			}
 		}
 	

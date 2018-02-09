@@ -106,12 +106,27 @@ h1#title{
     }
     #titlebar {
         font-size: 1.8em;
+    }
+    button.navbar-toggle {
+        background-color:#428bca !important;
+    }
+    button.navbar-toggle:hover {
+        background-color: rgb(172, 223, 243) !important;
+    }
+    #skip{ 
+        margin-left: 5%;
+        margin-bottom: 3%;
     }	
+    .crc {
+        overflow: auto;
+    }
+    #pin {
+        display: none;
+    }
 }
 @media screen and (max-width:566px){
     #titlebar{
-        font-size:1.4em;
-        margin-right: 25%;
+        display:none;
         }
    
 }
