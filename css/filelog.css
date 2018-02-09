@@ -104,6 +104,9 @@ h1#title{
 		margin-right:25%;
 		margin-top:5%;
 		}
+		#loginBox{
+			border:2px solid #254e72 !important; 
+		}
 	@media screen and (min-width:765px){
 		#link{
 			overflow-y: scroll;
@@ -114,10 +117,25 @@ h1#title{
 			display:flex;
 			width: 100%;
 		   margin:0 auto;
+		   border-color: transparent !important;
 		}
 		#titlebar {
 			font-size: 1.8em;	
 		}
+		#navBar1{
+			font-size: 1.5em;
+			border:2px solid #254e72 !important; 
+		}
+		#logbar {
+			border-left: none !important;
+		}
+		#log{
+			margin:0;
+			margin-top:5%;
+			width: 100% !important;
+		}
+	
+
 	}
 	@media screen and (max-width:566px){
 		#titlebar{
@@ -135,7 +153,7 @@ h1#title{
 
  .barBar{
     padding: 0 !important;
-	border-left:2px solid #254e72 !important; 
+	border-right:2px solid #254e72 !important; 
 	font-family: Raleway;  
 }  
 .barBar a{
@@ -149,7 +167,7 @@ h1#title{
     border: none;
 }
 #logbar{
-	border-right:2px solid #254e72 !important; 
+	border-left:2px solid #254e72; 
 }
 
 #linklog:hover{

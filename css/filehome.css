@@ -105,10 +105,15 @@ h1#title{
 	   box-shadow:none;
 	   -webkit-box-shadow:none; 
 	  }
+	@media screen and (max-width:1364px) {
+		#imglist{
+			width:45%;
+		}
+	}
 	
 	@media screen and (min-width:765px){
 		#link{
-			overflow-y: scroll;
+			overflow-y: auto;
 		}
 	}
 	@media screen and (max-width:765px){
@@ -116,9 +121,17 @@ h1#title{
 			display:flex;
 			width: 100%;
 		   margin:0 auto;
+		   border-color: transparent !important;
 		}
 		#titlebar {
 			font-size: 1.8em;	
+		}
+		#navBar1{
+			font-size: 1.5em;
+			border:2px solid #254e72 !important; 
+		}
+		#logbar {
+			border-left: none !important;
 		}
 	}
 	@media screen and (max-width:566px){
@@ -126,8 +139,15 @@ h1#title{
 			font-size:1.4em;
 			margin-right: 25%;
 			}
+		#lognav{
+			display:none;
 		}
-	
+	}
+	@media screen and (max-width:366px){
+		#imglist{
+			width:100%;
+		}
+	}
 	@media screen and (max-width:196px){
 		.navbar-toggle {
 			margin-right: 30%;
@@ -137,7 +157,7 @@ h1#title{
 
  .barBar{
     padding: 0 !important;
-	border-left:2px solid #254e72  !important; 
+	border-right:2px solid #254e72  !important; 
 	font-family: Raleway;  
 }  
 .barBar a{
@@ -151,7 +171,7 @@ h1#title{
     border: none;
 }
 #logbar{
-	border-right:2px solid #254e72 !important; 
+	border-left:2px solid #254e72; 
 }
 #linklog{
 	color: rgb(33, 33, 187) !important;

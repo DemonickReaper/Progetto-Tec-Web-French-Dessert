@@ -87,7 +87,12 @@ h1#title{
 	width:50%;
 	margin-left: 25%;
 	margin-right:25%;
-	}
+    }
+#logbar{
+       /*display:none;*/
+       visibility: hidden;
+        border-left: 2px solid #254e72;
+}
 @media screen and (min-width:765px){
     #link{
         overflow-y: scroll;
@@ -141,7 +146,29 @@ h1#title{
 #linklog:hover{
 	color: rgb(155, 197, 131) !important;
 }
-
+@media screen and (max-width:761px){
+    #titlebar{
+        font-size:1.4em;
+        margin-right: 25%;
+        }
+    #lognav{
+        display:none;
+    }
+    #navbarvis a{
+        font-size:1.5em;
+    }
+    .titleBlock{
+        font-size:1.5em;
+    }
+    .textBlock{
+        font-size:1.2em;
+    }
+    #logbar{
+        /*display:inline;*/
+        visibility: visible;
+        border-left: 2px solid #254e72;
+    }
+}
 
 /*///////////////////////////////////////////// NAVBAR FINE///////////////////////////////////////////////////// */
 
@@ -242,6 +269,23 @@ h1#title{
 #weatherTable td#med{
     border-left:2px solid #254e72;
 
+}
+@media screen and (max-width:866px){
+    #index{
+        font-size:1.4em;
+        width:100%;
+        margin-bottom:3%;
+    }
+    #contentP{
+        font-size:1.4em;
+        width:100%;
+        margin-bottom:3%;
+    }
+    #tableP{
+        font-size:1.4em;
+        width:100%;
+    }
+    
 }
 
 /*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/

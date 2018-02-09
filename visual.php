@@ -32,7 +32,7 @@
                            <!--Logo e pulsante per barra ridimensionata -->
 
 						   		<div class="navbar-header">
-							  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+							  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse">
 										<span class="sr-only">Espandi barra di navigazione</span>
 										<span class="icon-bar"></span>
 										<span class="icon-bar"></span>
@@ -43,17 +43,17 @@
 				<div class="col-xs-3" id="titleBar">French Dessert</div>
 				<div class="col-xs-2" id="lognav">
   			  	<?php 
-			  	session_start();
-			  	if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
-					echo 'Welcome <b><span id="user">'.$_SESSION['datauser'] ."</span>!</b>&nbsp"."<a href=\"logout.php\"><b>Logout</b></a>";	
-			  	} 
-			  	else { 
-					echo '<a href="login.html" id="linklog">Login</a>&nbsp'.'Go to Login Page'; 
-			 	 }
-			 	 ?>  
+							session_start();
+							if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
+								echo 'Welcome <b><span id="user">' . $_SESSION['datauser'] . "</span>!</b>&nbsp" . "<a href=\"logout.php\"><b>Logout</b></a>";
+							} else {
+								echo '<a href="login.html" id="linklog">Login</a>&nbsp' . 'Go to Login Page';
+							}
+							?>  
       			</div>
-				<div class="col-xs-7" id="navbarvis">
+				<div class="collapse navbar-collapse navbar-ex2-collapse" id="navbarvis">
 				<ul class="nav navbar-nav navbar-right">
+					<li class="active barBar barBarLight" id="logbar"><a href="login.html">Login </a></li>	
 					<li class="active barBar barBarLight" id="home"><a href="index.php">Home Page</a></li>
 					<li class="active barBar barBarLight"><a href="" id="maps">Maps</a></li>
 					<li class="active barBar barBarLight"id="instaNavbar"><a href="" id="instagram">Instagram</a></li>
