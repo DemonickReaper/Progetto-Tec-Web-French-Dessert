@@ -142,7 +142,7 @@ h1#title{
     font-family: Raleway !important;
 }  
 .barBarLight:hover{
-    background-color: rgb(172, 223, 243);
+    background-color: rgb(172, 223, 243) !important;
 }
   #instaSkipNavbar{
     border-left:none !important;
@@ -156,10 +156,10 @@ h1#title{
     margin-right: 5px;
 }
 #skip:hover{
-    background-color: rgb(172, 223, 243);
+    background-color: rgb(172, 223, 243) !important;
 }
 #linklog:hover{
-	color: rgb(155, 197, 131) !important;
+	color: rgb(172, 223, 243)!important;
 }
 @media screen and (max-width:761px){
     #titlebar{
@@ -217,7 +217,7 @@ h1#title{
     color: rgb(12, 3, 143);
 }
 #tableList tr a:hover{
-    color: rgb(0, 124, 124);
+    color: rgb(172, 223, 243) !important;
 }
 
 #tableList tr:nth-last-child(1){
@@ -429,5 +429,3 @@ h3 {
       color: black;
       margin-top: 10px;
   }
- 
-

@@ -26,8 +26,11 @@ h1#title{
 #bio { 
 	text-align: center;
 	font-family: Raleway;
-	margin-left: 10%;
+	margin-left: 8%;
 	margin-right: 10%;
+	margin-top:2%;
+	background-color: white;
+	border: 2px solid #254e72 !important;
 	}
 #titbio{
 	margin-top: 3%;
@@ -164,7 +167,7 @@ h1#title{
 	}	
  /*searchbar*/
 
- .barBar{
+.barBar{
     padding: 0 !important;
 	border-right:2px solid #254e72  !important; 
 	font-family: Raleway;  
@@ -186,7 +189,7 @@ h1#title{
 	color: rgb(33, 33, 187) !important;
 }
 #linklog:hover{
-	color: rgb(155, 197, 131) !important;
+	color:rgb(172, 223, 243) !important;
 }
   
 img:hover { 
