@@ -101,11 +101,6 @@
        <a href="49345428" class="linkList"><img src="img\link\conv20.jpg" id="imglist" alt=""></a></dt><!--Conversation Tart -->
       </dl>
     </div><!--#link-->	
-	  <!--	<div class="col-xs-9" id="bio">
-      </div>
-     <div class="col-xs-9" id="photo">
-      <img src="img/pasthome.jpg" id= "photo" alt="imghome"></div>
-		</div>-->
 	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

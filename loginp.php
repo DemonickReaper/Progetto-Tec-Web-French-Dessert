@@ -120,7 +120,7 @@ if (isset($_SESSION['error'])){
              </form>
              <form id="register-form" action="insert.php" method="post" role="form" style="display: none;">
                <div class="form-group">
-                 <input type="username" name="username" id="usernamer" tabindex="1" class="form-control" placeholder="Username">
+                 <input type="text" name="username" id="usernamer" tabindex="1" class="form-control" placeholder="Username">
                </div>
                  <div class="form-group">
                  <input type="password" name="password" id="passwordr" tabindex="2" class="form-control" placeholder="Password">

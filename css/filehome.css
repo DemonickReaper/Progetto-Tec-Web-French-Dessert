@@ -45,7 +45,6 @@ h1#title{
 }
 #keyword{
 	font-weight: bold;
-	color: rgb(0, 114, 245);
 }
 #page1 { 
 	margin-left:1%;
@@ -159,7 +158,7 @@ h1#title{
 		#imglist{
 			width:100%;
 		}
-	}
+		}
 	@media screen and (max-width:196px){
 		.navbar-toggle {
 			margin-right: 30%;
