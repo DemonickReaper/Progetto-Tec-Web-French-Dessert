@@ -147,6 +147,5 @@ if (isset($_SESSION['error'])){
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jps.js" async></script> 
     <script src="js/login.js" async></script> 
-   <!--<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>-->
   </body>
 </html>
