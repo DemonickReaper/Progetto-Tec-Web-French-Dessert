@@ -51,6 +51,6 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $db->close();
 
   header("HTTP/1.1 303 See Other");
-  header("Location: http://home/web/site1804/html/server/annotations/read.php?id=" . $id);
+  header("Location: http://site1804.web.cs.unibo.it/server/annotations/read.php?id=" . $id);
 }
 ?>
