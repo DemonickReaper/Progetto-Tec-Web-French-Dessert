@@ -185,7 +185,7 @@ if ( typeof Object.create !== "function" ) {
 							//console.log($(imageGroup[i][0]).attr('alt'));
 							if(/#nude|#boobs|#like4like|#tits|#girlnextdoor|#seduction_world|#pornographic|#pornwatch|#sensual_ladies|#nudes|#nudity|#sexy|#badgirl|#pussy|#erotic|#ass|#naked|#nofilter|#hot|#gorgeous|#fuck|#horny|#memek|#dick|#butt|#sex|#lesbiansex|#indogirls|#lesbiankiss|#sikişsex|#lesbianvideo|#sanalsevişme|#love/i.test($(imageGroup[i][0]).attr('alt'))){
 								$('#instag'+i).remove();
-								$('#insta').append('<img src="http://home/students/stefano.liverani3/Sito/Progetto-qualcosa-che-si-mangia/js/censured.jpg" id="#instag'+i+'" class="instag">');
+								$('#insta').append('<img src="http://home/web/site1804/html/js/censured.jpg" id="#instag'+i+'" class="instag">');
 							}
 							if($(imageGroup[i+1]).length < 1) {
 								i = 4;	
