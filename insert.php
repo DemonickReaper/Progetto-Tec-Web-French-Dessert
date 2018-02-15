@@ -38,14 +38,8 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 EOF;
       }
 }
-    }
-    else{
-      $_SESSION['error']=1;
-      header('location: loginp.php');
-    }
 
-
-   $ret = $db->exec($sql1);
+$ret = $db->exec($sql1);
    if(!$ret){
     echo $db->lastErrorMsg();
    } else {
@@ -54,4 +48,13 @@ EOF;
    $db->close();
    unset($db);
    header('location: loginp.php');
+    }
+    else{
+      $_SESSION['error']=1;
+      $db->close();
+      unset($db);
+      header('location: loginp.php');
+
+    }
+
 ?>
