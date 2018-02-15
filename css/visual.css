@@ -211,10 +211,10 @@ h1#title{
 #tableList tr a{
     color: rgb(12, 3, 143);
 }
-#tableList tr a:hover:nth-child(odd){
+#tableList a:hover:nth-child(odd){
     color: rgb(172, 223, 243) !important;
 }
-#tableList tr a:hover:nth-child(even){
+#tableList a:hover:nth-child(even){
     color: rgb(218, 169, 250) !important;
 }
 
