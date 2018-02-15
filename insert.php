@@ -18,6 +18,7 @@
 ?>
 
  <?php 
+    if(($_REQUEST['username']!="") && ($_REQUEST['password']!="")){
     $username=$_REQUEST['username']; 
     $password=$_REQUEST['password']; 
     
@@ -37,6 +38,12 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 EOF;
       }
 }
+    }
+    else{
+      $_SESSION['error']=1;
+      header('location: loginp.php');
+    }
+
 
    $ret = $db->exec($sql1);
    if(!$ret){
