@@ -18,10 +18,10 @@
 ?>
 
  <?php 
-    if(($_REQUEST['username']!="") && ($_REQUEST['password']!="")){
+    
     $username=$_REQUEST['username']; 
     $password=$_REQUEST['password']; 
-    
+    if(($username!="") && ($password!="")){
     $sql=<<<EOF
       SELECT * FROM LOGIN
 EOF;
