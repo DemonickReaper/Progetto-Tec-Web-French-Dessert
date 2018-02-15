@@ -5,12 +5,10 @@ $(document).ready(function (){
 	var showEl = true; //verifica che il tasto "show/hide" nella sezione External links sia stao premuto o meno
 	var showSeal = true; //verifica che il tasto "show/hide" nella sezione See other sia stao premuto o meno
 	var findCate = false; //verifica se la pagina in cui ci si trova fa parte o meno del nostro topic "french dessert"
-	var popb = false;
 	var mapCheck = false;   //verificano se la relativa api é presente in un riquadro visibile della pagina corrente
 	var instaCheck = false;
 	var crossCheck = false;
 	var charCheck = false; //
-	var read = '';
 
 	var lat; // latitudine, utilizzata dall'api di google maps
 	var lg; //longitudine, , utilizzata dall'api di google maps
@@ -19,12 +17,9 @@ $(document).ready(function (){
 	var lastScrollTop = 0;
 	var i = 0;
 	var j = 0;
-	var iii = 0;
-	var popback = 0;
 	var borderCheck = 0; //utilizzata per creare id procedurali
-	var backup = new Array();
-	//var app = new Annotator(document.body);
-	var firstTime = true; //conrollo necessario a capire se si proviene dalla homepage o meno
+	var backup = new Array(); //array in cui vengono salavate le pagine  prima di passare a quelle successive
+	var firstTime = true; //conrollo necessario per capire se si proviene dalla homepage o meno
 
 	jQuery.fn.spectragram.accessData = { //token di accesso per instagram
 		accessToken: '6905758419.e029fea.b95cf1b2cf4b4188b5e494fb3ec5a166',
@@ -43,13 +38,12 @@ $(document).ready(function (){
 			if (wikiApi.query !== undefined) {//verifica se si tratta di una ricerca di pagine 
 				queryResult(wikiApi);
 			}
-			else {                           //o se si tratta della pagina da caricare
+			else {                           //o se si tratta della pagina da caricare (nel caso in cui si sia arrivati qui tramite un dolce nella homepage)
 				titleClickedResult (wikiApi);
 			}
 		}
 		
 	}
-
 
 	$('#search').bind('startSearch',function(e) {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm", aggiunta anche qui per via della navbar sempre presente
 	e.preventDefault();
@@ -60,7 +54,8 @@ $(document).ready(function (){
 			async: 'true',
 			data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',gsrlimit: '20',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
 			dataType: 'jsonp',
-			success: queryResult
+			success: queryResult,
+			error: function() {alert('The query of the pages is failed');}	
 		});
 	});
 	
@@ -77,7 +72,7 @@ $(document).ready(function (){
 		}
 	});
 
-	function queryResult(apiResult){//passa l'oggetto json ottenuto come stringa, sempre in questa pagina, da decidere se modificare
+	function queryResult(apiResult){//passa l'oggetto json ottenuto come stringa
 		
 		var wikiApi = apiResult;
 
@@ -89,7 +84,7 @@ $(document).ready(function (){
 				wikiApi.query.pages[pageId].extract + '</p></td></tr></div>');
 			};
 		};	
-		$('#maps,#instagram,#skip2,#chart,#skip').fadeOut();
+		$('#maps,#instagram,#skip2,#chart,#skip').fadeOut(); //chiude i riquadri delle varie api
 }
 
 	$('#tableList').on('click','.resultList', function(e) {//quando si clicca su un risultato avvia la chiamata per ottenre la pagina
@@ -100,24 +95,24 @@ $(document).ready(function (){
 					data: {action: 'parse', pageid: pageId, prop: 'text|categories', format: 'json'},
 					dataType: 'jsonp',
 					success: titleClickedResult,	
-					error: function() {alert('errore');}
-				
+					error: function() {alert('The loading of the page is failed');}			
 		});
 	});	
 
 	function titleClickedResult (apiResult) { //carica il contenuto della pagina wikipedia sul nostro sito
 
-		var wikiApi = apiResult;
+		var wikiApi = apiResult; //inizializzazione variabili accessorie 
 		var str = wikiApi.parse['text']['*'];
 		var title = wikiApi.parse.title;
 		var pageId = wikiApi.parse.pageid;
 		var user = $('#user').text();
 
-		$('#maps,#instagram,#skip2,#chart,#skip').fadeIn();	
+		$('#maps,#instagram,#skip2,#chart,#skip').fadeIn();	//rende visibili i bottoni delle api sulla navbar
 		$('#maps').parent().show();
 		$('#maps').show();
 
-		$('#title').html(title);
+		$('#title').html(title); //carica il titolo 
+
 		j = 0;
 		findCate = false;
 
@@ -126,7 +121,7 @@ $(document).ready(function (){
 			j++;
 			if (cate ==='French_desserts' ||cate === 'French_confectionery'||cate === 'French_pastries') { //se la pagina appartiene al nostro topic
 				findCate = true;
-				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"1px 1 black, 1 1px black, 1px 1 black, 1 1px black"});
+				$('#title').css({"color":"pink","font-family":"Roboto Slab","text-shadow":"-1px 0 black, 0 2px black, 2px 0 black, 0 -1px black"});
 				$('#wikiPage').css({"font-family":"Roboto Slab","font-size":"16px"});	
 				$('#home').after('<li class="active barBar barBarLight" id="cros"><a href="#">Crossref</a></li>');
 			}	
@@ -138,32 +133,30 @@ $(document).ready(function (){
 			$('#cros').remove();
 		}
 		
-		if ($(str).find('table[class~="infobox"]').length > 0 && $(str).find('#toc').length > 0) { //controlla che nella pagina wikipedia caricata ci sia la sezione infobox prima di stamparla
+		if ($(str).find('table[class~="infobox"]').length > 0 && $(str).find('#toc').length > 0) { //controlla che nella pagina wikipedia caricata ci siano le sezioni infobox e index prima di stamparle
 			$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-6">' +
 				str + '</div><div id="tableP"class="col-xs-3"></div>');
 			$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 			$('#tableP').append($('table[class~="infobox"]')[0]);
 		}
-
-		else { //nel caso in  cui non ci sia la sezione infobox la pagina viene stampata in maniera differente
-			if ($(str).find('#toc').length > 0) {
+		else { 
+			if ($(str).find('#toc').length > 0) {//controlla che nella pagina wikipedia caricata ci sia la sezione index
 				$('#wikiPage').html('<div id ="index" class="col-xs-2 sidebar-outer"></div><div id="contentP" class="col-xs-9">' +	str + '</div>');
 			} else {
-				if ($(str).find('table[class~="infobox"]').length > 0) {
+				if ($(str).find('table[class~="infobox"]').length > 0) {//controlla che nella pagina caricata ci sia la sezione infobox
 					$('#wikiPage').html('<div id="contentP" class="col-xs-8">'+ str +'</div><div id="tableP"class="col-xs-3"></div>');
 					$('#tableP').append('<button id="pin" type="button" class ="btn btn-primary">Pin</button>');
 					$('#tableP').append($('table[class~="infobox"]')[0]);
 				}
-				else {
+				else {//nel caso in cui non ci siano ne index ne infobox
 					$('#wikiPage').html('<div id="contentP" class="col-xs-11">'+ str + '</div>');
 				}
 			}
 		}
 
-	
-	
 		$('#index').append($('#toc'));
 		
+		/////////////da qui partono gli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 		
 		if($('.latitude').length){ //converte i valori di latitudine e longitudine nella pagina wikipedia caricata in valori formattati per le api di google maps
 			lat = $('.latitude')[0];
@@ -224,43 +217,53 @@ $(document).ready(function (){
 
 				if (direction === "S" || direction === "W") {
 					dd = dd * -1;
-				} // Don't do anything for N or E
+				} 
 				return dd;
 			}
-		lat = parseFloat(lat);
+		lat = parseFloat(lat); //inizializza i valori di latitudine e longitudine
 		lg = parseFloat(lg);	
 
 		///////////////////////////////////////////// inizio api meteo /////////////////////////////////////
-		var weatherKey = '31dc4d7ad84588c4';
+
+		/* l'api del meteo entra in funzione solo se nella pagina attuale sono presenti coordinate geografiche*/
+
+		var weatherKey = '31dc4d7ad84588c4'; //token api meteo
 			
-		/*$.ajax({
+		$.ajax({
 			url: 'http://api.wunderground.com/api/'+weatherKey+'/forecast/geolookup/conditions/q/'+lat+','+lg+'.json',
 			success: weatherSuccess,
-			error: function() {alert('Impossible to load Weather information');}
-		});*/
-		 //blocca il meteo
+			error: function() {alert('Impossible to load weather information');}
+		});
+
 		///////////////////////////////////////////// fine api meteo /////////////////////////////////////
 	}
-	else {
+	else { //nel caso non ci siano coordinate geografiche nasconde il bottone maps sulla navabar
 		$('#maps').parent().hide();
 		$('#maps').hide();
 	}
-		$('#testo .mw-editsection').remove();
+		$('#testo .mw-editsection').remove(); //formattazioni della pagina
 		$('.mw-editsection').remove();
 		$('h2').parent('.toctitle').html('<h2>Index</h2>');
 		$('li').addClass('list-group-item list-group-item-action');
 		$('table').addClass('table');
-			
-			window.onpopstate =  function() { //questa funzione permette sia di far funzionare la cronologia delle pagina e sia di poter utilizzare gli # link interni alla pagina senza creare conflitti
-				var hashSplit = window.location.href.split('#')[1];
-				if(popCheck > 0 && (hashSplit ==='Next' || hashSplit === undefined)){
-					popCheck--;
-					titleClickedResult(backup.pop());
-				}		
+
+		window.onpopstate = function () { //questa funzione permette sia di far funzionare la cronologia delle pagina e sia di poter utilizzare gli # link interni alla pagina senza creare conflitti
+			var hashSplit = window.location.href.split('#')[1];
+			if (popCheck > 0 && (hashSplit === 'Next' || hashSplit === undefined)) {
+				popCheck--;
+				$('#mapRow').remove(); //elimina dalla pagina la finestra di google maps
+				$('#instaRow').remove(); //elimina dalla pagina la finestra di Instagram
+				$('#crosRow').remove(); //elimina dalla pagina la finestra di Crossref
+				$('#myChart').remove(); //elimina dalla pagina la finestra di Chart.js
+				$('#weatherInfo').remove(); //elimina dalla pagina la finestra del meteo
+				instaCheck = false;
+				chartCheck = false;
+				mapCheck = false;
+				crossCheck = false;
+				titleClickedResult(backup.pop());
 			}
-			
-			
-		/////////////da qui partono gli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
+		}
+	
 		$(document).scrollTop(0);
 		$('li ul').remove(); //rimuove le sottoliste per problemi di visualizzazione risconstrati
 		$('div.navbox').fadeOut();//nasconde external link
@@ -281,7 +284,7 @@ $(document).ready(function (){
 			$(this).before('<div id="wikiT'+borderCheck+'" class="wikiT"></div>');
 			$(this).appendTo('#wikiT'+borderCheck);
 			borderCheck++;
-		})//sono state create 2 funzioni diverse per motivi di coerenza spaziali interni alla pagina
+		})
 		
 
 		$('.image').each(function(img) { //elimina tutti i collegamenti ipertestuali delle foto
@@ -289,27 +292,24 @@ $(document).ready(function (){
 			$(this).remove();
 		});
 		
-		if (!($('.toccolours').length)) {//verifica la presenza della tabella "storia della popolazione" nella pagina attuale
-			$('#chartButton').remove();
+		if (!($('.toccolours').length)) {//verifica la presenza della tabella "storia della popolazione" nella pagina attuale sulla quale si basa chart.js
+			$('#chart').fadeOut();
 		}
 
 		$('.reference').remove();
 
-		$(window).scroll(function(event){
+		$(window).scroll(function(event){ //bottone che permette di tornare in cima alla pagina
 			var st = $(this).scrollTop();
 			if (st > lastScrollTop){
-				// downscroll code
 				$('#tocButton').remove();
 			} else {
-			   // upscroll code
 			   $('#titleBar').append('<button id="tocButton" type="button" class ="btn btn-outline-primary"><a href="#title"><span id="arrown" class="glyphicon glyphicon-chevron-up"></span><a></button>');
 
 			}
 			lastScrollTop = st;
 		 });
 		
-		//target.annotator({ readOnly: !user })
-		jQuery(function ($) {
+		jQuery(function ($) { //funzione che inizializza annotator con i suoi plugins store e permissions
 			$('#contentP').annotator()
 			.annotator('setupPlugins', {}, {
 				Store: {
@@ -335,12 +335,6 @@ $(document).ready(function (){
 						'delete': [user],
 						'admin': [user],
 					},
-					/*userId(user) {
-						return user ? user.id : user
-					},
-					userString(user) {
-						return user ? user.name : user
-					},*/
 					showEditPermissionsCheckbox: false
 				},
 				Tags: false,
@@ -350,7 +344,6 @@ $(document).ready(function (){
 				AnnotateItPermissions: false
 			})
 		});
-
 
 		$('#contentP a,#tableP a').not('.annotator-save,.annotator-cancel').on('click', function(e) {//se si clicca su un link chiama ricorsivamente la funzione che apre una nuova pagina wikipedia
 			e.preventDefault();
@@ -362,6 +355,7 @@ $(document).ready(function (){
 			$('#instaRow').remove(); //elimina dalla pagina la finestra di Instagram
 			$('#crosRow').remove(); //elimina dalla pagina la finestra di Crossref
 			$('#myChart').remove(); //elimina dalla pagina la finestra di Chart.js
+			$('#weatherInfo').remove(); //elimina dalla pagina la finestra del meteo
 			instaCheck = false;
 			chartCheck = false;
 			mapCheck = false;
@@ -371,7 +365,7 @@ $(document).ready(function (){
 				data: {action: 'parse', page: getTitle, prop: 'text|categories', format: 'json'},
 				dataType: 'jsonp',
 				success: titleClickedResult,	
-				error: function() {alert('errore');}
+				error: function() {alert('The loading of the page is failed');}
 			});		
 		});
 
@@ -391,8 +385,8 @@ $(document).ready(function (){
 			else {
 				$('#tableP').css({
 					'position':'static',				
-					'overflow-y':'visible',
-					'height': '200vh',
+					'overflow-y':'scroll',
+					'height': '100vh',
 					'margin-left':'0'
 				});
 				pinned = false;
@@ -462,11 +456,10 @@ $(document).ready(function (){
 		});
 		//FINE tasto show per la sezione see also////////////
 
-		
-
 	} /////////////FINE degli script riguardanti la pagina di wikipedia caricata //////////////////////////////////// 
 
 		///////////////////////////api Maps inizio //////////////////////////////////////////////////////////////////////////////
+
 	$('#maps').click(function(e){
 		e.preventDefault();
 		$('#maps').parent().show();
@@ -478,25 +471,21 @@ $(document).ready(function (){
 			$('#navbarBar').append('<div class="row" id="mapRow"><div id="map" class="col-xs-12"> </div>');
 			var area;
 			var coordinates = new google.maps.LatLng(lat, lg);
-
 			var markers = [];
 			var locations = [
 				{ lat:  lat, lg: lg, label: $(title).text()}
 			];
-
 			area = $('#map')[0];
-			var plan = new google.maps.Map(area,{
+			var plan = new google.maps.Map(area,{ //visualizza l'area circostante le coordinate utilizzate
 				zoom: 15,
 				center: coordinates,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
-			});
-			
-				markers[k] = new google.maps.Marker({
+			});		
+				markers[k] = new google.maps.Marker({ //aggiunge il puntatore nelle coordinate presenti nella pagina wikipedia
 					position: new google.maps.LatLng(locations[k].lat,locations[k].lg),
 					map: plan,
 					title: locations[k].label
 				});
-	
 		}
 		else {
 			mapCheck = false;
@@ -517,12 +506,10 @@ $(document).ready(function (){
 		}
 		if(instaCheck === false){
 			instaCheck = true;
-
 			$('#navbarBar').append('<div class="row" id="instaRow"><div id="insta" class="col-xs-11"> </div></div>');
-		
-			var searchTag = $(title).text();
-			searchTag = searchTag.replace(/[^a-z,0-9]+/gi, '');
-			$('#insta').spectragram('getRecentTagged',{
+			var searchTag = $(title).text();//viene utilizzato il titolo della pagina come hashtag da ricercare
+			searchTag = searchTag.replace(/[^a-z,0-9]+/gi, ''); //formattazione del titolo per rimuovere gli spazi
+			$('#insta').spectragram('getRecentTagged',{//viene utilizzato spectragram.js per effetturare le chiamate all'api di instagram
 					query: searchTag,
 					wrapEachWith: ''
 				})
@@ -541,7 +528,7 @@ $(document).ready(function (){
 		e.preventDefault();
 		if(crossCheck === false){
 			crossCheck = true;
-			var searchTag = $(title).text();
+			var searchTag = $(title).text(); //viene utilizzato il titolo della pagina come tag di ricerca su crossref
 			searchTag = searchTag.toLowerCase();
 
 			function crossSuccess (apiResult) {
@@ -549,12 +536,12 @@ $(document).ready(function (){
 				var j = 0;
 				var authorFn = [];
 				var authorLn = [];
-				authorFn[0] = 'unknown';
+				authorFn[0] = 'unknown'; //se gli autori dell'articolo crossref sono assenti vengono sostituiti da unknown
 				authorLn[0] = 'unknown';
 				for(var i=0;i<10;i++){
 					var doi = apiResult.message.items[i].DOI;
 					var title = apiResult.message.items[i].title[0];
-					while(authComplete == false) {
+					while(authComplete == false) { 
 						if(typeof apiResult.message.items[i].author !== 'undefined') {
 							if(typeof apiResult.message.items[i].author[j] !== 'undefined'){
 								authorFn[j] = apiResult.message.items[i].author[j].given;
@@ -595,7 +582,7 @@ $(document).ready(function (){
 				url: 'http://api.crossref.org/works?query='+searchTag+'+french+dessert',
 				data: {select: 'DOI,title,author', sort: 'relevance',rows: '10'},
 				success: crossSuccess,	
-				error: function() {alert('errore');}
+				error: function() {alert('Impossible to load crossref articles');}
 			});
 	
 		}
@@ -733,7 +720,7 @@ $(document).ready(function (){
 	})
 	////////////// fine api chart.js ////////////////////////////////////////
 
-	////////////////////// inizio api Weather underground
+	////////////////////// inizio api Weather underground ///////////////////////////////
 	
 	function weatherSuccess (apiResult) {
 		var days = apiResult.forecast.simpleforecast.forecastday;
@@ -742,18 +729,11 @@ $(document).ready(function (){
 		weatherString1 = weatherString1+'<tr><td class="col-xs-1.5">'+days[0].conditions+'</td><td class="col-xs-1.5"><img src="'+days[0].icon_url+'"></td><td class="col-xs-1.5">'+days[1].conditions+'</td><td class="col-xs-1.5"><img src="'+days[1].icon_url+'"></td><td class="col-xs-1.5">'+days[2].conditions+'</td><td class="col-xs-1.5"><img src="'+days[2].icon_url+'"></td></tr>';
 		weatherString1 = weatherString1+'<tr><td colspan="2" class="col-xs-3">Max:'+days[0].high.celsius+'* <br>Min:'+days[0].low.celsius+'*</td><td colspan="2" class="col-xs-3" id="med">Max:'+days[1].high.celsius+'* <br>Min:'+days[1].low.celsius+'*</td><td colspan="2" class="col-xs-3">Max:'+days[2].high.celsius+'* <br>Min:'+days[2].low.celsius+'*</td></tr></table></div></div>';
 		$('#weatherString').append(weatherString1);
-
-		//$('#index').css({"margin-top":"22%"});
-		/*$('#weatherInfo').css({"overflow-x":"auto","margin-left":"1%"});
-		$('#weatherTable').css({"background-color":"rgb(172, 223, 243)","border":"3px solid black"});
-		$('#weatherTable th,#weatherTable td').css({"border":"1px solid black","padding-left":"5%","padding-right":"7%","padding-top":"3%","padding-bottom":"3%"});
-		$('navbarBar').append('<div></div>');*/
 	}
-
-
+		//////////////////////  fine api Weather underground /////////////////////////
 
 }); //fine document ready
 
 
-// https://api.instagram.com/v1/tags/rome/media/recent?access_token=6905758419.e029fea.b95cf1b2cf4b4188b5e494fb3ec5a166
+
 

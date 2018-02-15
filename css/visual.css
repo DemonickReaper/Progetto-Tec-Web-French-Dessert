@@ -1,6 +1,4 @@
-/**{
-  border: 1px solid black !important; 
-}*/
+/*////////////////////////////////////////////////////// CSS GENERALE /////////////////////////////////////*/
 @font-face {
 	font-family:'Hanged_Letters';
 	src: url(../fonts/Hanged_Letters.ttf);
@@ -20,14 +18,7 @@ a {
     color: rgb(33, 33, 187);
 }
 
-#navbarvis,a[href="index.php"],form.navbar-form,.barBar a,.barBar,.navbar-inverse {
-    background-color:#428bca;
-    color: black !important;
-    font-weight: bold;
-}
-.navbar-inverse {
-    border:2px solid #254e72 !important;
-}
+
 
 /*////////////////////////////////////////////// TITOLO PAGINA INIZIO ///////////////////////////////////////////// */
 
@@ -45,6 +36,14 @@ h1#title{
 /*////////////////////////////////////////////// TITOLO PAGINA FINE ///////////////////////////////////////////// */
 
 /*///////////////////////////////////////////// NAVBAR INIZIO///////////////////////////////////////////////////// */
+#navbarvis,a[href="index.php"],form.navbar-form,.barBar a,.barBar,.navbar-inverse {
+    background-color:#428bca;
+    color: black !important;
+    font-weight: bold;
+}
+.navbar-inverse {
+    border:2px solid #254e72 !important;
+}
 #titlebar{
     font-size: 35px;
     text-align:left;
@@ -89,7 +88,6 @@ h1#title{
 	margin-right:25%;
     }
 #logbar{
-       /*display:none;*/
        visibility: hidden;
         border-left: 2px solid #254e72;
 }
@@ -127,8 +125,7 @@ h1#title{
 @media screen and (max-width:566px){
     #titlebar{
         display:none;
-        }
-   
+        }  
 }
 @media screen and (max-width:196px){
     .navbar-toggle {
@@ -144,7 +141,7 @@ h1#title{
 .barBarLight:hover{
     background-color: rgb(172, 223, 243) !important;
 }
-  #instaSkipNavbar{
+#instaSkipNavbar{
     border-left:none !important;
 }
 .list-group-item{
@@ -179,7 +176,6 @@ h1#title{
         font-size:1.2em;
     }
     #logbar{
-        /*display:inline;*/
         visibility: visible;
         border-left: 2px solid #254e72;
     }
@@ -189,7 +185,6 @@ h1#title{
 
 
 /*///////////////////////////////////////////// TABELLA DEI RISULTATI INIZIO///////////////////////////////////////////////////// */
-
 
 #tableList h3 {
     border-bottom: none;
@@ -216,8 +211,11 @@ h1#title{
 #tableList tr a{
     color: rgb(12, 3, 143);
 }
-#tableList tr a:hover{
+#tableList tr a:hover:nth-child(odd){
     color: rgb(172, 223, 243) !important;
+}
+#tableList tr a:hover:nth-child(even){
+    color: rgb(218, 169, 250) !important;
 }
 
 #tableList tr:nth-last-child(1){
@@ -235,11 +233,8 @@ h1#title{
     font-style: italic; 
     padding-bottom: 2%;
 }
-
 .container{
     position: static;
-    /*margin: 0% !important;
-    margin-right: 0% !important;*/
 }
 #contentP{
     position: static;
@@ -299,11 +294,11 @@ h1#title{
     #tableP{
         font-size:1.4em;
         width:100%;
-    }
-    
+    }  
 }
+/*///////////////////////////////////////////// PAGINA WIKIPEDIA FINE///////////////////////////////////////////////////// */
 
-/*/////////////////////////////////////tabella di destra inizio /////////////////////////////*/
+/*/////////////////////////////////////TABELLA DI DESTRA INIZIO /////////////////////////////*/
 table[class~="infobox"]{ 
     position: static;
     display: inline;
@@ -336,13 +331,12 @@ table[class~="infobox"] tr{
     overflow: scroll; 
 }
 #tableP tbody{
-    background-color: rgb(172, 223, 243);
-     
+    background-color: rgb(172, 223, 243);    
 }
 
-/*////////////////////////////////tabella di destra fine/////////////////////////////////////*/
+/*////////////////////////////////TABELLA DI DESTRA FINE/////////////////////////////////////*/
 
-/*////////////////////// indice inizio ////////////////////////*/
+/*////////////////////// INDICE INIZIO ////////////////////////*/
 #index{
     background-color: rgb(172, 223, 243);
     border:3px solid #254e72;
@@ -394,7 +388,7 @@ li ul{
     margin-bottom: 0.5em !important;
     font-size:24px;
 }
-/*////////////////////// indice fine ////////////////////////*/
+/*////////////////////// INDICE FINE ////////////////////////*/
 
 
 
@@ -407,7 +401,7 @@ h3 {
     margin-bottom: 1em !important;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px){ /* PICCOLI AGGIUSTAMENTI ALLE SEZIONI LATERALI DELLA PAGINA WIKI */
     #toc{
         position: static;
      }
@@ -415,9 +409,8 @@ h3 {
         position: static;
     }
 }
-/*///////////////////////////////////////////// PAGINA WIKIPEDIA FINE///////////////////////////////////////////////////// */
 
-#map { 
+#map { /* CSS API MAPS */
     height: 300px;
     width: 94%;
     margin-left: 3%;
@@ -425,7 +418,9 @@ h3 {
     border:2px solid #254e72; 
   }
 
-  #skip {
+  #skip { /* CSS BOTTONE INSTAGRAM */
       color: black;
       margin-top: 10px;
   }
+/*///////////////////////////////////////////// PAGINA WIKIPEDIA FINE///////////////////////////////////////////////////// */
+

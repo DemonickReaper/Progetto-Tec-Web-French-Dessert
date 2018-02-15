@@ -174,34 +174,32 @@ if ( typeof Object.create !== "function" ) {
 						
 					}
 				}
-				////////////////////////////////////////////////modifiche alla sezione instagram////////////////////////////////////////
+				////////////////////////////////////////////////inizio modifiche alla sezione instagram////////////////////////////////////////
 				
 					this.$elem.append( imageGroup );
 					var j = 0;
 					if($(imageGroup[0]).length > 0){
-						for(i = 0;i<4;i++){		
+						for(i = 0;i<6;i++){		
 							$(imageGroup[j][0]).attr('class','instag col-xs-3');
 							$(imageGroup[j][0]).attr('id','instag'+i);
-							//console.log($(imageGroup[i][0]).attr('alt'));
+							//filtro per i tag inopportuni
 							if(/#nude|#boobs|#like4like|#tits|#girlnextdoor|#seduction_world|#pornographic|#pornwatch|#sensual_ladies|#nudes|#nudity|#sexy|#badgirl|#pussy|#erotic|#ass|#naked|#nofilter|#hot|#gorgeous|#fuck|#horny|#memek|#dick|#butt|#sex|#lesbiansex|#indogirls|#lesbiankiss|#sikişsex|#lesbianvideo|#sanalsevişme|#love/i.test($(imageGroup[i][0]).attr('alt'))){
 								$('#instag'+i).remove();
-								$('#insta').append('<img src="http://site1804.web.cs.unibo.it/js/censured.jpg" id="#instag'+i+'" class="instag">');
+								$('#insta').append('<img src="http://site1804.web.cs.unibo.it/img/censured.jpg" id="#instag'+i+'" class="instag">');
 							}
 							if($(imageGroup[i+1]).length < 1) {
-								i = 4;	
+								i = 6;	
 							}
 							j++;
 						}
-						
 						$('.instag').css({"width":"320","height":"320","margin-bottom":"2%","border":"2px solid #254e72","background-color":"white","margin-left":"2%","padding-top":"15px","padding-bottom":"50px"})
-						$('#insta').css({"margin-left":"10%"});
-						
+						$('#insta').css({"margin-left":"10%"});		
 					}
 					else {
 						$('.instaRow').append('<div id="instaEr">Nothing photo was found</div>');
 					}
 					
-		
+					////////////////////////////////////////////////fine modifiche alla sezione instagram////////////////////////////////////////
             }
 
 			if ( typeof this.options.complete === "function" ) {
@@ -234,7 +232,7 @@ if ( typeof Object.create !== "function" ) {
     // Plugin Default Options
     jQuery.fn.spectragram.options = {
 		complete : null,
-		max: 4,
+		max: 6,
 		query: "instagram",
 		size: "medium",
 		wrapEachWith: "<li></li>"

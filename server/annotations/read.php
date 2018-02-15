@@ -14,9 +14,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $db = new MyDB();
   if (!$db) {
     echo $db->lastErrorMsg();
-  } else {
-    //echo "Opened database successfully\n";
-  }
+  } 
 
   $sql = "SELECT * FROM ANNOTATIONS WHERE id = " . $id . ";";
   $res = $db->query($sql);

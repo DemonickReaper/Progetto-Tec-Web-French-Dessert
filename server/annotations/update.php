@@ -22,8 +22,6 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $db = new MyDB();
     if (!$db) {
       echo $db->lastErrorMsg();
-    } else {
-      //echo "Opened database successfully\n";
     }
     $pageid = $rows['uri'];
     $start = $rows['ranges'][0]['start'];

@@ -1,14 +1,14 @@
 <?php
 
-$object = file_get_contents('php://input');
+$object = file_get_contents('php://input'); //riceve l'annotazione
 $rows = json_decode($object,true);
 
 session_start();
 
-if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
+if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {//verifica che l'utente abbia effettuato il login
   $username = $_SESSION['datauser'];
 
-  class MyDB extends SQLite3
+  class MyDB extends SQLite3 //apre il database
   {
     function __construct()
     {
@@ -18,10 +18,8 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $db = new MyDB();
   if (!$db) {
     echo $db->lastErrorMsg();
-  } else {
-      //echo "Opened database successfully\n";
-  }
-  $read = $rows['permissions']['read'];
+  } 
+  $read = $rows['permissions']['read']; //smista l'annotazione nei vari attributi del database
   $update = $rows['permissions']['update'];
   $delete = $rows['permissions']['delete'];
   $admin = $rows['permissions']['admin'];
@@ -39,6 +37,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $endOffset = $rows['ranges'][0]['endOffset'];
   $text = $rows['text'];
   $user = $rows['user'];
+  //aggiunge la riga dell annotazione nel database
   $sql = "INSERT INTO ANNOTATIONS (pageid,startt,endd,startOffset,endOffset,textt,user,readd,updatee,deletee,adminn) VALUES (" . $pageid . ",'" . $start . "','" . $end . "'," . $startOffset . "," . $endOffset . ",'" . $text . "','" . $user . "','" . $read . "','" . $update . "','" . $delete . "','" . $admin . "');";
   echo $sql;
   $db->query($sql);

@@ -20,8 +20,6 @@ else {
   $db = new MyDB();
   if (!$db) {
     echo $db->lastErrorMsg();
-  } else {
-    //echo "Opened database successfully\n";
   }
 
   $sql1 = "SELECT * FROM ANNOTATIONS WHERE (user = '" . $username . "' OR readd = 'NULL') AND pageid ='" . $pageid . "';";
