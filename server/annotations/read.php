@@ -16,7 +16,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     echo $db->lastErrorMsg();
   } 
 
-  $sql = "SELECT * FROM ANNOTATIONS WHERE id = " . $id . ";";
+  $sql = "SELECT * FROM ANNOTATIONS WHERE id = " . $id . ";";//seleziona il commento con l'id corrispondente
   $res = $db->query($sql);
 
   $rows = array();
@@ -24,7 +24,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $row = $res->fetchArray(SQLITE3_ASSOC);
   $i = 0;
 
-  $rows['id'] = $row['id'];
+  $rows['id'] = $row['id']; //smista il database nei vari componenti dell'annotazione
   $rows['text'] = $row['textt'];
   $rows['uri'] = $row['pageid'];
   $read = $row['readd'];
@@ -46,7 +46,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
   $rows['ranges'] = $ranges;
   $rows['user'] = $row['user'];
 
-  $jsonObject = json_encode($rows);
+  $jsonObject = json_encode($rows); //codifica per annotator
   header('Content-Type: application/json');
   echo $jsonObject;
 

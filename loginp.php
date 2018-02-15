@@ -1,7 +1,7 @@
 <?php
  session_start();
  if (isset($_SESSION['error'])){
- if($_SESSION['error']==1)
+ if($_SESSION['error']==1) //stato 1: utente o psw errati
  {
   $message = "Username and/or Password incorrect.\\nTry again.";
   echo "<script type='text/javascript'>alert('$message');</script>";
@@ -9,7 +9,7 @@
  }
 }
  if (isset($_SESSION['error'])){
- if($_SESSION['error']==2)
+ if($_SESSION['error']==2) //stato 2: utente loggato
  {
   $message = "Already logged, logout and try again";
   echo "<script type='text/javascript'>alert('$message');</script>";
@@ -21,7 +21,7 @@
  }
 }
  if (isset($_SESSION['error'])){
-  if($_SESSION['error']==3)
+  if($_SESSION['error']==3) //stato 3: utente già esistente
   {
    $message = "This user already exist, try again";
    echo "<script type='text/javascript'>alert('$message');</script>";
@@ -29,7 +29,7 @@
    }
 }
 if (isset($_SESSION['error'])){
-  if($_SESSION['error']==4)
+  if($_SESSION['error']==4) //stato 4: registrazione effettuata con successo
   {
    $message = "Registration successfully, \\nNow you can login";
    echo "<script type='text/javascript'>alert('$message');</script>";

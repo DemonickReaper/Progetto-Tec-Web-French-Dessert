@@ -16,7 +16,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     echo $db->lastErrorMsg();
   }
 
-  $sql = "DELETE FROM ANNOTATIONS WHERE id = " . $id . ";";
+  $sql = "DELETE FROM ANNOTATIONS WHERE id = " . $id . ";"; //verifica la corrispondenza dell'id (univoca per ogni commento)
   $res = $db->query($sql);
   $db->close();
 

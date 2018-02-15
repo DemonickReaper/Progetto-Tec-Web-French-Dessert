@@ -36,7 +36,7 @@
      <div class="col-xs-2" id="lognav">
      <?php 
     session_start();
-    if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
+    if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { //controlla se l'utente è loggato 
       echo "Welcome <b>" . $_SESSION['datauser'] . "!</b>&nbsp" . "<a href=\"logout.php\" id=\"linklog\"><b>Logout</b></a>";
     } else {
       echo "Go to&nbsp"."<a href=\"loginp.php\" id=\"linklog\">Login Page</a>&nbsp";
@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav navbar-right" id="navBarlog">
     <?php
      if (isset($_SESSION['error'])){
-      if($_SESSION['error']==2) {
+      if($_SESSION['error']==2) { //stato 2: l'utente è loggato quindi compare il tasto logout
         ?>
         <li class="barBarLight barBar" id="logbar"><a href="logout.php">Logout </a></li><?php
       }

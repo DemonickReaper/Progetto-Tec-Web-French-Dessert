@@ -25,10 +25,10 @@ $ret = $db->query($sql1);
 $bool=false;
 $datauser=0;
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-    if($myusername==$row['username']&&$mypassword==$row['password']){
+    if($myusername==$row['username']&&$mypassword==$row['password']){ //controlla se username e psw corrispondano
         $data=[$myusername];
         $_SESSION['datauser']=implode($data);
-        $_SESSION['error']=2;
+        $_SESSION['error']=2; //stato 2: utente loggato
         $bool=true;
         header('location: index.php');
     }

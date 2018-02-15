@@ -26,8 +26,8 @@
 EOF;
 $ret = $db->query($sql);
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-      if($username==$row['username']){
-            $_SESSION['error']=3;
+      if($username==$row['username']){ //verifica se esiste già un utente registrato con quell'username
+            $_SESSION['error']=3; //stato 3: utente già registrato
             header('location: loginp.php');
       }
       else{
@@ -42,7 +42,7 @@ EOF;
    if(!$ret){
     echo $db->lastErrorMsg();
    } else {
-    $_SESSION['error']=4;
+    $_SESSION['error']=4; // stato 4: registrazione effettuata con successo 
    }
    $db->close();
    unset($db);

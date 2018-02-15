@@ -1,10 +1,6 @@
 <?php
 $id = $_GET['id'];
 $object = file_get_contents('php://input');
-
-
-//$object = $_POST['data'];
-//$object = '{"permissions":{"read":[],"update":[],"delete":[],"admin":[]},"user":"fff","ranges":[{"start":"/div[1]/p[1]/small[1]","startOffset":1,"end":"/div[1]/p[1]","endOffset":99}],"quote":"rench pronunciation: ​[makaʁɔ̃]) is a sweet meringue-based","text":"sadfsadf","uri":2005216}';
 $rows = json_decode($object,true);
 
 session_start();
@@ -23,7 +19,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     if (!$db) {
       echo $db->lastErrorMsg();
     }
-    $pageid = $rows['uri'];
+    $pageid = $rows['uri']; //smista l'annotazione nei vari attributi del database
     $start = $rows['ranges'][0]['start'];
     $startOffset = $rows['ranges'][0]['startOffset'];
     $end = $rows['ranges'][0]['end'];
@@ -43,7 +39,7 @@ if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
     $admin = implode(',',$admin);
     $sql = "UPDATE ANNOTATIONS 
     SET pageid=".$pageid.",startt='".$start."',endd='".$end."',startOffset=".$startOffset.",endOffset=".$endOffset.",textt='".$text."',user='".$user."',readd='".$read."',updatee='".$update."',deletee='".$delete."',adminn='".$admin."'
-    WHERE id = " . $id . ";";
+    WHERE id = " . $id . ";"; //sostituisce i nuovi campi prelevati dall'annotazione all'interno del database
     echo $sql;
     $db->query($sql);
     $db->close();
