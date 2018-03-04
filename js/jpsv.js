@@ -541,6 +541,8 @@ $(document).ready(function (){
 				for(var i=0;i<10;i++){
 					var doi = apiResult.message.items[i].DOI;
 					var title = apiResult.message.items[i].title[0];
+					var date = apiResult.message.items[i].created['date-time'];
+					var correctDate = date.substring(0,10);
 					while(authComplete == false) { 
 						if(typeof apiResult.message.items[i].author !== 'undefined') {
 							if(typeof apiResult.message.items[i].author[j] !== 'undefined'){
@@ -572,7 +574,7 @@ $(document).ready(function (){
 						crossAppend = crossAppend+authorFn[j-1]+'\xa0'+authorLn[j-1]+'\xa0\xa0\xa0';
 						j--;
 					}
-					$('#crossRef').append(crossAppend+'</td></tr></table></div>');
+					$('#crossRef').append(crossAppend+'</td></tr><tr><td>Publication date:</td><td>'+correctDate+'</td></tr></table></div>');
 					
 					$('.crc').css({"width":"90%","margin-left":"5%","position":"relative","background-color":"rgb(172, 223, 243)","border":"2px solid #254e72","margin-bottom":"10px","font-family":"Roboto Slab"})
 					$('.crc td:nth-child(odd)').css({"width":"7%","font-weight":"bold"})
@@ -580,7 +582,7 @@ $(document).ready(function (){
 			}	
 			$.ajax({
 				url: 'http://api.crossref.org/works?query='+searchTag+'+french+dessert',
-				data: {select: 'DOI,title,author', sort: 'relevance',rows: '10'},
+				data: {select: 'DOI,title,created,author', sort: 'relevance',rows: '10'},
 				success: crossSuccess,	
 				error: function() {alert('Impossible to load crossref articles');}
 			});

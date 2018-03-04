@@ -183,7 +183,7 @@ if ( typeof Object.create !== "function" ) {
 							$(imageGroup[j][0]).attr('class','instag col-xs-3');
 							$(imageGroup[j][0]).attr('id','instag'+i);
 							//filtro per i tag inopportuni
-							if(/#nude|#boobs|#like4like|#tits|#girlnextdoor|#seduction_world|#pornographic|#pornwatch|#sensual_ladies|#nudes|#nudity|#sexy|#badgirl|#pussy|#erotic|#ass|#naked|#nofilter|#hot|#gorgeous|#fuck|#horny|#memek|#dick|#butt|#sex|#lesbiansex|#indogirls|#lesbiankiss|#sikişsex|#lesbianvideo|#sanalsevişme|#love/i.test($(imageGroup[i][0]).attr('alt'))){
+							if(/#nude|#boobs|#dessertporn|#xxx|#xxx18|#like4like|#tits|#girlnextdoor|#seduction_world|#pornographic|#pornwatch|#sensual_ladies|#nudes|#nudity|#sexy|#badgirl|#pussy|#erotic|#ass|#naked|#nofilter|#hot|#gorgeous|#fuck|#horny|#memek|#dick|#butt|#sex|#lesbiansex|#indogirls|#lesbiankiss|#sikişsex|#lesbianvideo|#sanalsevişme|#love/i.test($(imageGroup[i][0]).attr('alt'))){
 								$('#instag'+i).remove();
 								$('#insta').append('<img src="http://site1804.web.cs.unibo.it/img/censured.jpg" id="#instag'+i+'" class="instag">');
 							}
