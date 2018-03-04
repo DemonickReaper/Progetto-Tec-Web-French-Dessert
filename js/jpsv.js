@@ -29,8 +29,9 @@ $(document).ready(function (){
 	if(firstTime===true) {
 		var wApi = localStorage.getItem("wApi");
 		if(wApi === '{"batchcomplete":""}') { //verifica che la ricerca delle pagine abbia trovato almeno un risultato
-			$('#tableList').append('<h1 id="queryError">There were no results matching the query :( </h1>') 
-			$('#queryError').css({"background-color":"white","padding-left":"15%","font-weight":"bold",})
+			$('#tableList').append('<h1 id="queryError">There were no results matching the query :( </h1>'); 
+			$('#queryError').css({"background-color":"white","padding-left":"15%","font-weight":"bold",});
+			$('#maps,#instagram,#skip2,#chart,#skip').fadeOut();
 		}
 		else {
 			var wikiApi = JSON.parse(wApi);
