@@ -575,7 +575,7 @@ $(document).ready(function (){
 						crossAppend = crossAppend+authorFn[j-1]+'\xa0'+authorLn[j-1]+'\xa0\xa0\xa0';
 						j--;
 					}
-					$('#crossRef').append(crossAppend+'</td></tr><tr><td>Publication date:</td><td>'+correctDate+'</td></tr></table></div>');
+					$('#crossRef').append(crossAppend+'</td></tr><tr><td>Publication:</td><td>'+correctDate+'</td></tr></table></div>');
 					
 					$('.crc').css({"width":"90%","margin-left":"5%","position":"relative","background-color":"rgb(172, 223, 243)","border":"2px solid #254e72","margin-bottom":"10px","font-family":"Roboto Slab"})
 					$('.crc td:nth-child(odd)').css({"width":"7%","font-weight":"bold"})
