@@ -419,5 +419,9 @@ h3 {
       color: black;
       margin-top: 10px;
   }
+
+  .cross {
+      margin-bottom: 0px !important;
+  }
 /*///////////////////////////////////////////// PAGINA WIKIPEDIA FINE///////////////////////////////////////////////////// */
 
