@@ -46,33 +46,6 @@ $(document).ready(function (){
 		
 	}
 
-	$('#search').bind('startSearch',function(e) {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm", aggiunta anche qui per via della navbar sempre presente
-	e.preventDefault();
-	var searchTerm = $('#searchTerm').val();    
-		$.ajax({
-			url: 'http://en.wikipedia.org/w/api.php',
-			type:'GET',
-			async: 'true',
-			data: { action: 'query', generator: 'search', gsrsearch: searchTerm, format: 'json',gsrlimit: '20',prop: 'info|extracts',inprop: 'url',exintro: '1', exlimit: '20', exchars: '300' },
-			dataType: 'jsonp',
-			success: queryResult,
-			error: function() {alert('The query of the pages is failed');}	
-		});
-	});
-	
-	$('#search').click(function(e){ //avvia la ricerca se premuto il tasto con la lente di ingrandimento
-		e.preventDefault();
-		$('#search').trigger('startSearch');
-	});
-
-	$('#searchTerm').keypress(function(e){//avvia la ricerca se premuto il tasto invio della tastiera
-		var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
-		if(key === 13){
-			e.preventDefault();
-			$('#search').trigger('startSearch');
-		}
-	});
-
 	function queryResult(apiResult){//passa l'oggetto json ottenuto come stringa
 		
 		var wikiApi = apiResult;
