@@ -84,7 +84,6 @@
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/spectragram.js"></script>
-		<script src="js/jps.js"></script>
 		<script src="js/jpsv.js"></script>		
 		<script src="js/annotator-full.min.js"></script>
 		<script src="js/Chart.js"></script>
