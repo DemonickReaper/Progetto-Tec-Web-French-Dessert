@@ -5,6 +5,7 @@
 		$('#search').bind('startSearch',function(e) {//chiamata a wikipedia per ottenere un elenco di pagine inerenti alla chiave "searchTerm"
 		e.preventDefault();
 		var searchTerm = $('#searchTerm').val();
+		if(searchTerm !== ""){
 			$.ajax({
 				url: 'http://en.wikipedia.org/w/api.php',
 				type:'GET',
@@ -13,7 +14,12 @@
                 dataType: 'jsonp',
 				success: queryResult,
 				error: queryError
-            });
+			});
+		}
+		else {
+			alert('Empty query, please try again');
+		}
+
 		});
 		
 		$('.linkList').bind('startLoad',function(e) {//chiamata a wikipedia per ottenere la pagina del dolce cliccato sulla homepage
