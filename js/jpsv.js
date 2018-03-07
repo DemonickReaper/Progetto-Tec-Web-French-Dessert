@@ -532,12 +532,12 @@ $(document).ready(function (){
 							authComplete = true;
 						}	
 					}
-					if(j === 0 ) {	
+					if(j === 0 ) {	//si attiva se la sezione autori è assente
 						authorFn[j] = 'unknown';
 						authorLn[j] = 'unknown';
 						j++;
 					}
-					if (authorFn[j-1] === undefined){
+					if (authorFn[j-1] === undefined){ //si attiva se nella sezione autori c'è un campo nullo
 						authorFn[j-1] = 'unknown';
 						authorLn[j-1] = 'unknown';
 					}
@@ -586,8 +586,8 @@ $(document).ready(function (){
 			$('.toccolours th,.toccolours td').each(function () { //cattura tutte le informazioni dalle tabelle sulla popolazione e le smista in 2 variabili
 				var a = this;
 				a = $(a).text().replace(/,/g, '');
-				if (isFinite(String(a)) && a !== '') {
-					if (isLabel === true) {
+				if (isFinite(String(a)) && a !== '') {//controlla se il valore è numerico
+					if (isLabel === true) {//controlla se si tratta di un etichetta o di un valore
 						if (a < 2019) {
 							isLabel = false;
 							labelsA[i] = a;

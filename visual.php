@@ -2,7 +2,6 @@
 	<HEAD>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/visual.css" rel="stylesheet" type="text/css">
@@ -43,7 +42,7 @@
 				<div class="col-xs-2" id="lognav">
   			  	<?php 
 							session_start();
-							if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) {
+							if (isset($_SESSION['datauser']) && $_SESSION['datauser'] == true) { 
 								echo 'Welcome <b><span id="user">' . $_SESSION['datauser'] . "</span>!</b>&nbsp" . "<a href=\"logout.php\" id=\"linklog\"><b>Logout</b></a>";
 							} else {
 								echo "Go to&nbsp"."<a href=\"loginp.php\" id=\"linklog\">Login Page</a>&nbsp";
@@ -53,7 +52,7 @@
 				<div class="collapse navbar-collapse navbar-ex2-collapse" id="navbarvis">
 				<ul class="nav navbar-nav navbar-right">
 				<?php
-     				if (isset($_SESSION['error'])){
+     				if (isset($_SESSION['error'])){//se si è loggati mostra la scritta logout
      				 if($_SESSION['error']==2) {
        				 ?>
        	 			<li class="barBarLight barBar" id="logbar"><a href="logout.php">Logout </a></li><?php
